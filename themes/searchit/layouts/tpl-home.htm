@@ -20,6 +20,18 @@ sortColumn = "id"
 
 {variable name="catMainTitle" label="Main title" tab="Categories" type="text"}{/variable}
 {variable name="catSubTitle" label="Sub title" tab="Categories" type="text"}{/variable}
+{variable name="catTitle1" label="Category 1 title" tab="Categories" type="text"}{/variable}
+{variable name="catImg1" label="Category 1 img" tab="Categories" type="mediafinder" mode="image"}{/variable}
+{variable name="catTitle2" label="Category 2 title" tab="Categories" type="text"}{/variable}
+{variable name="catImg2" label="Category 2 img" tab="Categories" type="mediafinder" mode="image"}{/variable}
+{variable name="catTitle3" label="Category 3 title" tab="Categories" type="text"}{/variable}
+{variable name="catImg3" label="Category 3 img" tab="Categories" type="mediafinder" mode="image"}{/variable}
+{variable name="catTitle4" label="Category 4 title" tab="Categories" type="text"}{/variable}
+{variable name="catImg4" label="Category 4 img" tab="Categories" type="mediafinder" mode="image"}{/variable}
+{variable name="catTitle5" label="Category 5 title" tab="Categories" type="text"}{/variable}
+{variable name="catImg5" label="Category 5 img" tab="Categories" type="mediafinder" mode="image"}{/variable}
+{variable name="catTitle6" label="Category 6 title" tab="Categories" type="text"}{/variable}
+{variable name="catImg6" label="Category 6 img" tab="Categories" type="mediafinder" mode="image"}{/variable}
 
 {variable name="aboutMainTitle" label="Main title" tab="About" type="text"}{/variable}
 {variable name="aboutSubTitle" label="Sub title" tab="About" type="text"}{/variable}
@@ -97,27 +109,66 @@ sortColumn = "id"
                     </div>
                     <div class="col-l-3-of-4 col-m-2-of-3 col-xs-1-of-1">
                         <div class="row categories-list">
-                           {#  <?php 
-                                $terms = get_terms('job-category', array('hide_empty' => false));
-                             ?>
-                             <?php foreach ($terms as $cat) : ?>
-                                    <?php if (function_exists('z_taxonomy_image_url')): ?>
-                                    <div class="col-xl-1-of-3 col-s-1-of-2 col-xs-1-of-1 the-category">
-                                        <figure>
-                                            <a href="<?=get_bloginfo('url');?>/jobs?job_category=<?=$cat->name;?>">
-                                                <img src="<?= z_taxonomy_image_url($cat->term_id); ?>" />
-                                            </a>
-                                            <figcaption>
-                                                <?php if(true) : ?>
-                                                    <a href="<?=get_bloginfo('url');?>/jobs?job_category=<?=$cat->name;?>"><?php echo $cat->name; ?> Jobs</a>
-                                                <?php else : ?>
-                                                    <a href="<?php echo get_category_link($cat->term_id); ?>"><?php echo $cat->name; ?> Vacatures</a>
-                                                <?php endif; ?>
-                                            </figcaption>
-                                        </figure>
-                                    </div>
-                                <?php endif; ?>
-                            <?php endforeach; ?> #}
+                            <div class="col-xl-1-of-3 col-s-1-of-2 col-xs-1-of-1 the-category">
+                                <figure>
+                                    <a href="">
+                                        <img src="{{ catImg1|media }}" />
+                                    </a>
+                                    <figcaption>
+                                        <a href="">{{ catTitle1 }} Jobs</a>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div class="col-xl-1-of-3 col-s-1-of-2 col-xs-1-of-1 the-category">
+                                <figure>
+                                    <a href="">
+                                        <img src="{{ catImg2|media }}" />
+                                    </a>
+                                    <figcaption>
+                                        <a href="">{{ catTitle2 }} Jobs</a>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div class="col-xl-1-of-3 col-s-1-of-2 col-xs-1-of-1 the-category">
+                                <figure>
+                                    <a href="">
+                                        <img src="{{ catImg3|media }}" />
+                                    </a>
+                                    <figcaption>
+                                        <a href="">{{ catTitle3 }} Jobs</a>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div class="col-xl-1-of-3 col-s-1-of-2 col-xs-1-of-1 the-category">
+                                <figure>
+                                    <a href="">
+                                        <img src="{{ catImg4|media }}" />
+                                    </a>
+                                    <figcaption>
+                                        <a href="">{{ catTitle4 }} Jobs</a>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div class="col-xl-1-of-3 col-s-1-of-2 col-xs-1-of-1 the-category">
+                                <figure>
+                                    <a href="">
+                                        <img src="{{ catImg5|media }}" />
+                                    </a>
+                                    <figcaption>
+                                        <a href="">{{ catTitle5 }} Jobs</a>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div class="col-xl-1-of-3 col-s-1-of-2 col-xs-1-of-1 the-category">
+                                <figure>
+                                    <a href="">
+                                        <img src="{{ catImg6|media }}" />
+                                    </a>
+                                    <figcaption>
+                                        <a href="">{{ catTitle6 }} Jobs</a>
+                                    </figcaption>
+                                </figure>
+                            </div>
                         </div>  
                     </div>
                 </div>
