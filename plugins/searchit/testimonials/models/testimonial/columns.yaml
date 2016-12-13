@@ -1,0 +1,13 @@
+columns:
+    id:
+        label: ID
+        type: number
+        sortable: true
+    who:
+        label: Author
+        type: text
+        sortable: true
+    type:
+        label: Type
+        type: text
+        sortable: true

@@ -1,0 +1,89 @@
+title = "Jobs"
+url = "/jobs/:page?"
+layout = "tpl-jobs-listing"
+is_hidden = 0
+
+[builderList jobsListing]
+modelClass = "Searchit\Jobs\Models\Job"
+scope = "-"
+displayColumn = "title"
+noRecordsMessage = "No records found"
+detailsPage = "jobs-single"
+detailsKeyColumn = "slug"
+detailsUrlParameter = "slug"
+recordsPerPage = 16
+pageNumber = "{{ :page }}"
+sortColumn = "date"
+sortDirection = "desc"
+
+[staticMenu]
+==
+{variable name="banner" label="Banner" tab="Header" type="mediafinder" mode="image"}{/variable}
+{variable name="mainClaim" label="Main claim" tab="Header" type="text"}{/variable}
+{% set records = jobsListing.records %}
+{% set displayColumn = jobsListing.displayColumn %}
+{% set noRecordsMessage = jobsListing.noRecordsMessage %}
+{% set detailsPage = jobsListing.detailsPage %}
+{% set detailsKeyColumn = jobsListing.detailsKeyColumn %}
+{% set detailsUrlParameter = jobsListing.detailsUrlParameter %}
+
+
+{% for record in records %}
+    <article class="the-job">
+        <div class="row">
+            <div class="col-xxl-8-of-10 col-xl-9-of-10 col-xs-1-of-1">
+                {# Use spaceless tag to remove spaces inside the A tag. #}
+                {% spaceless %}
+                    <h3>
+                        <a href="{{ detailsPage|page({ (detailsUrlParameter): attribute(record, detailsKeyColumn) }) }}">
+                            {{ record.title }}
+                        </a>        
+                    </h3>
+                {% endspaceless %}
+                <hr class="job-green">
+                {{ html_limit(record.summary, 500) }}
+                <div class="row in-short">
+                    <div class="col-l-4-of-10">
+                        <p><strong>Location:</strong> {{ record.location }}</p>
+                    </div>
+                    <div class="col-l-2-of-7">
+                        <p><strong>Type:</strong> {{ record.type }}</p>
+                    </div>
+                    <div class="col-l-5-of-16">
+                        <p><strong>Salary:</strong> {{ record.salary_min }} - {{ record.salary_max }} euro</p>
+                    </div>
+                </div>
+                <a href="{{ detailsPage|page({ (detailsUrlParameter): attribute(record, detailsKeyColumn) }) }}" class="job-readmore">
+                    Read more
+                </a> 
+                <hr/>
+            </div>
+        </div>
+    </article>
+{% else %}
+    {{ noRecordsMessage }}
+{% endfor %}
+
+{% if records.lastPage > 1 %}
+    <nav class="navigation pagination" role="navigation">
+        <div class="nav-links">
+            {% if records.currentPage > 1 %}
+                <a class="prev page-numbers" href="{{ this.page.baseFileName|page({ (pageParam): (records.currentPage-1) }) }}">Prev</a>
+            {% endif %}
+
+            {% for page in 1..records.lastPage %}
+                {% if records.currentPage == page %}
+                    <span class="current page-numbers">
+                        {{ page }}
+                    </span>
+                {% else %}
+                    <a class="page-numbers" href="{{ this.page.baseFileName|page({ (pageParam): page }) }}">{{ page }}</a>
+                {% endif %}
+            {% endfor %}
+
+            {% if records.lastPage > records.currentPage %}
+                <a class="next page-numbers" href="{{ this.page.baseFileName|page({ (pageParam): (records.currentPage+1) }) }}">Next</a>
+            {% endif %}
+        </div>
+    </nav>
+{% endif %}

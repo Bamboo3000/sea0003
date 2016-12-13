@@ -1,0 +1,71 @@
+fields:
+    title:
+        label: Title
+        span: full
+        placeholder: 'Job title'
+        required: 1
+        type: text
+    summary:
+        label: Summary
+        size: huge
+        span: full
+        required: 1
+        stretch: 0
+        type: richeditor
+tabs:
+    fields:
+        type:
+            label: Type
+            options:
+                Parttime: parttime
+                Fulltime: fulltime
+                Contract: contract
+                Internship: internship
+            span: auto
+            type: dropdown
+            tab: Info
+        salary_min:
+            label: 'Salary min.'
+            span: auto
+            type: number
+            tab: Info
+        category:
+            label: 'Job category'
+            options:
+                it: IT
+                online-marketing: 'Online Marketing'
+                recruitment-and-sales: 'Recruitment and Sales'
+                engineering: Engineering
+                freelance: Freelance
+                all: All
+                fulfilled: Fulfilled
+            span: auto
+            required: 1
+            type: checkboxlist
+            tab: Info
+        salary_max:
+            label: 'Salary max.'
+            span: auto
+            type: number
+            tab: Info
+        location:
+            label: Location
+            span: full
+            type: text
+            tab: Info
+        lat:
+            label: Latitude
+            span: auto
+            type: text
+            tab: Info
+        lng:
+            label: Longitude
+            span: auto
+            type: text
+            tab: Info
+        date:
+            label: Date
+            span: full
+            mode: datetime
+            type: datepicker
+            tab: Info

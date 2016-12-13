@@ -1,0 +1,140 @@
+title = "Jobs single"
+url = "/job/:slug"
+layout = "default"
+is_hidden = 0
+
+[staticMenu]
+code = "main-menu"
+
+[builderDetails]
+modelClass = "Searchit\Jobs\Models\Job"
+identifierValue = "{{ :slug }}"
+modelKeyColumn = "slug"
+displayColumn = "title"
+notFoundMessage = "Record not found"
+==
+{% set record = builderDetails.record %}
+{% set displayColumn = builderDetails.displayColumn %}
+{% set notFoundMessage = builderDetails.notFoundMessage %}
+
+{% if record %}
+    
+	<div class="row bg-lgrey">
+		<div class="col-l-1-of-4 col-m-1-of-3 col-xs-1-of-1 job-details">
+			<aside>
+				<div class="row the-details">
+					<div class="col-xl-4-of-10 col-m-1-of-1 col-s-2-of-10 col-xs-1-of-1 title">
+						{{ 'Location:' }}
+					</div>
+					<div class="col-xl-6-of-10 col-m-1-of-1 col-s-8-of-10 col-xs-1-of-1 value">
+						{{ record.location }}
+					</div>
+				</div>
+				<div class="row the-details">
+					<div class="col-xl-4-of-10 col-m-1-of-1 col-s-2-of-10 col-xs-1-of-1 title">
+						{{ 'Job type:' }}
+					</div>
+					<div class="col-xl-6-of-10 col-m-1-of-1 col-s-8-of-10 col-xs-1-of-1 value">
+						{{ record.type }}
+					</div>
+				</div>
+				<div class="row the-details">
+					<div class="col-xl-4-of-10 col-m-1-of-1 col-s-2-of-10 col-xs-1-of-1 title">
+						{{ 'Salary:' }}
+					</div>
+					<div class="col-xl-6-of-10 col-m-1-of-1 col-s-8-of-10 col-xs-1-of-1 value">
+						{{ record.salary_min }} - {{ record.salary_max }} euro
+					</div>
+				</div>
+				<div class="row the-details">
+					<div class="col-xs-1-of-1 share-btn">
+						<ul class="share-buttons">
+						  <li>
+						  	<div class="hexagon facebook">
+						  		<a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo get_permalink(); ?>&t=<?php the_title(); ?>" title="Share on Facebook" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+						  	</div>
+						  </li>
+						  <li>
+							<div class="hexagon twitter">
+							  	<a href="https://twitter.com/intent/tweet?source=<?php echo get_permalink(); ?>&text=<?php the_title(); ?>" target="_blank" title="Tweet"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+						  	</div>
+						  </li>
+						  <li>
+							<div class="hexagon whatsapp">
+							  	<a href="whatsapp://send?text=<?php the_title(); ?>&nbsp;&nbsp;<?php echo get_permalink(); ?>" target="_blank" title="Share via Whatsapp"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+						  	</div>
+						  </li>
+						  <li>
+							<div class="hexagon gplus">
+						  		<a href="https://plus.google.com/share?url=<?php echo get_permalink(); ?>" target="_blank" title="Share on Google+"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+						  	</div>
+						  </li>
+						  <li>
+						  	<div class="hexagon pocket">
+						  		<a href="https://getpocket.com/save?url=<?php echo get_permalink(); ?>&title=<?php the_title(); ?>" target="_blank" title="Add to Pocket"><i class="fa fa-get-pocket" aria-hidden="true"></i></a>
+						  	</div>
+						  </li>
+						  <li>
+						  	<div class="hexagon linkedin">
+						  		<a href="http://www.linkedin.com/shareArticle?mini=true&url=<?php echo get_permalink(); ?>&title=<?php the_title(); ?>&summary=Checkout%20this%20job%20offer!&source=<?php echo get_permalink(); ?>" target="_blank" title="Share on LinkedIn"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+						  	</div>
+						  </li>
+						  <li>
+						 	<div class="hexagon mail">
+						  		<a href="mailto:?subject=<?php the_title(); ?>&body=Checkout%20this%20job%20offer: <?php echo get_permalink(); ?>" target="_blank" title="Email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
+						  	</div>
+						  </li>
+						</ul>
+					</div>
+				</div>
+				{% if record.lat and record.lng %}
+				<div class="row the-details">
+					<div class="col-xs-1-of-1 map">
+						<div id="job_map"></div>
+					</div>
+				</div>
+				<script>
+				  	function initMap() {
+				        var job_map = document.getElementById('job_map');
+				        var map = new google.maps.Map(job_map, {
+							center: {lat: {{ record.lat }}, lng: {{ record.lng }} },
+							zoom: 12,
+							scrollwheel: false,
+							draggable: false,
+				        });
+				        var marker = new google.maps.Marker({
+				          	map: map,
+				          	position: new google.maps.LatLng({{ record.lat }},{{ record.lng }})
+				        });
+				        map.set('styles', [{"featureType":"water","elementType":"geometry","stylers":[{"color":"#a0d6d1"},{"lightness":17}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":20}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#dedede"},{"lightness":17}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#dedede"},{"lightness":29},{"weight":0.2}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#dedede"},{"lightness":18}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":16}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#f1f1f1"},{"lightness":21}]},{"elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"color":"#ffffff"},{"lightness":16}]},{"elementType":"labels.text.fill","stylers":[{"saturation":36},{"color":"#333333"},{"lightness":40}]},{"elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#f2f2f2"},{"lightness":19}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#fefefe"},{"lightness":20}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#fefefe"},{"lightness":17},{"weight":1.2}]}]);
+				  	}
+				</script>
+				<script src="https://maps.googleapis.com/maps/api/js?callback=initMap" defer></script>
+				{% endif %}
+				<div class="row">
+					<div class="col-xs-1-of-1">
+						<a href="#" class="scrollTo apply-to" data-to="apply-form-section">Apply</a>
+					</div>
+				</div>
+			</aside>
+		</div>
+		<div class="col-l-3-of-4 col-m-2-of-3 col-xs-1-of-1 job-content bg-white">
+			<article class="the-job-content">
+				<div class="row the-job-content-text">
+					<div class="col-xxl-8-of-10 col-xl-9-of-10 col-xs-1-of-1">
+						<h2>
+							{{ record.title }}
+						</h2>
+						<hr class="job-green">
+						{{ record.summary|raw }}
+					</div>
+				</div>
+				{# <?php get_template_part('templates/apply', 'form'); ?> #}
+			</article>
+		</div>
+		<div class="gradient col-l-1-of-4 col-m-1-of-3"></div>
+	</div>
+
+{% else %}
+    {{ notFoundMessage }}
+{% endif %}

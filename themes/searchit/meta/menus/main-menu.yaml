@@ -1,0 +1,59 @@
+name: 'Main menu'
+items:
+    -
+        title: Jobs
+        nesting: ''
+        type: cms-page
+        url: ''
+        code: ''
+        reference: jobs
+        cmsPage: ''
+        replace: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Client
+        nesting: '0'
+        type: static-page
+        code: ''
+        reference: client
+        replace: '0'
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Candidates
+        nesting: '0'
+        type: static-page
+        code: ''
+        reference: candidates
+        replace: '0'
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: References
+        nesting: '0'
+        type: static-page
+        code: ''
+        reference: refernces
+        replace: '0'
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Contact
+        nesting: '0'
+        type: static-page
+        code: ''
+        reference: contact
+        replace: '0'
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'

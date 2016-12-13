@@ -1,0 +1,4 @@
+title: Testimonials
+modelClass: Searchit\Testimonials\Models\Testimonial
+toolbar:
+    buttons: reorder_toolbar

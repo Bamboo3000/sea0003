@@ -1,0 +1,122 @@
+description = "Jobs listing"
+
+[staticMenu mainMenu]
+code = "main-menu"
+
+[builderList jobsListing]
+modelClass = "Searchit\Jobs\Models\Job"
+scope = "-"
+displayColumn = "jobs"
+noRecordsMessage = "No records found"
+detailsPage = "-"
+detailsUrlParameter = "id"
+pageNumber = "{{ :page }}"
+sortColumn = "date"
+sortDirection = "desc"
+
+
+==
+{# [job-filters] #}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{{ this.page.title }} | Search It Recruitment</title>
+        <meta name="description" content="{{ this.page.meta_description }}">
+        <meta name="title" content="{{ this.page.meta_title }}">
+        <meta name="author" content="Search It Recruitment">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="generator" content="Search It Recruitment">
+        <link rel="icon" type="image/png" href="{{ 'assets/images/october.png'|theme }}">
+        <link href="{{ 'assets/css/www/build.css'|theme }}" rel="stylesheet">
+    </head>
+    <body>
+        <div class="wrapper">
+        
+            <!-- Header -->
+            {% partial 'header' %}
+
+            <!-- Content -->
+            <div class="row bg-lgrey">
+                
+                <div class="col-xs-1-of-1 filter-opener">
+                    <i class="fa fa-filter" aria-hidden="true"></i>
+                    <span>
+                       {#  <?php echo __('Show job filters', 'sea0001'); ?> #}
+                    </span>
+                </div>
+                <div class="col-l-1-of-4 col-m-1-of-3 col-xs-1-of-1 job-filters">
+                    <aside>
+                        <form id="filter-form" class="ajax-search">
+                        <div class="job-filters-search1">
+                            <input type="text" name="job-title" class="title" placeholder="{{ 'Type a job skill...' }}">
+                            <input type="text" name="job-location" class="location" placeholder="{{ 'Type a location...' }}">
+                        </div>
+                        <div class="job-filters-search2" id="job-header">
+                            <h5>{{ 'Job categories' }}</h5>
+                            <hr class="green">
+                            {# {% component 'job-filters' %} #}
+                            <ul class="job-categories">
+                                <li>
+                                    <a href="it">IT</a>
+                                </li>
+                                <li>
+                                    <a href="online marketing">Online marketing</a>
+                                </li>
+                                <li>
+                                    <a href="recruitment and sales">Recruitment and Sales</a>
+                                </li>
+                                <li>
+                                    <a href="engineering">Engineering</a>
+                                </li>
+                                <li>
+                                    <a href="freelance">Freelance</a>
+                                </li>
+                                <li>
+                                    <a href="fulfilled">Fulfilled</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="job-filters-search3">
+                            <h5>{{ 'Job type' }}</h5>
+                            <hr class="green">
+                            <ul class="job-types">
+                                <li>
+                                    <a href="fulltime">Fulltime</a>
+                                </li>
+                                <li>
+                                    <a href="parttime">Parttime</a>
+                                </li>
+                                <li>
+                                    <a href="intern">Internship</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="job-filters-search4">
+                            <h5>{{ 'Salary' }}</h5>
+                            <hr class="green">
+                            <input type="text" name="job-salary-min" class="title" placeholder="{{ 'Min.' }}">
+                            <input type="text" name="job-salary-max" class="location" placeholder="{{ 'Max.' }}">
+                        </div>
+                        </form>
+                    </aside>
+                </div>
+
+                <div class="col-l-3-of-4 col-m-2-of-3 col-xs-1-of-1 job-list bg-white" id="load-more-collection-container">
+
+                    {% page %}
+
+                </div>
+
+            </div>
+
+            <!-- Footer -->
+            {% partial 'footer' %}
+
+        </div>
+
+        <!-- Scripts -->
+        <script src="{{ 'assets/js/www/app.min.js'|theme }}"></script>
+
+    </body>
+</html>

@@ -1,0 +1,11 @@
+[viewBag]
+==
+<ul class="main-menu">
+    {% for item in items %}
+        <li {{ item.isActive or item.isChildActive ? 'class="current-menu-item"' : '' }}>
+            <a href="{{ item.url }}">
+                {{ item.title }}
+            </a>
+        </li>
+    {% endfor %}
+</ul>

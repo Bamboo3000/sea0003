@@ -1,0 +1,20 @@
+fields:
+    summary:
+        label: Summary
+        size: giant
+        span: full
+        required: 1
+        type: richeditor
+    who:
+        label: Author
+        span: auto
+        required: 1
+        type: text
+    type:
+        label: 'Client or Candidate'
+        span: auto
+        options:
+            client: Client
+            candidate: Candidate
+        required: 1
+        type: dropdown

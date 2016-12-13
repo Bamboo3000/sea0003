@@ -1,0 +1,224 @@
+description = "Home page"
+
+[staticMenu mainMenu]
+code = "main-menu"
+
+[staticPage]
+
+[builderList testimonialsListing]
+modelClass = "Searchit\Testimonials\Models\Testimonial"
+scope = "-"
+displayColumn = "summary"
+noRecordsMessage = "No records found"
+detailsPage = "-"
+detailsUrlParameter = "id"
+pageNumber = "{{ :page }}"
+sortColumn = "id"
+==
+{variable name="banner" label="Banner" tab="Header" type="mediafinder" mode="image"}{/variable}
+{variable name="mainClaim" label="Main claim" tab="Header" type="text"}{/variable}
+
+{variable name="catMainTitle" label="Main title" tab="Categories" type="text"}{/variable}
+{variable name="catSubTitle" label="Sub title" tab="Categories" type="text"}{/variable}
+
+{variable name="aboutMainTitle" label="Main title" tab="About" type="text"}{/variable}
+{variable name="aboutSubTitle" label="Sub title" tab="About" type="text"}{/variable}
+{variable name="aboutImg1" label="Image 1" tab="About" type="mediafinder" mode="image"}{/variable}
+{variable name="aboutImg2" label="Image 2" tab="About" type="mediafinder" mode="image"}{/variable}
+
+{variable name="statsMainTitle" label="Main title" tab="Stats" type="text"}{/variable}
+{variable name="stats1Title" label="Stat 1 Title" tab="Stats" type="text"}{/variable}
+{variable name="stats1Number" label="Stat 1 Number" tab="Stats" type="text"}{/variable}
+{variable name="stats2Title" label="Stat 2 Title" tab="Stats" type="text"}{/variable}
+{variable name="stats2Number" label="Stat 2 Number" tab="Stats" type="text"}{/variable}
+{variable name="stats3Title" label="Stat 3 Title" tab="Stats" type="text"}{/variable}
+{variable name="stats3Number" label="Stat 3 Number" tab="Stats" type="text"}{/variable}
+{variable name="stats4Title" label="Stat 4 Title" tab="Stats" type="text"}{/variable}
+{variable name="stats4Number" label="Stat 4 Number" tab="Stats" type="text"}{/variable}
+
+{variable name="testimonialsMainTitle" label="Main title" tab="Testimonials" type="text"}{/variable}
+{variable name="testimonialsSubTitle" label="Sub title" tab="Testimonials" type="text"}{/variable}
+
+{% set records = testimonialsListing.records %}
+{% set displayColumn = testimonialsListing.displayColumn %}
+{% set noRecordsMessage = testimonialsListing.noRecordsMessage %}
+{% set detailsPage = testimonialsListing.detailsPage %}
+{% set detailsKeyColumn = testimonialsListing.detailsKeyColumn %}
+{% set detailsUrlParameter = testimonialsListing.detailsUrlParameter %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{{ this.page.title }} | Search It Recruitment</title>
+        <meta name="description" content="{{ this.page.meta_description }}">
+        <meta name="title" content="{{ this.page.meta_title }}">
+        <meta name="author" content="Search It Recruitment">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="generator" content="Search It Recruitment">
+        <link rel="icon" type="image/png" href="{{ 'assets/images/october.png'|theme }}">
+        <link href="{{ 'assets/css/www/build.css'|theme }}" rel="stylesheet">
+    </head>
+    <body>
+        <div class="wrapper">
+        
+            <!-- Header -->
+            {% partial 'header' %}
+
+            <!-- Content -->
+            <header class="home-bg vheight-half" style="background-image: url('{{ banner|media }}');">
+                <div class="centerV">
+                    <div class="claim white">
+                        <h1 class="text-center">
+                            {{ mainClaim }}
+                        </h1>
+                    </div>
+                    <div class="main-search">
+                        <form role="search" action="" class="search-form">
+                            <input type="text" class="search-field" value="Search for a job..." onclick="if(this.defaultValue==this.value){ this.value=''}" onblur="if(this.value===''){this.value=this.defaultValue}">
+                            <input type="submit" class="search-submit" value="">
+                        </form>
+                    </div>
+                </div>
+            </header>
+
+            <section class="categories">
+                <div class="row">
+                    <div class="col-l-1-of-4 col-m-1-of-3 col-xs-1-of-1">
+                        <aside>
+                            <hr>
+                            <span>
+                                {{ catMainTitle }}
+                            </span>
+                            <h2>
+                                {{ catSubTitle }}
+                            </h2>
+                        </aside>
+                    </div>
+                    <div class="col-l-3-of-4 col-m-2-of-3 col-xs-1-of-1">
+                        <div class="row categories-list">
+                           {#  <?php 
+                                $terms = get_terms('job-category', array('hide_empty' => false));
+                             ?>
+                             <?php foreach ($terms as $cat) : ?>
+                                    <?php if (function_exists('z_taxonomy_image_url')): ?>
+                                    <div class="col-xl-1-of-3 col-s-1-of-2 col-xs-1-of-1 the-category">
+                                        <figure>
+                                            <a href="<?=get_bloginfo('url');?>/jobs?job_category=<?=$cat->name;?>">
+                                                <img src="<?= z_taxonomy_image_url($cat->term_id); ?>" />
+                                            </a>
+                                            <figcaption>
+                                                <?php if(true) : ?>
+                                                    <a href="<?=get_bloginfo('url');?>/jobs?job_category=<?=$cat->name;?>"><?php echo $cat->name; ?> Jobs</a>
+                                                <?php else : ?>
+                                                    <a href="<?php echo get_category_link($cat->term_id); ?>"><?php echo $cat->name; ?> Vacatures</a>
+                                                <?php endif; ?>
+                                            </figcaption>
+                                        </figure>
+                                    </div>
+                                <?php endif; ?>
+                            <?php endforeach; ?> #}
+                        </div>  
+                    </div>
+                </div>
+            </section>
+
+            <section class="about">
+                <div class="row">
+                    <div class="col-l-1-of-4 col-m-1-of-3 col-xs-1-of-1">
+                        <aside>
+                            <hr>
+                            <span>
+                                {{ aboutMainTitle }}
+                            </span>
+                            <h2>
+                                {{ aboutSubTitle }}
+                            </h2>
+                        </aside>
+                    </div>
+                    <div class="col-l-3-of-4 col-m-2-of-3 col-xs-1-of-1 bg-white">
+                        <div class="row parentH">
+                            <div class="col-l-1-of-2 col-xs-1-of-1 about-text">
+                                {% page %}
+                            </div>
+                            <div class="col-l-1-of-2 col-xs-1-of-1 backgroundF" style="background-image:url('{{ aboutImg1|media }}');"></div>
+                        </div>
+                        <div class="row parentH">
+                            <div class="col-l-1-of-2 col-xs-1-of-1 backgroundF" style="background-image:url('{{ aboutImg2|media }}');"></div>
+                            <div class="col-l-1-of-2 col-xs-1-of-1 our-stats">
+                                <hr>
+                                <h4>
+                                    {{ statsMainTitle }}
+                                </h4>
+                                <div class="row">
+                                    <div class="col-s-1-of-4 col-xs-1-of-2 the-stat">
+                                        <div class="hexagon">
+                                            <span>{{ stats1Number }}</span>
+                                        </div>
+                                        <p class="small">{{ stats1Title }}</p>
+                                    </div>
+                                    <div class="col-s-1-of-4 col-xs-1-of-2 the-stat">
+                                        <div class="hexagon">
+                                            <span>{{ stats2Number }}</span>
+                                        </div>
+                                        <p class="small">{{ stats2Title }}</p>
+                                    </div>
+                                    <div class="col-s-1-of-4 col-xs-1-of-2 the-stat">
+                                        <div class="hexagon">
+                                            <span>{{ stats3Number }}</span>
+                                        </div>
+                                        <p class="small">{{ stats3Title }}</p>
+                                    </div>
+                                    <div class="col-s-1-of-4 col-xs-1-of-2 the-stat">
+                                        <div class="hexagon">
+                                            <span>{{ stats4Number }}</span>
+                                        </div>
+                                        <p class="small">{{ stats4Title }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="testimonials">
+                <div class="row">
+                    <div class="col-l-1-of-4 col-m-1-of-3 col-xs-1-of-1">
+                        <aside>
+                            <hr>
+                            <span>
+                                {{ testimonialsMainTitle }}
+                            </span>
+                            <h2>
+                                {{ testimonialsSubTitle }}
+                            </h2>
+                        </aside>
+                    </div>
+                    <div class="col-l-3-of-4 col-m-2-of-3 col-xs-1-of-1 testimonials-list bg-lgrey">
+                        <div id="carousel" class="owl-carousel">
+                            {% for record in records %}
+                                <div class="item the-testimonial">
+                                    <div class="col-xxl-7-of-10 col-xl-9-of-10 col-xs-1-of-1">
+                                        {{ record.summary|raw }}
+                                        <p class="signature">
+                                            {{ record.who }} - {{ record.type }}
+                                        </p>
+                                    </div>
+                                </div>
+                            {% else %}
+                                {{ noRecordsMessage }}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Footer -->
+            {% partial 'footer' %}
+
+        </div>
+
+        <!-- Scripts -->
+        <script src="{{ 'assets/js/www/app.min.js'|theme }}"></script>
+
+    </body>
+</html>
