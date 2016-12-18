@@ -7,8 +7,8 @@ class Plugin extends PluginBase
     public function registerComponents()
     {
     	return [
-    		'Searchit\Jobs\Components\Cronjob' => 'cronjob'
-    		// 'Searchit\Jobs\Components\Filters' => 'job-filters'
+    		'Searchit\Jobs\Components\Cronjob' => 'cronjob',
+    		'Searchit\Jobs\Components\Filters' => 'job-filters'
     	];
     }
 

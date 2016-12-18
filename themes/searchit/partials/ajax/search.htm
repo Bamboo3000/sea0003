@@ -1,0 +1,51 @@
+[builderList jobsListing]
+modelClass = "Searchit\Jobs\Models\Job"
+scope = "-"
+displayColumn = "title"
+noRecordsMessage = "No records found"
+detailsPage = "jobs-single"
+detailsKeyColumn = "slug"
+detailsUrlParameter = "slug"
+recordsPerPage = 16
+==
+
+{% set records = result %}
+{% set displayColumn = jobsListing.displayColumn %}
+{% set noRecordsMessage = jobsListing.noRecordsMessage %}
+{% set detailsPage = jobsListing.detailsPage %}
+{% set detailsKeyColumn = jobsListing.detailsKeyColumn %}
+{% set detailsUrlParameter = jobsListing.detailsUrlParameter %}
+
+{% for record in records %}
+	<article class="the-job">
+        <div class="row">
+            <div class="col-xxl-8-of-10 col-xl-9-of-10 col-xs-1-of-1">
+                {# Use spaceless tag to remove spaces inside the A tag. #}
+                {% spaceless %}
+                    <h3>
+                        <a href="{{ detailsPage|page({ (detailsUrlParameter): attribute(record, detailsKeyColumn) }) }}">
+                            {{ record.title }}
+                        </a>        
+                    </h3>
+                {% endspaceless %}
+                <hr class="job-green">
+                {{ html_limit(record.summary, 500) }}
+                <div class="row in-short">
+                    <div class="col-l-4-of-10">
+                        <p><strong>Location:</strong> {{ record.location }}</p>
+                    </div>
+                    <div class="col-l-2-of-7">
+                        <p><strong>Type:</strong> {{ record.type }}</p>
+                    </div>
+                    <div class="col-l-5-of-16">
+                        <p><strong>Salary:</strong> {{ record.salary_min }} - {{ record.salary_max }} euro</p>
+                    </div>
+                </div>
+                <a href="{{ detailsPage|page({ (detailsUrlParameter): attribute(record, detailsKeyColumn) }) }}" class="job-readmore">
+                    Read more
+                </a> 
+                <hr/>
+            </div>
+        </div>
+    </article>
+{% endfor %}

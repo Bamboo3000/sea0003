@@ -1,6 +1,5 @@
 <?php namespace Searchit\Jobs\Components;
 
-use Carbon\Carbon;
 use Cms\Classes\ComponentBase;
 use Searchit\Jobs\Models\Job;
 

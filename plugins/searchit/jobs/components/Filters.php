@@ -6,13 +6,13 @@ use Searchit\Jobs\Models\Job;
 class Filters extends ComponentBase
 {
 
-    // public function componentDetails()
-    // {
-    //     return [
-    //         'name'        => 'Filter Component',
-    //         'description' => 'No description provided yet...'
-    //     ];
-    // }
+    public function componentDetails()
+    {
+        return [
+            'name'        => 'Filter Component',
+            'description' => 'No description provided yet...'
+        ];
+    }
 
     // public function onRun() 
     // {
@@ -22,14 +22,25 @@ class Filters extends ComponentBase
     // public $categories;
     // public $types;
 
-    // /*
-    // *
-    // * Return categories column
-    // *
-    // */
-    // protected function getCategories()
-    // {
-    //     return Job::lists('type');
-    // }
+    /*
+    *
+    * Return categories column
+    *
+    */
+    protected function onFilterSearch()
+    {
+        $query = input('job-title');
+
+        $this->search = Job::where('title', 'LIKE', "%{$query}%")
+        ->orderBy('date', 'desc')
+        ->get();
+
+        return [
+            $this->page['result'] = $this->search
+        ];
+
+    }
+
+    public $search;
 
 }

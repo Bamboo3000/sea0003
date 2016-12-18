@@ -14,9 +14,9 @@ pageNumber = "{{ :page }}"
 sortColumn = "date"
 sortDirection = "desc"
 
-
+[job-filters]
 ==
-{# [job-filters] #}
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -47,15 +47,19 @@ sortDirection = "desc"
                 </div>
                 <div class="col-l-1-of-4 col-m-1-of-3 col-xs-1-of-1 job-filters">
                     <aside>
-                        <form id="filter-form" class="ajax-search">
+                        <form 
+                            id="filter-form" 
+                            class="ajax-search"
+                            data-request="onFilterSearch"
+                            data-request-update="'ajax/search': '#load-more-collection-container'"
+                        >
                         <div class="job-filters-search1">
-                            <input type="text" name="job-title" class="title" placeholder="{{ 'Type a job skill...' }}">
+                            <input type="text" id="job-title" name="job-title" class="title" placeholder="{{ 'Type a job skill...' }}">
                             <input type="text" name="job-location" class="location" placeholder="{{ 'Type a location...' }}">
                         </div>
                         <div class="job-filters-search2" id="job-header">
                             <h5>{{ 'Job categories' }}</h5>
                             <hr class="green">
-                            {# {% component 'job-filters' %} #}
                             <ul class="job-categories">
                                 <li>
                                     <a href="it">IT</a>
@@ -98,6 +102,7 @@ sortDirection = "desc"
                             <input type="text" name="job-salary-min" class="title" placeholder="{{ 'Min.' }}">
                             <input type="text" name="job-salary-max" class="location" placeholder="{{ 'Max.' }}">
                         </div>
+                        <input id="filterSearch" type="submit" style="display:none;">
                         </form>
                     </aside>
                 </div>
@@ -105,6 +110,7 @@ sortDirection = "desc"
                 <div class="col-l-3-of-4 col-m-2-of-3 col-xs-1-of-1 job-list bg-white" id="load-more-collection-container">
 
                     {% page %}
+                    {% component 'job-filters' %}
 
                 </div>
 
@@ -117,6 +123,15 @@ sortDirection = "desc"
 
         <!-- Scripts -->
         <script src="{{ 'assets/js/www/app.min.js'|theme }}"></script>
-
+        <script>
+            $(document).ready(function() {
+                $('#job-title').on('keyup', function() {
+                    setTimeout(function() {
+                        $('#filterSearch').trigger('click');
+                    }, 200);
+                });
+            });
+        </script>
+        {% framework extras %}
     </body>
 </html>
