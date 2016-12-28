@@ -15,3 +15,6 @@
 1.0.6:
     - 'Updated table searchit_jobs_'
     - builder_table_update_searchit_jobs__4.php
+1.0.7:
+    - 'Updated table searchit_jobs_'
+    - builder_table_update_searchit_jobs__5.php

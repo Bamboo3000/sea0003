@@ -29,11 +29,36 @@ class Filters extends ComponentBase
     */
     protected function onFilterSearch()
     {
-        $query = input('job-title');
+        $title = input('job-title');
+        $location = input('job-location');
+        $salaryMin = input('job-salary-min');
+        $salaryMax = input('job-salary-max');
 
-        $this->search = Job::where('title', 'LIKE', "%{$query}%")
-        ->orderBy('date', 'desc')
-        ->get();
+        if(!empty($salaryMin) && !empty($salaryMax)) {
+            $this->search = Job::where('title', 'LIKE', "%{$title}%")
+            ->where('location', 'LIKE', "%{$location}%")
+            ->where('salary_min', '>=', $salaryMin)
+            ->where('salary_max', '<=', $salaryMax)
+            ->orderBy('date', 'desc')
+            ->get();
+        } elseif(!empty($salaryMin)) {
+            $this->search = Job::where('title', 'LIKE', "%{$title}%")
+            ->where('location', 'LIKE', "%{$location}%")
+            ->where('salary_min', '>=', $salaryMin)
+            ->orderBy('date', 'desc')
+            ->get();
+        } elseif(!empty($salaryMax)) {
+            $this->search = Job::where('title', 'LIKE', "%{$title}%")
+            ->where('location', 'LIKE', "%{$location}%")
+            ->where('salary_max', '<=', $salaryMax)
+            ->orderBy('date', 'desc')
+            ->get();
+        } else {
+            $this->search = Job::where('title', 'LIKE', "%{$title}%")
+            ->where('location', 'LIKE', "%{$location}%")
+            ->orderBy('date', 'desc')
+            ->get();
+        }
 
         return [
             $this->page['result'] = $this->search

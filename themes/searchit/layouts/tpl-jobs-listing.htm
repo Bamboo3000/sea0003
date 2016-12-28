@@ -55,7 +55,7 @@ sortDirection = "desc"
                         >
                         <div class="job-filters-search1">
                             <input type="text" id="job-title" name="job-title" class="title" placeholder="{{ 'Type a job skill...' }}">
-                            <input type="text" name="job-location" class="location" placeholder="{{ 'Type a location...' }}">
+                            <input type="text" id="job-location" name="job-location" class="location" placeholder="{{ 'Type a location...' }}">
                         </div>
                         <div class="job-filters-search2" id="job-header">
                             <h5>{{ 'Job categories' }}</h5>
@@ -99,8 +99,8 @@ sortDirection = "desc"
                         <div class="job-filters-search4">
                             <h5>{{ 'Salary' }}</h5>
                             <hr class="green">
-                            <input type="text" name="job-salary-min" class="title" placeholder="{{ 'Min.' }}">
-                            <input type="text" name="job-salary-max" class="location" placeholder="{{ 'Max.' }}">
+                            <input type="text" id="job-salary-min" name="job-salary-min" class="title" placeholder="{{ 'Min.' }}">
+                            <input type="text" id="job-salary-max" name="job-salary-max" class="location" placeholder="{{ 'Max.' }}">
                         </div>
                         <input id="filterSearch" type="submit" style="display:none;">
                         </form>
@@ -125,7 +125,7 @@ sortDirection = "desc"
         <script src="{{ 'assets/js/www/app.min.js'|theme }}"></script>
         <script>
             $(document).ready(function() {
-                $('#job-title').on('keyup', function() {
+                $('#job-title, #job-location, #job-salary-min, #job-salary-max').on('keyup', function() {
                     setTimeout(function() {
                         $('#filterSearch').trigger('click');
                     }, 200);

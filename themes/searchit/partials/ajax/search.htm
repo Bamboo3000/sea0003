@@ -1,3 +1,4 @@
+
 [builderList jobsListing]
 modelClass = "Searchit\Jobs\Models\Job"
 scope = "-"
@@ -6,7 +7,8 @@ noRecordsMessage = "No records found"
 detailsPage = "jobs-single"
 detailsKeyColumn = "slug"
 detailsUrlParameter = "slug"
-recordsPerPage = 16
+sortColumn = "date"
+sortDirection = "desc"
 ==
 
 {% set records = result %}
@@ -49,3 +51,27 @@ recordsPerPage = 16
         </div>
     </article>
 {% endfor %}
+
+{% if records.lastPage > 1 %}
+    <nav class="navigation pagination" role="navigation">
+        <div class="nav-links">
+            {% if records.currentPage > 1 %}
+                <a class="prev page-numbers" href="{{ this.page.baseFileName|page({ (pageParam): (records.currentPage-1) }) }}">Prev</a>
+            {% endif %}
+
+            {% for page in 1..records.lastPage %}
+                {% if records.currentPage == page %}
+                    <span class="current page-numbers">
+                        {{ page }}
+                    </span>
+                {% else %}
+                    <a class="page-numbers" href="{{ this.page.baseFileName|page({ (pageParam): page }) }}">{{ page }}</a>
+                {% endif %}
+            {% endfor %}
+
+            {% if records.lastPage > records.currentPage %}
+                <a class="next page-numbers" href="{{ this.page.baseFileName|page({ (pageParam): (records.currentPage+1) }) }}">Next</a>
+            {% endif %}
+        </div>
+    </nav>
+{% endif %}

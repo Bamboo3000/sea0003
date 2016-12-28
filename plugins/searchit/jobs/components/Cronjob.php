@@ -55,6 +55,8 @@ class Cronjob extends ComponentBase
 
             $date = date("Y-m-d H:i:s", strtotime($job->publish_date));
             $slug = $this->slugify( $job->title.'-'.$job->id );
+            $salary_min = preg_replace("/\./", "", $job->salary_fixed);
+            $salary_max = preg_replace("/\./", "", $job->salary_bonus);
 
             if($this->getJobCount('job_id', $job->id) !== 0)
             {
@@ -67,8 +69,8 @@ class Cronjob extends ComponentBase
                         'category'      => $category,
                         'type'          => $type,
                         'date'          => $date,
-                        'salary_min'    => $job->salary_fixed,
-                        'salary_max'    => $job->salary_bonus,
+                        'salary_min'    => $salary_min,
+                        'salary_max'    => $salary_max,
                         'location'      => $job->address,
                         'lat'           => $job->lat,
                         'lng'           => $job->lng,
@@ -86,8 +88,8 @@ class Cronjob extends ComponentBase
                         'category'      => $category,
                         'type'          => $type,
                         'date'          => $date,
-                        'salary_min'    => $job->salary_fixed,
-                        'salary_max'    => $job->salary_bonus,
+                        'salary_min'    => $salary_min,
+                        'salary_max'    => $salary_max,
                         'location'      => $job->address,
                         'lat'           => $job->lat,
                         'lng'           => $job->lng,
