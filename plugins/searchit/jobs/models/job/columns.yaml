@@ -19,3 +19,8 @@ columns:
         type: date
         searchable: false
         sortable: true
+    job_id:
+        label: ID
+        type: number
+        searchable: true
+        sortable: true
