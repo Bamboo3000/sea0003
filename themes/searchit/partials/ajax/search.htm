@@ -50,9 +50,17 @@ sortDirection = "desc"
             </div>
         </div>
     </article>
+{# {% else %}
+    <article class="the-job">
+        <div class="row">
+            <h3>
+                {{ noRecordsMessage }}
+            </h3>
+        </div>
+    </article> #}
 {% endfor %}
 
-{% if records.lastPage > 1 %}
+{# {% if records.lastPage > 1 %}
     <nav class="navigation pagination" role="navigation">
         <div class="nav-links">
             {% if records.currentPage > 1 %}
@@ -74,4 +82,4 @@ sortDirection = "desc"
             {% endif %}
         </div>
     </nav>
-{% endif %}
+{% endif %} #}

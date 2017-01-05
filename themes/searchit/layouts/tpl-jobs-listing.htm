@@ -15,6 +15,7 @@ sortColumn = "date"
 sortDirection = "desc"
 
 [job-filters]
+[sidebar]
 ==
 
 <!DOCTYPE html>
@@ -57,45 +58,7 @@ sortDirection = "desc"
                             <input type="text" id="job-title" name="job-title" class="title" placeholder="{{ 'Type a job skill...' }}">
                             <input type="text" id="job-location" name="job-location" class="location" placeholder="{{ 'Type a location...' }}">
                         </div>
-                        <div class="job-filters-search2" id="job-header">
-                            <h5>{{ 'Job categories' }}</h5>
-                            <hr class="green">
-                            <ul class="job-categories">
-                                <li>
-                                    <a href="it">IT</a>
-                                </li>
-                                <li>
-                                    <a href="online marketing">Online marketing</a>
-                                </li>
-                                <li>
-                                    <a href="recruitment and sales">Recruitment and Sales</a>
-                                </li>
-                                <li>
-                                    <a href="engineering">Engineering</a>
-                                </li>
-                                <li>
-                                    <a href="freelance">Freelance</a>
-                                </li>
-                                <li>
-                                    <a href="fulfilled">Fulfilled</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="job-filters-search3">
-                            <h5>{{ 'Job type' }}</h5>
-                            <hr class="green">
-                            <ul class="job-types">
-                                <li>
-                                    <a href="fulltime">Fulltime</a>
-                                </li>
-                                <li>
-                                    <a href="parttime">Parttime</a>
-                                </li>
-                                <li>
-                                    <a href="intern">Internship</a>
-                                </li>
-                            </ul>
-                        </div>
+                        {% component 'sidebar' %}
                         <div class="job-filters-search4">
                             <h5>{{ 'Salary' }}</h5>
                             <hr class="green">
@@ -125,11 +88,26 @@ sortDirection = "desc"
         <script src="{{ 'assets/js/www/app.min.js'|theme }}"></script>
         <script>
             $(document).ready(function() {
+
                 $('#job-title, #job-location, #job-salary-min, #job-salary-max').on('keyup', function() {
                     setTimeout(function() {
                         $('#filterSearch').trigger('click');
                     }, 200);
                 });
+
+                $('.job-categories, .job-types').find('a').on('click', function(e) {
+                    e.preventDefault();
+
+                    $(this).parent().parent().find('a').removeClass('pushed');
+                    $(this).addClass('pushed');
+                    $(this).parent().parent().next().val('');
+                    $(this).parent().parent().next().val($(this).attr('href'));
+                    setTimeout(function() {
+                        $('#filterSearch').trigger('click');
+                    }, 200);
+
+                });
+
             });
         </script>
         {% framework extras %}

@@ -27,6 +27,7 @@ class Cronjob extends ComponentBase
         $file = 'http://external.srch20.com/searchit/xml/jobs';
         $xml = simplexml_load_file($file) or die("Error: Cannot create object");
         $vacancies = $xml->vacancy;
+        $jobs = Job::orderBy('job_id', 'desc')->get();
 
         foreach($vacancies as $job)
         {
@@ -98,6 +99,14 @@ class Cronjob extends ComponentBase
                 );
             }
 
+        }
+
+        foreach($jobs as $job_single) 
+        {
+            $job_id_key = array_search($job_single->job_id, $job_ids);
+            if($job_id_key !== null) {
+                echo 'yes';
+            }
         }
 
     }
