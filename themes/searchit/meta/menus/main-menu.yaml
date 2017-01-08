@@ -17,8 +17,10 @@ items:
         title: Client
         nesting: '0'
         type: static-page
+        url: ''
         code: ''
         reference: client
+        cmsPage: ''
         replace: '0'
         viewBag:
             isHidden: '0'
@@ -28,8 +30,10 @@ items:
         title: Candidates
         nesting: '0'
         type: static-page
+        url: ''
         code: ''
         reference: candidates
+        cmsPage: ''
         replace: '0'
         viewBag:
             isHidden: '0'
@@ -39,9 +43,20 @@ items:
         title: References
         nesting: '0'
         type: static-page
+        url: ''
         code: ''
         reference: refernces
+        cmsPage: ''
         replace: '0'
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: 'Our team'
+        type: cms-page
+        code: ''
+        reference: team
         viewBag:
             isHidden: '0'
             cssClass: ''
@@ -50,8 +65,10 @@ items:
         title: Contact
         nesting: '0'
         type: static-page
+        url: ''
         code: ''
         reference: contact
+        cmsPage: ''
         replace: '0'
         viewBag:
             isHidden: '0'

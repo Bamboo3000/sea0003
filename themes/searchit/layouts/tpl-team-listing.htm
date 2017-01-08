@@ -1,0 +1,69 @@
+description = "Team listing"
+
+[staticMenu mainMenu]
+code = "main-menu"
+
+[builderList teamListing]
+modelClass = "Searchit\Team\Models\Team"
+scope = "-"
+displayColumn = "name"
+noRecordsMessage = "No records found"
+detailsPage = "-"
+detailsUrlParameter = "id"
+pageNumber = "{{ :page }}"
+==
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{{ this.page.title }} | Search It Recruitment</title>
+        <meta name="description" content="{{ this.page.meta_description }}">
+        <meta name="title" content="{{ this.page.meta_title }}">
+        <meta name="author" content="Search It Recruitment">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="generator" content="Search It Recruitment">
+        <link rel="icon" type="image/png" href="{{ 'assets/images/october.png'|theme }}">
+        <link href="{{ 'assets/css/www/build.css'|theme }}" rel="stylesheet">
+    </head>
+    <body>
+        <div class="wrapper">
+        
+            <!-- Header -->
+            {% partial 'header' %}
+
+            <!-- Content -->
+            <div class="team-container">
+                <section class="team-section">  
+                    <div class="row bg-lgrey">
+                        <div class="col-l-1-of-4 col-m-1-of-3 col-xs-1-of-1 team-left-column">
+                            <aside>
+                                <hr>
+                                <span>
+                                    {{ this.page.title }}
+                                </span>
+                                <h2>
+                                    {{ 'Get to know us!' }}
+                                </h2>
+                            </aside>
+                        </div>
+                        <div class="col-l-3-of-4 col-m-2-of-3 col-xs-1-of-1 team-right-column bg-white">
+                            <article>
+                                <div class="row">
+                                    {% page %}
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Footer -->
+            {% partial 'footer' %}
+
+        </div>
+
+        <!-- Scripts -->
+        <script src="{{ 'assets/js/www/app.min.js'|theme }}"></script>
+        
+    </body>
+</html>

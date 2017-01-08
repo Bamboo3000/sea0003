@@ -1,0 +1,71 @@
+title = "Our team"
+url = "/our-team/"
+layout = "tpl-team-listing"
+is_hidden = 0
+
+[staticMenu]
+
+[builderList teamListing]
+modelClass = "Searchit\Team\Models\Team"
+scope = "-"
+displayColumn = "name"
+noRecordsMessage = "No records found"
+detailsPage = "-"
+detailsUrlParameter = "id"
+pageNumber = "{{ :page }}"
+==
+{% set records = teamListing.records %}
+{% set displayColumn = teamListing.displayColumn %}
+{% set noRecordsMessage = teamListing.noRecordsMessage %}
+{% set detailsPage = teamListing.detailsPage %}
+{% set detailsKeyColumn = teamListing.detailsKeyColumn %}
+{% set detailsUrlParameter = teamListing.detailsUrlParameter %}
+
+{% for record in records %}
+    <div class="team-right-column-single equalH col-xl-1-of-3 col-s-1-of-2 col-xs-1-of-1">
+    	<div class="team-right-column-single-img">
+    		<img src="{{ record.photo|media }}" alt="">
+    	</div>
+        <div class="team-right-column-single-text">
+            <h3>
+                {{ record.name }}
+            </h3>
+            <hr class="green">
+            {% if record.position %}
+                <p class="bio">
+                    {{ record.position }}
+                </p>
+            {% endif %}
+            {% if record.email %}
+                <p>
+                    <a href="mailto:{{ record.email }}">
+                        {{ record.email }}
+                    </a>
+                </p>
+            {% endif %}
+            {% if record.phone %}
+                <p>
+                    <a href="tel:{{ record.phone }}">
+                        {{ record.phone }}
+                    </a>
+                </p>
+            {% endif %}
+            {% if record.social_twitter or record.social_linked %}
+                <p>
+                    {% if record.social_twitter %}
+                        <a href="{{ record.social_twitter }}" target="_blank" class="icon">
+                            <i class="fa fa-twitter-square" aria-hidden="true"></i>
+                        </a>
+                    {% endif %}
+                    {% if record.social_linked %}
+                        <a href="{{ record.social_linked }}" target="_blank" class="icon">
+                            <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+                        </a>
+                    {% endif %}
+                </p>
+            {% endif %}
+        </div>
+    </div>	
+{% else %}
+    {{ notFoundMessage }}
+{% endfor %}
