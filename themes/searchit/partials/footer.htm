@@ -1,3 +1,22 @@
+[builderList jobsListing]
+modelClass = "Searchit\Jobs\Models\Job"
+scope = "-"
+displayColumn = "title"
+noRecordsMessage = "No records found"
+detailsPage = "jobs-single"
+detailsKeyColumn = "slug"
+detailsUrlParameter = "slug"
+recordsPerPage = 12
+pageNumber = "{{ :page }}"
+sortColumn = "date"
+sortDirection = "desc"
+==
+{% set records = jobsListing.records %}
+{% set displayColumn = jobsListing.displayColumn %}
+{% set noRecordsMessage = jobsListing.noRecordsMessage %}
+{% set detailsPage = jobsListing.detailsPage %}
+{% set detailsKeyColumn = jobsListing.detailsKeyColumn %}
+{% set detailsUrlParameter = jobsListing.detailsUrlParameter %}
 <footer>
 	<div class="footer-up">
 		<div class="row">
@@ -13,7 +32,11 @@
 				<span>{{ 'Recent jobs' }}</span>
 				<div class="textwidget">
 					<p>
-						<a href="<?php the_permalink(); ?>"></a><br/>
+						{% for record in records %}
+							<a href="{{ detailsPage|page({ (detailsUrlParameter): attribute(record, detailsKeyColumn) }) }}">
+	                            {{ record.title }}
+	                        </a><br/>
+						{% endfor %}
 					</p>
 				</div>
 			</div>
