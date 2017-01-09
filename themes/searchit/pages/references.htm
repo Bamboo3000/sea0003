@@ -1,0 +1,52 @@
+title = "References"
+url = "/references"
+layout = "default"
+is_hidden = 0
+
+[staticMenu]
+
+[builderList testimonialsListing]
+modelClass = "Searchit\Testimonials\Models\Testimonial"
+scope = "-"
+displayColumn = "summary"
+noRecordsMessage = "No records found"
+detailsPage = "-"
+detailsUrlParameter = "id"
+pageNumber = "{{ :page }}"
+==
+{% set records = testimonialsListing.records %}
+{% set displayColumn = testimonialsListing.displayColumn %}
+{% set noRecordsMessage = testimonialsListing.noRecordsMessage %}
+{% set detailsPage = testimonialsListing.detailsPage %}
+{% set detailsKeyColumn = testimonialsListing.detailsKeyColumn %}
+{% set detailsUrlParameter = testimonialsListing.detailsUrlParameter %}
+
+<section class="testimonials">  
+    <div class="row">
+        <div class="col-l-1-of-4 col-m-1-of-3 col-xs-1-of-1 parentH universal-left-column">
+            <aside>
+                <hr>
+                <span>
+                    {{ 'Testimonials' }}
+                </span>
+                <h2>
+                    {{ 'Kind words about us' }}
+                </h2>
+            </aside>
+        </div>
+        <div class="col-l-3-of-4 col-m-2-of-3 col-xs-1-of-1 testimonials-list">
+            <div id="carousel" class="owl-carousel">
+                {% for record in records %}
+                    <div class="item the-testimonial">
+                        <div class="col-xxl-7-of-10 col-xl-8-of-10 col-l-9-of-10 col-xs-1-of-1">
+                            {{ record.summary|raw }}
+                            <p class="signature">
+                                {{ record.who }} - {{ record.type|capitalize }}
+                            </p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>

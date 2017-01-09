@@ -3,14 +3,14 @@
 		<div class="row">
 			<div class="col-l-1-of-4 col-s-1-of-2 col-xs-1-of-1 footer-section">
 				<hr>
-				<span></span>
+				<span>{{ 'Contact' }}</span>
 				<div class="textwidget">
-					
+					{% content 'footer-col1.htm' %}
 				</div>
 			</div>
 			<div class="col-l-1-of-4 col-s-1-of-2 col-xs-1-of-1 footer-section">
 				<hr>
-				<span></span>
+				<span>{{ 'Recent jobs' }}</span>
 				<div class="textwidget">
 					<p>
 						<a href="<?php the_permalink(); ?>"></a><br/>
@@ -19,16 +19,16 @@
 			</div>
 			<div class="col-l-1-of-4 col-s-1-of-2 col-xs-1-of-1 footer-section hot-skills">
 				<hr>
-				<span></span>
+				<span>{{ 'Hot skills' }}</span>
 				<div class="textwidget">
-					
+					{% content 'footer-col3.htm' %}
 				</div>
 			</div>
 			<div class="col-l-1-of-4 col-s-1-of-2 col-xs-1-of-1 footer-section">
 				<hr>
-				<span></span>
+				<span>{{ 'Newsletter' }}</span>
 				<div class="textwidget">
-					<p></p>
+					{% content 'footer-col4.htm' %}
 				</div>
 			</div>
 		</div>

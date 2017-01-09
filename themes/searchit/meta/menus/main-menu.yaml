@@ -41,22 +41,45 @@ items:
             isExternal: '0'
     -
         title: References
-        nesting: '0'
-        type: static-page
+        nesting: ''
+        type: cms-page
         url: ''
         code: ''
-        reference: refernces
+        reference: references
         cmsPage: ''
-        replace: '0'
+        replace: ''
         viewBag:
             isHidden: '0'
             cssClass: ''
             isExternal: '0'
+        items:
+            -
+                title: 'References from clients'
+                type: cms-page
+                code: ''
+                reference: references-clients
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: 'References from candidates'
+                type: cms-page
+                code: ''
+                reference: references-candidates
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
     -
         title: 'Our team'
+        nesting: ''
         type: cms-page
+        url: ''
         code: ''
         reference: team
+        cmsPage: ''
+        replace: ''
         viewBag:
             isHidden: '0'
             cssClass: ''
