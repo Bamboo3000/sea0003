@@ -39,7 +39,9 @@ sortDirection = "desc"
                     </h3>
                 {% endspaceless %}
                 <hr class="job-green">
-                {{ html_limit(record.summary, 500) }}
+                <p>
+                    {{ html_limit(record.summary|raw, 360) }}
+                </p>
                 <div class="row in-short">
                     <div class="col-l-4-of-10">
                         <p><strong>Location:</strong> {{ record.location }}</p>
