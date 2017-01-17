@@ -1,0 +1,88 @@
+description = "Contact page layout"
+
+[staticMenu mainMenu]
+code = "main-menu"
+
+[staticPage]
+==
+{variable name="leftColTitle" label="Left column title" tab="Content" type="text"}{/variable}
+{variable name="leftColSubTitle" label="Left column sub-title" tab="Content" type="text"}{/variable}
+{variable name="summary" label="Summary" tab="Content" type="richeditor"}{/variable}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{{ this.page.title }} | Search It Recruitment</title>
+        <meta name="description" content="{{ this.page.meta_description }}">
+        <meta name="title" content="{{ this.page.meta_title }}">
+        <meta name="author" content="Search It Recruitment">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="generator" content="Search It Recruitment">
+        <link rel="icon" type="image/png" href="{{ 'assets/images/october.png'|theme }}">
+        <link href="{{ 'assets/css/www/build.css'|theme }}" rel="stylesheet">
+    </head>
+    <body>
+        <div class="wrapper">
+        
+            <!-- Header -->
+            {% partial 'header' %}
+
+            <!-- Content -->
+            <div class="universal-container">
+                <section class="universal-section"> 
+                    <div class="row bg-lgrey">
+                        <div class="col-l-1-of-4 col-m-1-of-3 col-xs-1-of-1 universal-left-column">
+                            <aside>
+                                <hr>
+                                <span>
+                                    {{ leftColTitle }}
+                                </span>
+                                <h2>
+                                    {{ leftColSubTitle }}
+                                </h2>
+                            </aside>
+                        </div>
+                        <div class="col-l-3-of-4 col-m-2-of-3 col-xs-1-of-1 bg-white">
+                            <div class="row">
+                                <div class="col-m-1-of-2 col-xs-1-of-1 universal-right-column">
+                                    <article>
+                                        {{ summary|raw }}
+                                    </article>
+                                </div>
+                                <div class="col-m-1-of-2 col-xs-1-of-1">
+                                    <div id="map"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+        </div>
+
+            <!-- Footer -->
+            {% partial 'footer' %}
+
+        </div>
+
+        <!-- Scripts -->
+        <script src="{{ 'assets/js/www/app.min.js'|theme }}"></script>
+        <script>
+            function initMap() {
+                var map = document.getElementById('map');
+                var map = new google.maps.Map(map, {
+                    center: {lat: 52.3214278, lng: 4.876879},
+                    zoom: 12,
+                    scrollwheel: false,
+                    draggable: false,
+                });
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: new google.maps.LatLng(52.3214278, 4.876879)
+                });
+                map.set('styles', [{"featureType":"water","elementType":"geometry","stylers":[{"color":"#a0d6d1"},{"lightness":17}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":20}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#dedede"},{"lightness":17}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#dedede"},{"lightness":29},{"weight":0.2}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#dedede"},{"lightness":18}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":16}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#f1f1f1"},{"lightness":21}]},{"elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"color":"#ffffff"},{"lightness":16}]},{"elementType":"labels.text.fill","stylers":[{"saturation":36},{"color":"#333333"},{"lightness":40}]},{"elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#f2f2f2"},{"lightness":19}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#fefefe"},{"lightness":20}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#fefefe"},{"lightness":17},{"weight":1.2}]}]);
+            }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
+
+    </body>
+</html>

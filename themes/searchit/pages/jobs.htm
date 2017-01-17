@@ -25,7 +25,6 @@ sortDirection = "desc"
 {% set detailsKeyColumn = jobsListing.detailsKeyColumn %}
 {% set detailsUrlParameter = jobsListing.detailsUrlParameter %}
 
-
 {% for record in records %}
     <article class="the-job">
         <div class="row">
@@ -61,7 +60,13 @@ sortDirection = "desc"
         </div>
     </article>
 {% else %}
-    {{ noRecordsMessage }}
+    <article class="the-job">
+        <div class="row">
+            <h3>
+                {{ noRecordsMessage }}
+            </h3>
+        </div>
+    </article>
 {% endfor %}
 
 {% if records.lastPage > 1 %}

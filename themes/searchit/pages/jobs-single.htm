@@ -1,6 +1,6 @@
 title = "Jobs single"
 url = "/job/:slug"
-layout = "default"
+layout = "tpl-jobs-single"
 is_hidden = 0
 
 [staticMenu]
@@ -12,6 +12,7 @@ identifierValue = "{{ :slug }}"
 modelKeyColumn = "slug"
 displayColumn = "title"
 notFoundMessage = "Record not found"
+
 [form]
 ==
 {% set record = builderDetails.record %}
