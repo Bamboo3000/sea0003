@@ -1,0 +1,7 @@
+columns:
+    type_name:
+        label: 'Type name'
+        type: text
+    type_slug:
+        label: 'Type slug'
+        type: text

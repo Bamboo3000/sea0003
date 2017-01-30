@@ -1,0 +1,12 @@
+fields:
+    category_name:
+        label: 'Category Name'
+        span: auto
+        type: text
+    category_slug:
+        label: 'Category Slug'
+        span: auto
+        preset:
+            field: category_name
+            type: slug
+        type: text

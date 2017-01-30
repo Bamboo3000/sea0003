@@ -1,10 +1,15 @@
 {# {% set cat_it = __SELF__.cat_it %} #}
-{% set cats = __SELF__.cats %}
+{# {% set cats = records.categories %}
 {% set cats_no = __SELF__.cats_no %}
-{% set types = __SELF__.types %}
-{% set types_no = __SELF__.types_no %}
-{% set i = 0 %}
-{% set j = 0 %}
+{% set types = records.types %} #}
+{# {% set types_no = __SELF__.types_no %} #}
+{# {% set i = 0 %}
+{% set j = 0 %} #}
+
+{% set cats = catsListing.records %}
+{% set catsDisplayColumn = catsListing.displayColumn %}
+{% set types = typesListing.records %}
+{% set typesDisplayColumn = typesListing.displayColumn %}
 
 <div class="job-filters-search2" id="job-header">
     <h5>{{ 'Job categories' }}</h5>
@@ -12,9 +17,8 @@
     <ul class="job-categories">
 		{% for cat in cats %}
 			<li>
-		        <a href="{{ cat }}">{{ cat|capitalize }} <small>({{ cats_no[i] }})</small></a>
+		        <a href="{{ cat.category_name }}">{{ cat.category_name }} {# <small>({{ cat|length }})</small> #}</a>
 		    </li>
-			{% set i = i + 1 %}
 		{% endfor %}
 	</ul>
 	<input type="hidden" id="job-category" name="job-category">
@@ -25,9 +29,8 @@
     <ul class="job-types">
         {% for type in types %}
 			<li>
-		        <a href="{{ type }}">{{ type|capitalize }} <small>({{ types_no[j] }})</small></a>
+		        <a href="{{ type.type_name }}">{{ type.type_name }} {# <small>({{ cat|length }})</small> #}</a>
 		    </li>
-			{% set j = j + 1 %}
 		{% endfor %}
     </ul>
     <input type="hidden" id="job-type" name="job-type">

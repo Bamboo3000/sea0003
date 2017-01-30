@@ -5,6 +5,23 @@ code = "main-menu"
 
 [staticPage]
 ==
+
+{variable name="section1Title" label="Section title" tab="Section 1" type="text"}{/variable}
+{variable name="section1SubTitle" label="Section sub title" tab="Section 1" type="text"}{/variable}
+{variable name="section1Summary" label="Section summary" tab="Section 1" type="richeditor"}{/variable}
+
+{variable name="section2Title" label="Section title" tab="Section 2" type="text"}{/variable}
+{variable name="section2SubTitle" label="Section sub title" tab="Section 2" type="text"}{/variable}
+{variable name="section2Summary" label="Section summary" tab="Section 2" type="richeditor"}{/variable}
+
+{variable name="section3Title" label="Section title" tab="Section 3" type="text"}{/variable}
+{variable name="section3SubTitle" label="Section sub title" tab="Section 3" type="text"}{/variable}
+{variable name="section3Summary" label="Section summary" tab="Section 3" type="richeditor"}{/variable}
+
+{variable name="section4Title" label="Section title" tab="Section 4" type="text"}{/variable}
+{variable name="section4SubTitle" label="Section sub title" tab="Section 4" type="text"}{/variable}
+{variable name="section4Summary" label="Section summary" tab="Section 4" type="richeditor"}{/variable}
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -25,7 +42,96 @@ code = "main-menu"
             {% partial 'header' %}
 
             <!-- Content -->
-            {% page %}
+            <div class="universal-container">
+                {% if section1Title or section1Summary %}
+                    <section class="universal-section"> 
+                        <div class="row bg-lgrey">
+                            <div class="col-l-1-of-4 col-m-1-of-3 col-xs-1-of-1 universal-left-column">
+                                <aside>
+                                    <hr>
+                                    <span>
+                                        {{ section1Title }}
+                                    </span>
+                                    <h2>
+                                        {{ section1SubTitle }}
+                                    </h2>
+                                </aside>
+                            </div>
+                            <div class="col-l-3-of-4 col-m-2-of-3 col-xs-1-of-1 bg-white universal-right-column">
+                                <article>
+                                    {{ section1Summary|raw }}
+                                </article>
+                            </div>
+                        </div>
+                    </section>
+                {% endif %}
+                {% if section2Title or section2Summary %}
+                    <section class="universal-section"> 
+                        <div class="row bg-dgrey">
+                            <div class="col-l-1-of-4 col-m-1-of-3 col-xs-1-of-1 universal-left-column">
+                                <aside>
+                                    <hr>
+                                    <span>
+                                        {{ section2Title }}
+                                    </span>
+                                    <h2>
+                                        {{ section2SubTitle }}
+                                    </h2>
+                                </aside>
+                            </div>
+                            <div class="col-l-3-of-4 col-m-2-of-3 col-xs-1-of-1 bg-white universal-right-column">
+                                <article>
+                                    {{ section2Summary|raw }}
+                                </article>
+                            </div>
+                        </div>
+                    </section>
+                {% endif %}
+                {% if section3Title or section3Summary %}
+                    <section class="universal-section"> 
+                        <div class="row bg-lgrey">
+                            <div class="col-l-1-of-4 col-m-1-of-3 col-xs-1-of-1 universal-left-column">
+                                <aside>
+                                    <hr>
+                                    <span>
+                                        {{ section3Title }}
+                                    </span>
+                                    <h2>
+                                        {{ section3SubTitle }}
+                                    </h2>
+                                </aside>
+                            </div>
+                            <div class="col-l-3-of-4 col-m-2-of-3 col-xs-1-of-1 bg-white universal-right-column">
+                                <article>
+                                    {{ section3Summary|raw }}
+                                </article>
+                            </div>
+                        </div>
+                    </section>
+                {% endif %}
+                {% if section4Title or section4Summary %}
+                    <section class="universal-section"> 
+                        <div class="row bg-lgrey">
+                            <div class="col-l-1-of-4 col-m-1-of-3 col-xs-1-of-1 universal-left-column">
+                                <aside>
+                                    <hr>
+                                    <span>
+                                        {{ section4Title }}
+                                    </span>
+                                    <h2>
+                                        {{ section4SubTitle }}
+                                    </h2>
+                                </aside>
+                            </div>
+                            <div class="col-l-3-of-4 col-m-2-of-3 col-xs-1-of-1 bg-white universal-right-column">
+                                <article>
+                                    {{ section4Summary|raw }}
+                                </article>
+                            </div>
+                        </div>
+                    </section>
+                {% endif %}
+            </div>
 
             <!-- Footer -->
             {% partial 'footer' %}

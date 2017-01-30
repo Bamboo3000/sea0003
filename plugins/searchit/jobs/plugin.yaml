@@ -9,3 +9,12 @@ navigation:
         label: Jobs
         url: searchit/jobs/jobs
         icon: icon-briefcase
+        sideMenu:
+            side-menu-item:
+                label: Categories
+                url: searchit/jobs/categories
+                icon: icon-code-fork
+            side-menu-item2:
+                label: Types
+                url: searchit/jobs/types
+                icon: icon-cogs

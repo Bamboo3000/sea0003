@@ -16,10 +16,10 @@ class Sidebar extends ComponentBase
 
     public function onRun() 
     {
-        $this->cats = $this->getCategories();
-        $this->cats_no = $this->getCatNo();
-        $this->types = $this->getTypes();
-        $this->types_no = $this->getTypesNo();
+        // $this->cats = $this->getCategories();
+        // $this->cats_no = $this->getCatNo();
+        // $this->types = $this->getTypes();
+        // $this->types_no = $this->getTypesNo();
     }
     public $cats;
     public $cats_no;

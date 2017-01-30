@@ -31,8 +31,8 @@ class Filters extends ComponentBase
         if(!empty($salaryMin) && !empty($salaryMax)) {
             $this->search = Job::where('title', 'LIKE', "%{$title}%")
             ->where('location', 'LIKE', "%{$location}%")
-            ->where('category', 'LIKE', "%{$category}%")
-            ->where('type', 'LIKE', "%{$type}%")
+            // ->where('category', 'LIKE', "%{$category}%")
+            // ->where('type', 'LIKE', "%{$type}%")
             ->where('salary_min', '>=', $salaryMin)
             ->where('salary_max', '<=', $salaryMax)
             ->orderBy('date', 'desc')
@@ -40,24 +40,24 @@ class Filters extends ComponentBase
         } elseif(!empty($salaryMin)) {
             $this->search = Job::where('title', 'LIKE', "%{$title}%")
             ->where('location', 'LIKE', "%{$location}%")
-            ->where('category', 'LIKE', "%{$category}%")
-            ->where('type', 'LIKE', "%{$type}%")
+            // ->where('category', 'LIKE', "%{$category}%")
+            // ->where('type', 'LIKE', "%{$type}%")
             ->where('salary_min', '>=', $salaryMin)
             ->orderBy('date', 'desc')
             ->get();
         } elseif(!empty($salaryMax)) {
             $this->search = Job::where('title', 'LIKE', "%{$title}%")
             ->where('location', 'LIKE', "%{$location}%")
-            ->where('category', 'LIKE', "%{$category}%")
-            ->where('type', 'LIKE', "%{$type}%")
+            // ->where('category', 'LIKE', "%{$category}%")
+            // ->where('type', 'LIKE', "%{$type}%")
             ->where('salary_max', '<=', $salaryMax)
             ->orderBy('date', 'desc')
             ->get();
         } else {
             $this->search = Job::where('title', 'LIKE', "%{$title}%")
             ->where('location', 'LIKE', "%{$location}%")
-            ->where('category', 'LIKE', "%{$category}%")
-            ->where('type', 'LIKE', "%{$type}%")
+            // ->where('category', 'LIKE', "%{$category}%")
+            // ->where('type', 'LIKE', "%{$type}%")
             ->orderBy('date', 'desc')
             ->get();
         }
@@ -73,10 +73,10 @@ class Filters extends ComponentBase
     * Return the number of rows founded
     *
     */
-    public function getCatCount($value)
-    {
-        return Job::where('category', 'LIKE', "%{$value}%")->count();
-    }
+    // public function getCatCount($value)
+    // {
+    //     return Job::where('category', 'LIKE', "%{$value}%")->count();
+    // }
 
     public $search;
 

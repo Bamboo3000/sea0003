@@ -2,6 +2,9 @@
 
 use Cms\Classes\ComponentBase;
 use Searchit\Jobs\Models\Job;
+use Searchit\Jobs\Models\Category;
+use Searchit\Jobs\Models\Type;
+use Illuminate\Support\Facades\DB;
 
 class Cronjob extends ComponentBase
 {
@@ -16,11 +19,10 @@ class Cronjob extends ComponentBase
 
     public function onRun() 
     {
-        $this->vacancy = $this->readFile();
+        $this->readFile();
     }
 
     public $vacancy;
-
 
     protected function readFile() 
     {
@@ -31,52 +33,61 @@ class Cronjob extends ComponentBase
 
         foreach($vacancies as $job)
         {
-            $jobCategory = $job->categories->category;
-            foreach($jobCategory as $sCat)
-            {
-                if($sCat['group'] == '#2 Skill Area')
-                {
-                    if($sCat == 'Sales' || $sCat == 'Recruitment')
-                    {
-                        $cat = 'Recruitment and Sales'; 
-                    } 
-                    else 
-                    {
-                        $cat = (string)$sCat;
-                    }
-                    $cats = array('All', $cat);
-                    $catsArr = array_map('strtolower', $cats);
-                    $category = json_encode($catsArr);
-                }
-                if($sCat['group'] == '#1 Availability')
-                {
-                    $type = $sCat;
-                }
-            }
-
             $date = date("Y-m-d H:i:s", strtotime($job->publish_date));
             $slug = $this->slugify( $job->title.'-'.$job->id );
             $salary_min = preg_replace("/\./", "", $job->salary_fixed);
             $salary_max = preg_replace("/\./", "", $job->salary_bonus);
 
+            $jobSingleCatPivot = DB::table('searchit_jobs_job_categories');
+            $jobSingleTypePivot = DB::table('searchit_jobs_job_types');
+
+            $jobCategory = $job->categories->category;
+
             if($this->getJobCount('job_id', $job->id) !== 0)
             {
                 if($this->getJobVal('job_id', $job->id, 'date') !== $date)
                 {
-                    Job::where('job_id', $job->id)
-                    ->update([
-                        'title'         => $job->title,
-                        'summary'       => $job->description,
-                        'category'      => $category,
-                        'type'          => $type,
-                        'date'          => $date,
-                        'salary_min'    => $salary_min,
-                        'salary_max'    => $salary_max,
-                        'location'      => $job->address,
-                        'lat'           => $job->lat,
-                        'lng'           => $job->lng,
-                        'slug'          => $slug,
-                    ]);
+                    Job::where('job_id', $job->id)->update(
+                        [
+                            'title'         => $job->title,
+                            'summary'       => $job->description,
+                            'date'          => $date,
+                            'salary_min'    => $salary_min,
+                            'salary_max'    => $salary_max,
+                            'location'      => $job->address,
+                            'lat'           => $job->lat,
+                            'lng'           => $job->lng,
+                            'slug'          => $slug,
+                        ]
+                    );
+                    $jobSingleRow = Job::where('job_id', $job->id)->first();
+                    $jobSingleID = $jobSingleRow->id;
+
+                    foreach($jobCategory as $category)
+                    {
+                        if($category['group'] == '#2 Skill Area')
+                        {
+                            if($category == 'Sales' || $category == 'Recruitment')
+                            {
+                                $cat = 'Recruitment and Sales';
+                            } 
+                            else 
+                            {
+                                $cat = $category;
+                            }
+                            $jobSingleCatRow = Category::where('category_name', $cat)->first();
+                            $jobSingleCatID = $jobSingleCatRow->id;
+                            $jobSingleCatPivot->insert([ 'job_id' => $jobSingleID, 'category_id' => $jobSingleCatID ]);
+                        }
+                        if($category['group'] == '#1 Availability')
+                        {
+                            $type = $category;
+                            $jobSingleTypeRow = Type::where('type_name', $type)->first();
+                            $jobSingleTypeID = $jobSingleTypeRow->id;
+                            $jobSingleTypePivot->insert([ 'job_id' => $jobSingleID, 'type_id' => $jobSingleTypeID ]);
+                        }
+                    }
+
                 }
             } 
             else 
@@ -86,8 +97,6 @@ class Cronjob extends ComponentBase
                         'job_id'        => $job->id,
                         'title'         => $job->title,
                         'summary'       => $job->description,
-                        'category'      => $category,
-                        'type'          => $type,
                         'date'          => $date,
                         'salary_min'    => $salary_min,
                         'salary_max'    => $salary_max,
@@ -97,17 +106,44 @@ class Cronjob extends ComponentBase
                         'slug'          => $slug,
                     ]
                 );
+                $jobSingleRow = Job::where('job_id', $job->id)->first();
+                $jobSingleID = $jobSingleRow->id;
+
+                foreach($jobCategory as $category)
+                {
+                    if($category['group'] == '#2 Skill Area')
+                    {
+                        if($category == 'Sales' || $category == 'Recruitment')
+                        {
+                            $cat = 'Recruitment and Sales';
+                        } 
+                        else 
+                        {
+                            $cat = $category;
+                        }
+                        $jobSingleCatRow = Category::where('category_name', $cat)->first();
+                        $jobSingleCatID = $jobSingleCatRow->id;
+                        $jobSingleCatPivot->insert([ 'job_id' => $jobSingleID, 'category_id' => $jobSingleCatID ]);
+                    }
+                    if($category['group'] == '#1 Availability')
+                    {
+                        $type = $category;
+                        $jobSingleTypeRow = Type::where('type_name', $type)->first();
+                        $jobSingleTypeID = $jobSingleTypeRow->id;
+                        $jobSingleTypePivot->insert([ 'job_id' => $jobSingleID, 'type_id' => $jobSingleTypeID ]);
+                    }
+                }
             }
 
         }
 
-        foreach($jobs as $job_single) 
-        {
-            $job_id_key = array_search($job_single->job_id, $job_ids);
-            if($job_id_key !== null) {
-                echo 'yes';
-            }
-        }
+        // foreach($jobs as $job_single) 
+        // {
+        //     $job_id_key = array_search($job_single->job_id, $job_ids);
+        //     if($job_id_key !== null) {
+        //         echo 'yes';
+        //     }
+        // }
 
     }
 

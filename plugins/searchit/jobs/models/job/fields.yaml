@@ -14,34 +14,24 @@ fields:
         type: richeditor
 tabs:
     fields:
-        type:
-            label: Type
-            options:
-                Parttime: parttime
-                Fulltime: fulltime
-                Contract: contract
-                Internship: internship
+        categories:
+            label: Category
+            nameFrom: category_name
+            descriptionFrom: description
             span: auto
-            type: dropdown
+            type: relation
+            tab: Info
+        types:
+            label: Type
+            span: auto
+            nameFrom: type_name
+            descriptionFrom: description
+            type: relation
             tab: Info
         salary_min:
             label: 'Salary min.'
             span: auto
             type: number
-            tab: Info
-        category:
-            label: 'Job category'
-            options:
-                it: IT
-                online-marketing: 'Online Marketing'
-                recruitment-and-sales: 'Recruitment and Sales'
-                engineering: Engineering
-                freelance: Freelance
-                all: All
-                fulfilled: Fulfilled
-            span: auto
-            required: 1
-            type: checkboxlist
             tab: Info
         salary_max:
             label: 'Salary max.'
