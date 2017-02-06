@@ -1,50 +1,48 @@
-<div class="col-l-1-of-4 col-m-1-of-3 col-xs-1-of-1 job-filters">
-    <aside>
-        <form 
-            id="filter-form" 
-            class="ajax-search"
-            data-request="onFilterSearch"
-            data-request-update="'ajax/search': '#load-more-collection-container'"
-        >
-        <div class="job-filters-search1">
-            <input type="text" id="job-title" name="job-title" class="title" placeholder="{{ 'Type a job skill...' }}">
-            <input type="text" id="job-location" name="job-location" class="location" placeholder="{{ 'Type a location...' }}">
-        </div>
-        <div class="job-filters-search2" id="job-header">
-            <h5>{{ 'Job categories' }}</h5>
-            <hr class="green">
-            <ul class="job-categories">
-                {% for cat in cats %}
-                    {% if cat.jobs|length != 0 %}
-                        <li>
-                            <a href="{{ cat.category_name }}">{{ cat.category_name }} <small>({{ cat.jobs|length }})</small></a>
-                        </li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-            <input type="hidden" id="job-category" name="job-category">
-        </div>
-        <div class="job-filters-search3">
-            <h5>{{ 'Job type' }}</h5>
-            <hr class="green">
-            <ul class="job-types">
-                {% for type in types %}
-                    {% if type.jobs|length != 0 %}
-                        <li>
-                            <a href="{{ type.type_name }}">{{ type.type_name }} <small>({{ type.jobs|length }})</small></a>
-                        </li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-            <input type="hidden" id="job-type" name="job-type">
-        </div>
-        <div class="job-filters-search4">
-            <h5>{{ 'Salary' }}</h5>
-            <hr class="green">
-            <input type="text" id="job-salary-min" name="job-salary-min" class="title" placeholder="{{ 'Min.' }}">
-            <input type="text" id="job-salary-max" name="job-salary-max" class="location" placeholder="{{ 'Max.' }}">
-        </div>
-        <input id="filterSearch" type="submit" style="display:none;">
-        </form>
-    </aside>
-</div>
+<aside>
+    <form 
+        id="filter-form" 
+        class="ajax-search"
+        data-request="onFilterSearch"
+        data-request-update="'ajax/search': '#load-more-collection-container', 'pagination': '#jobs-pagination'"
+    >
+    <div class="job-filters-search1">
+        <input type="text" id="job-title" name="job-title" class="title" placeholder="{{ 'Type a job skill...' }}">
+        <input type="text" id="job-location" name="job-location" class="location" placeholder="{{ 'Type a location...' }}">
+    </div>
+    <div class="job-filters-search2" id="job-header">
+        <h5>{{ 'Job categories' }}</h5>
+        <hr class="green">
+        <ul class="job-categories">
+            {% for cat in cats %}
+                {% if cat.jobs|length != 0 %}
+                    <li>
+                        <a href="{{ cat.category_name }}">{{ cat.category_name }} <small>({{ cat.jobs|length }})</small></a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+        <input type="hidden" id="job-category" name="job-category">
+    </div>
+    <div class="job-filters-search3">
+        <h5>{{ 'Job type' }}</h5>
+        <hr class="green">
+        <ul class="job-types">
+            {% for type in types %}
+                {% if type.jobs|length != 0 %}
+                    <li>
+                        <a href="{{ type.type_name }}">{{ type.type_name }} <small>({{ type.jobs|length }})</small></a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+        <input type="hidden" id="job-type" name="job-type">
+    </div>
+    <div class="job-filters-search4">
+        <h5>{{ 'Salary' }}</h5>
+        <hr class="green">
+        <input type="text" id="job-salary-min" name="job-salary-min" class="title" placeholder="{{ 'Min.' }}">
+        <input type="text" id="job-salary-max" name="job-salary-max" class="location" placeholder="{{ 'Max.' }}">
+    </div>
+    <input id="filterSearch" type="submit" style="display:none;">
+    </form>
+</aside>
