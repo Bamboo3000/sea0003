@@ -3,6 +3,33 @@ description = "Jobs listing"
 [staticMenu mainMenu]
 code = "main-menu"
 
+==
+
+use Searchit\Jobs\Models\Job;
+use Searchit\Jobs\Models\Type;
+use Searchit\Jobs\Models\Category;
+
+function onStart() {
+    $this['jobs'] = Job::paginate(16);
+    $this['cats'] = Category::get();
+    $this['types'] = Type::get();
+}
+
+function onFilterSearch()
+{
+    $title = input('job-title');
+    $type = input('job-type');
+    $location = input('job-location');
+    $category = input('job-category');
+    $salaryMin = input('job-salary-min');
+    $salaryMax = input('job-salary-max');
+    
+    
+
+}
+
+==
+{# 
 [builderList jobsListing]
 modelClass = "Searchit\Jobs\Models\Job"
 scope = "-"
@@ -16,7 +43,8 @@ sortDirection = "desc"
 
 [job-filters]
 [sidebar]
-==
+ #}
+
 
 <!DOCTYPE html>
 <html>
@@ -46,29 +74,7 @@ sortDirection = "desc"
                        {#  <?php echo __('Show job filters', 'sea0001'); ?> #}
                     </span>
                 </div>
-                <div class="col-l-1-of-4 col-m-1-of-3 col-xs-1-of-1 job-filters">
-                    <aside>
-                        <form 
-                            id="filter-form" 
-                            class="ajax-search"
-                            data-request="onFilterSearch"
-                            data-request-update="'ajax/search': '#load-more-collection-container'"
-                        >
-                        <div class="job-filters-search1">
-                            <input type="text" id="job-title" name="job-title" class="title" placeholder="{{ 'Type a job skill...' }}">
-                            <input type="text" id="job-location" name="job-location" class="location" placeholder="{{ 'Type a location...' }}">
-                        </div>
-                        {% component 'sidebar' %}
-                        <div class="job-filters-search4">
-                            <h5>{{ 'Salary' }}</h5>
-                            <hr class="green">
-                            <input type="text" id="job-salary-min" name="job-salary-min" class="title" placeholder="{{ 'Min.' }}">
-                            <input type="text" id="job-salary-max" name="job-salary-max" class="location" placeholder="{{ 'Max.' }}">
-                        </div>
-                        <input id="filterSearch" type="submit" style="display:none;">
-                        </form>
-                    </aside>
-                </div>
+                {% partial 'sidebar' %}
 
                 <div class="col-l-3-of-4 col-m-2-of-3 col-xs-1-of-1 job-list bg-white" id="load-more-collection-container">
 
