@@ -1,0 +1,38 @@
+description = "Default CMS layout"
+
+[staticMenu mainMenu]
+code = "main-menu"
+==
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{{ this.page.title }} | Search It Recruitment</title>
+        <meta name="description" content="{{ this.page.meta_description }}">
+        <meta name="title" content="{{ this.page.meta_title }}">
+        <meta name="author" content="Search It Recruitment">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="generator" content="Search It Recruitment">
+        <link rel="icon" type="image/png" href="{{ 'assets/images/october.png'|theme }}">
+        <link href="{{ 'assets/css/www/build.css'|theme }}" rel="stylesheet">
+    </head>
+    <body>
+        <div class="wrapper">
+        
+            <!-- Header -->
+            {% partial 'header' %}
+
+            <!-- Content -->
+			{% page %}
+
+            <!-- Footer -->
+            {% partial 'footer' %}
+
+        </div>
+
+        <!-- Scripts -->
+        <script src="{{ 'assets/js/www/app.min.js'|theme }}"></script>
+        
+    </body>
+</html>
