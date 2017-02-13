@@ -3,97 +3,10 @@ description = "Jobs listing"
 [staticMenu mainMenu]
 code = "main-menu"
 
-==
-
-use Searchit\Jobs\Models\Job;
-use Searchit\Jobs\Models\Type;
-use Searchit\Jobs\Models\Category;
-
-function onStart() {
-    $this['jobs'] = Job::paginate(16);
-    $this['cats'] = Category::get();
-    $this['types'] = Type::get();
-}
-
-function onFilterSearch()
-{
-
-    $title = input('job-title');
-    $type = input('job-type');
-    $location = input('job-location');
-    $category = input('job-category');
-    $salaryMin = input('job-salary-min');
-    $salaryMax = input('job-salary-max');
-    
-    if(!empty($salaryMin) && !empty($salaryMax)) {
-        $this['jobs'] = Job::where('title', 'LIKE', "%{$title}%")
-        ->where('location', 'LIKE', "%{$location}%")
-        ->whereHas('categories', function($query) use ($category) {
-            $query->where('category_name', 'LIKE', "%{$category}%");
-        })
-        ->whereHas('types', function($query) use ($type) {
-            $query->where('type_name', 'LIKE', "%{$type}%");
-        })
-        ->where('salary_min', '>=', $salaryMin)
-        ->where('salary_max', '<=', $salaryMax)
-        ->orderBy('date', 'desc')
-        ->paginate(16);
-    } elseif(!empty($salaryMin)) {
-        $this['jobs'] = Job::where('title', 'LIKE', "%{$title}%")
-        ->where('location', 'LIKE', "%{$location}%")
-        ->whereHas('categories', function($query) use ($category) {
-            $query->where('category_name', 'LIKE', "%{$category}%");
-        })
-        ->whereHas('types', function($query) use ($type) {
-            $query->where('type_name', 'LIKE', "%{$type}%");
-        })
-        ->where('salary_min', '>=', $salaryMin)
-        ->orderBy('date', 'desc')
-        ->paginate(16);
-    } elseif(!empty($salaryMax)) {
-        $this['jobs'] = Job::where('title', 'LIKE', "%{$title}%")
-        ->where('location', 'LIKE', "%{$location}%")
-        ->whereHas('categories', function($query) use ($category) {
-            $query->where('category_name', 'LIKE', "%{$category}%");
-        })
-        ->whereHas('types', function($query) use ($type) {
-            $query->where('type_name', 'LIKE', "%{$type}%");
-        })
-        ->where('salary_max', '<=', $salaryMax)
-        ->orderBy('date', 'desc')
-        ->paginate(16);
-    } else {
-        $this['jobs'] = Job::where('title', 'LIKE', "%{$title}%")
-        ->where('location', 'LIKE', "%{$location}%")
-        ->whereHas('categories', function($query) use ($category) {
-            $query->where('category_name', 'LIKE', "%{$category}%");
-        })
-        ->whereHas('types', function($query) use ($type) {
-            $query->where('type_name', 'LIKE', "%{$type}%");
-        })
-        ->orderBy('date', 'desc')
-        ->paginate(16);
-    }    
-
-}
-
-==
-{# 
-[builderList jobsListing]
-modelClass = "Searchit\Jobs\Models\Job"
-scope = "-"
-displayColumn = "jobs"
-noRecordsMessage = "No records found"
-detailsPage = "-"
-detailsUrlParameter = "id"
-pageNumber = "{{ :page }}"
-sortColumn = "date"
-sortDirection = "desc"
-
-[job-filters]
 [sidebar]
- #}
-
+[jobsList]
+[jobFilters]
+==
 
 <!DOCTYPE html>
 <html>
@@ -130,7 +43,7 @@ sortDirection = "desc"
                 <div class="col-l-3-of-4 col-m-2-of-3 col-xs-1-of-1 job-list bg-white" id="load-more-collection-container">
 
                     {% page %}
-                    {% component 'job-filters' %}
+                    {% component 'jobFilters' %}
 
                 </div>
 

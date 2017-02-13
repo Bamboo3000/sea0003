@@ -5,43 +5,11 @@ is_hidden = 0
 
 [staticMenu]
 ==
-{#
-
-[builderList jobsListing]
-modelClass = "Searchit\Jobs\Models\Job"
-scope = "-"
-displayColumn = "title"
-noRecordsMessage = "No records found"
-detailsPage = "jobs-single"
-detailsKeyColumn = "slug"
-detailsUrlParameter = "slug"
-recordsPerPage = 16
-pageNumber = "{{ :page }}"
-sortColumn = "date"
-sortDirection = "desc"
-
-[builderList catsListing]
-modelClass = "Searchit\Jobs\Models\Category"
-scope = "-"
-displayColumn = "category_name"
-
-[builderList typesListing]
-modelClass = "Searchit\Jobs\Models\Type"
-scope = "-"
-displayColumn = "type_name"
-
- {% set records = jobsListing.records %}
-{% set displayColumn = jobsListing.displayColumn %}
-{% set noRecordsMessage = jobsListing.noRecordsMessage %}
-{% set detailsPage = jobsListing.detailsPage %}
-{% set detailsKeyColumn = jobsListing.detailsKeyColumn %}
-{% set detailsUrlParameter = jobsListing.detailsUrlParameter %} #}
 
 {% for record in jobs %}
     <article class="the-job">
         <div class="row">
             <div class="col-xxl-8-of-10 col-xl-9-of-10 col-xs-1-of-1">
-                {# Use spaceless tag to remove spaces inside the A tag. #}
                 {% spaceless %}
                     <h3>
                         <a href="/jobs/{{record.slug}}">
