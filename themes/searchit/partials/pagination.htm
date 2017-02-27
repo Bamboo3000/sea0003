@@ -1,22 +1,22 @@
-{% if jobs.lastPage > 1 %}
+{% if pagination.lastPage > 1 %}
     <nav class="navigation pagination" role="navigation">
         <div class="nav-links">
-            {% if jobs.currentPage > 1 %}
-                <a class="prev page-numbers" href="{{ jobs.url(jobs.currentPage-1) }}">Prev</a>
+            {% if pagination.currentPage > 1 %}
+                <a class="prev page-numbers" href="{{ pagination.url(pagination.currentPage-1) }}">Prev</a>
             {% endif %}
 
-            {% for page in 1..jobs.lastPage %}
-                {% if jobs.currentPage == page %}
+            {% for page in 1..pagination.lastPage %}
+                {% if pagination.currentPage == page %}
                     <span class="current page-numbers">
                         {{ page }}
                     </span>
                 {% else %}
-                    <a class="page-numbers" href="{{ jobs.url(page) }}">{{ page }}</a>
+                    <a class="page-numbers" href="{{ pagination.url(page) }}">{{ page }}</a>
                 {% endif %}
             {% endfor %}
 
-            {% if jobs.lastPage > jobs.currentPage %}
-                <a class="next page-numbers" href="{{ jobs.url(jobs.currentPage+1) }}">Next</a>
+            {% if pagination.lastPage > pagination.currentPage %}
+                <a class="next page-numbers" href="{{ pagination.url(pagination.currentPage+1) }}">Next</a>
             {% endif %}
         </div>
     </nav>

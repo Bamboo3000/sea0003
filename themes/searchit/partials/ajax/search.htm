@@ -7,7 +7,7 @@
                     <h3>
                         <a href="/jobs/{{record.slug}}">
                             {{ record.title }}
-                        </a>        
+                        </a>
                     </h3>
                 {% endspaceless %}
                 <hr class="job-green">
@@ -21,13 +21,15 @@
                     <div class="col-l-2-of-7">
                         <p><strong>Type:</strong> {{ record.types[0].type_name }}</p>
                     </div>
-                    <div class="col-l-5-of-16">
-                        <p><strong>Salary:</strong> {{ record.salary_min|number_format(0, '.', '.') }} - {{ record.salary_max|number_format(0, '.', '.') }} euro</p>
-                    </div>
+										{% if record.salary_min != 0 or record.salary_max != 0 %}
+                      <div class="col-l-5-of-16">
+                          <p><strong>Salary:</strong> {{ record.salary_min|number_format(0, '.', '.') }} - {{ record.salary_max|number_format(0, '.', '.') }} euro</p>
+                      </div>
+                    {% endif %}
                 </div>
                 <a href="/jobs/{{record.slug}}" class="job-readmore">
                     Read more
-                </a> 
+                </a>
                 <hr/>
             </div>
         </div>

@@ -1,13 +1,13 @@
 <aside>
-    <form 
-        id="filter-form" 
+    <form
+        id="filter-form"
         class="ajax-search"
         data-request="onFilterSearch"
         data-request-update="'ajax/search': '#load-more-collection-container', 'pagination': '#jobs-pagination'"
     >
     <div class="job-filters-search1">
-        <input type="text" id="job-title" name="job-title" class="title" placeholder="{{ 'Type a job skill...' }}">
-        <input type="text" id="job-location" name="job-location" class="location" placeholder="{{ 'Type a location...' }}">
+        <input type="text" id="job-title" name="job-title" data-name="job-title" class="title" placeholder="{{ 'Type a job skill...' }}">
+        <input type="text" id="job-location" name="job-location" data-name="job-location" class="location" placeholder="{{ 'Type a location...' }}">
     </div>
     <div class="job-filters-search2" id="job-header">
         <h5>{{ 'Job categories' }}</h5>
@@ -16,7 +16,7 @@
             {% for cat in cats %}
                 {% if cat.jobs|length != 0 %}
                     <li>
-                        <a href="{{ cat.category_name }}">{{ cat.category_name }} <small>({{ cat.jobs|length }})</small></a>
+                        <a href="{{ cat.category_name }}" data-name="job-category" data-val="{{ cat.category_slug }}">{{ cat.category_name }} <small>({{ cat.jobs|length }})</small></a>
                     </li>
                 {% endif %}
             {% endfor %}
@@ -30,7 +30,7 @@
             {% for type in types %}
                 {% if type.jobs|length != 0 %}
                     <li>
-                        <a href="{{ type.type_name }}">{{ type.type_name }} <small>({{ type.jobs|length }})</small></a>
+                        <a href="{{ type.type_name }}" data-name="job-type" data-val="{{ type.type_slug }}">{{ type.type_name }} <small>({{ type.jobs|length }})</small></a>
                     </li>
                 {% endif %}
             {% endfor %}
@@ -40,8 +40,8 @@
     <div class="job-filters-search4">
         <h5>{{ 'Salary' }}</h5>
         <hr class="green">
-        <input type="text" id="job-salary-min" name="job-salary-min" class="title" placeholder="{{ 'Min.' }}">
-        <input type="text" id="job-salary-max" name="job-salary-max" class="location" placeholder="{{ 'Max.' }}">
+        <input type="text" id="job-salary-min" name="job-salary-min" data-name="job-salary-min" class="title" placeholder="{{ 'Min.' }}">
+        <input type="text" id="job-salary-max" name="job-salary-max" data-name="job-salary-max" class="location" placeholder="{{ 'Max.' }}">
     </div>
     <input id="filterSearch" type="submit" style="display:none;">
     </form>

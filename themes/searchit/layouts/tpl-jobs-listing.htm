@@ -5,83 +5,163 @@ code = "main-menu"
 
 [sidebar]
 [jobsList]
-[jobFilters]
 ==
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>{{ this.page.title }} | Search It Recruitment</title>
-        <meta name="description" content="{{ this.page.meta_description }}">
-        <meta name="title" content="{{ this.page.meta_title }}">
-        <meta name="author" content="Search It Recruitment">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="generator" content="Search It Recruitment">
-        <link rel="icon" type="image/png" href="{{ 'assets/images/october.png'|theme }}">
-        <link href="{{ 'assets/css/www/build.css'|theme }}" rel="stylesheet">
-    </head>
-    <body>
-        <div class="wrapper">
-        
-            <!-- Header -->
-            {% partial 'header' %}
+<head>
+  <meta charset="utf-8">
+  <title>{{ this.page.title }} | Search It Recruitment</title>
+  <meta name="description" content="{{ this.page.meta_description }}">
+  <meta name="title" content="{{ this.page.meta_title }}">
+  <meta name="author" content="Search It Recruitment">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Search It Recruitment">
+  <link rel="icon" type="image/png" href="{{ 'assets/images/october.png'|theme }}">
+  <link href="{{ 'assets/css/www/build.css'|theme }}" rel="stylesheet">
+</head>
+<body>
+  <div class="wrapper">
 
-            <!-- Content -->
-            <div class="row bg-lgrey">
-                
-                <div class="col-xs-1-of-1 filter-opener">
-                    <i class="fa fa-filter" aria-hidden="true"></i>
-                    <span>
-                       {#  <?php echo __('Show job filters', 'sea0001'); ?> #}
-                    </span>
-                </div>
-                <div class="col-l-1-of-4 col-m-1-of-3 col-xs-1-of-1 job-filters">
-                    {% partial 'sidebar' %}
-                </div>
+    <!-- Header -->
+    {% partial 'header' %}
 
-                <div class="col-l-3-of-4 col-m-2-of-3 col-xs-1-of-1 job-list bg-white" id="load-more-collection-container">
+    <!-- Content -->
+    <div class="row bg-lgrey">
 
-                    {% page %}
-                    {% component 'jobFilters' %}
+      <div class="col-xs-1-of-1 filter-opener">
+        <i class="fa fa-filter" aria-hidden="true"></i>
+        <span>
+          {#  <?php echo __('Show job filters', 'sea0001'); ?> #}
+        </span>
+      </div>
+      <div class="col-l-1-of-4 col-m-1-of-3 col-xs-1-of-1 job-filters">
+        {% partial 'sidebar' %}
+      </div>
 
-                </div>
+      <div class="col-l-3-of-4 col-m-2-of-3 col-xs-1-of-1 job-list bg-white" id="load-more-collection-container">
 
-                <div class="gradient col-l-1-of-4 col-m-1-of-3"></div>
+        {% page %}
+        {% component 'jobFilters' %}
 
-            </div>
+      </div>
 
-            <!-- Footer -->
-            {% partial 'footer' %}
+      <div class="gradient col-l-1-of-4 col-m-1-of-3"></div>
 
-        </div>
+    </div>
 
-        <!-- Scripts -->
-        <script src="{{ 'assets/js/www/app.min.js'|theme }}"></script>
-        <script>
-            $(document).ready(function() {
+    <!-- Footer -->
+    {% partial 'footer' %}
 
-                $('#job-title, #job-location, #job-salary-min, #job-salary-max').on('keyup', function() {
-                    setTimeout(function() {
-                        $('#filterSearch').trigger('click');
-                    }, 250);
-                });
+  </div>
 
-                $('.job-categories, .job-types').find('a').on('click', function(e) {
-                    e.preventDefault();
+  <!-- Scripts -->
+  <script src="{{ 'assets/js/www/app.min.js'|theme }}"></script>
+  <script>
 
-                    $(this).parent().parent().find('a').removeClass('pushed');
-                    $(this).addClass('pushed');
-                    $(this).parent().parent().next().val('');
-                    $(this).parent().parent().next().val($(this).attr('href'));
-                    setTimeout(function() {
-                        $('#filterSearch').trigger('click');
-                    }, 250);
+  function updateURL()
+  {
+    var $paramsInitial = window.location.search;
+    var $pathname = window.location.pathname;
 
-                });
+    if($(this).attr('type') == 'checkbox') {
 
-            });
-        </script>
-        {% framework extras %}
-    </body>
+      if($(this).is(':checked')) {
+        var $val = $(this).val();
+      } else {
+        var $val = false;
+      }
+
+    } else if($(this).val()) {
+      var $val = $(this).val();
+    } else {
+      var $val = $(this).data('val');
+    }
+    var $name = $(this).data('name');
+    var $currentPage = $('.currentPage').val();
+
+    if($paramsInitial.length) {
+      var $path = $pathname + $paramsInitial;
+
+      if(getQueryVariable('page') != getQueryVariable($currentPage)) {
+        $path = changeQueryVariable($path, 'page', '1');
+      }
+
+      if(getQueryVariable($name)) {
+        var $newPath = changeQueryVariable($path, $name, $val);
+      } else {
+        var $newPath = $path + '&' + $name + '=' + $val;
+      }
+
+    } else {
+      var $path = $pathname + '?';
+      var $newPath = $path + $name + '=' + $val;
+    }
+    window.history.pushState(null, null, $newPath);
+    $('#filterSearch').trigger('click');
+  }
+
+  function getQueryVariable(variable)
+  {
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i = 0; i < vars.length; i++) {
+      var pair = vars[i].split("=");
+      if(pair[0] == variable) {
+        return pair[1];
+      }
+    }
+    return(false);
+  }
+
+  function changeQueryVariable(uri, key, value)
+  {
+    var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+    var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+    if (uri.match(re)) {
+      return uri.replace(re, '$1' + key + "=" + value + '$2');
+    }
+  }
+
+  function updateFiltersSelected()
+  {
+    // Selected proper filter option
+    if(getQueryVariable('job-title')) {
+      $('#filter-form').find('[data-name="job-title"]').val(getQueryVariable('job-title'));
+    }
+    if(getQueryVariable('job-location')) {
+      $('#filter-form').find('[data-name="job-location"]').val(getQueryVariable('job-location'));
+    }
+    if(getQueryVariable('job-salary-min')) {
+      $('#filter-form').find('[data-name="job-salary-min"]').val(getQueryVariable('job-salary-min'));
+    }
+    if(getQueryVariable('job-salary-max')) {
+      $('#filter-form').find('[data-name="job-salary-max"]').val(getQueryVariable('job-salary-max'));
+    }
+    if(getQueryVariable('job-category')) {
+      $('#filter-form').find('[data-name="job-category"][data-val="'+getQueryVariable('job-category')+'"]').addClass('pushed');
+    }
+    if(getQueryVariable('job-type')) {
+      $('#filter-form').find('[data-name="job-type"][data-val="'+getQueryVariable('job-type')+'"]').addClass('pushed');
+    }
+  }
+
+  $(document).ready(function() {
+
+    $('#job-title, #job-location, #job-salary-min, #job-salary-max').on('keyup', updateURL);
+    $('.job-categories, .job-types').find('a').on('click', function(e) {
+      e.preventDefault();
+      $(this).parent().parent().find('a').removeClass('pushed');
+      $(this).addClass('pushed');
+      $(this).parent().parent().next().val('');
+      $(this).parent().parent().next().val($(this).attr('href'));
+    });
+    $('.job-categories, .job-types').find('a').on('click', updateURL);
+
+    updateFiltersSelected();
+
+  });
+  </script>
+  {% framework extras %}
+</body>
 </html>

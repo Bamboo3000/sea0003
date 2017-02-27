@@ -20,18 +20,6 @@ sortColumn = "id"
 
 {variable name="catMainTitle" label="Main title" tab="Categories" type="text"}{/variable}
 {variable name="catSubTitle" label="Sub title" tab="Categories" type="text"}{/variable}
-{variable name="catTitle1" label="Category 1 title" tab="Categories" type="text"}{/variable}
-{variable name="catImg1" label="Category 1 img" tab="Categories" type="mediafinder" mode="image"}{/variable}
-{variable name="catTitle2" label="Category 2 title" tab="Categories" type="text"}{/variable}
-{variable name="catImg2" label="Category 2 img" tab="Categories" type="mediafinder" mode="image"}{/variable}
-{variable name="catTitle3" label="Category 3 title" tab="Categories" type="text"}{/variable}
-{variable name="catImg3" label="Category 3 img" tab="Categories" type="mediafinder" mode="image"}{/variable}
-{variable name="catTitle4" label="Category 4 title" tab="Categories" type="text"}{/variable}
-{variable name="catImg4" label="Category 4 img" tab="Categories" type="mediafinder" mode="image"}{/variable}
-{variable name="catTitle5" label="Category 5 title" tab="Categories" type="text"}{/variable}
-{variable name="catImg5" label="Category 5 img" tab="Categories" type="mediafinder" mode="image"}{/variable}
-{variable name="catTitle6" label="Category 6 title" tab="Categories" type="text"}{/variable}
-{variable name="catImg6" label="Category 6 img" tab="Categories" type="mediafinder" mode="image"}{/variable}
 
 {variable name="aboutMainTitle" label="Main title" tab="About" type="text"}{/variable}
 {variable name="aboutSubTitle" label="Sub title" tab="About" type="text"}{/variable}
@@ -60,216 +48,168 @@ sortColumn = "id"
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>{{ this.page.title }} | Search It Recruitment</title>
-        <meta name="description" content="{{ this.page.meta_description }}">
-        <meta name="title" content="{{ this.page.meta_title }}">
-        <meta name="author" content="Search It Recruitment">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="generator" content="Search It Recruitment">
-        <link rel="icon" type="image/png" href="{{ 'assets/images/october.png'|theme }}">
-        <link href="{{ 'assets/css/www/build.css'|theme }}" rel="stylesheet">
-    </head>
-    <body>
-        <div class="wrapper">
-        
-            <!-- Header -->
-            {% partial 'header' %}
+<head>
+  <meta charset="utf-8">
+  <title>{{ this.page.title }} | Search It Recruitment</title>
+  <meta name="description" content="{{ this.page.meta_description }}">
+  <meta name="title" content="{{ this.page.meta_title }}">
+  <meta name="author" content="Search It Recruitment">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Search It Recruitment">
+  <link rel="icon" type="image/png" href="{{ 'assets/images/october.png'|theme }}">
+  <link href="{{ 'assets/css/www/build.css'|theme }}" rel="stylesheet">
+</head>
+<body>
+  <div class="wrapper">
 
-            <!-- Content -->
-            <header class="home-bg vheight-half" style="background-image: url('{{ banner|media }}');">
-                <div class="centerV">
-                    <div class="claim white">
-                        <h1 class="text-center">
-                            {{ mainClaim }}
-                        </h1>
-                    </div>
-                    <div class="main-search">
-                        <form role="search" action="" class="search-form">
-                            <input type="text" class="search-field" value="Search for a job..." onclick="if(this.defaultValue==this.value){ this.value=''}" onblur="if(this.value===''){this.value=this.defaultValue}">
-                            <input type="submit" class="search-submit" value="">
-                        </form>
-                    </div>
-                </div>
-            </header>
+    <!-- Header -->
+    {% partial 'header' %}
 
-            <section class="categories">
-                <div class="row">
-                    <div class="col-l-1-of-4 col-m-1-of-3 col-xs-1-of-1">
-                        <aside>
-                            <hr>
-                            <span>
-                                {{ catMainTitle }}
-                            </span>
-                            <h2>
-                                {{ catSubTitle }}
-                            </h2>
-                        </aside>
-                    </div>
-                    <div class="col-l-3-of-4 col-m-2-of-3 col-xs-1-of-1">
-                        <div class="row categories-list">
-                            <div class="col-xl-1-of-3 col-s-1-of-2 col-xs-1-of-1 the-category">
-                                <figure>
-                                    <a href="">
-                                        <img src="{{ catImg1|media }}" />
-                                    </a>
-                                    <figcaption>
-                                        <a href="">{{ catTitle1 }} Jobs</a>
-                                    </figcaption>
-                                </figure>
-                            </div>
-                            <div class="col-xl-1-of-3 col-s-1-of-2 col-xs-1-of-1 the-category">
-                                <figure>
-                                    <a href="">
-                                        <img src="{{ catImg2|media }}" />
-                                    </a>
-                                    <figcaption>
-                                        <a href="">{{ catTitle2 }} Jobs</a>
-                                    </figcaption>
-                                </figure>
-                            </div>
-                            <div class="col-xl-1-of-3 col-s-1-of-2 col-xs-1-of-1 the-category">
-                                <figure>
-                                    <a href="">
-                                        <img src="{{ catImg3|media }}" />
-                                    </a>
-                                    <figcaption>
-                                        <a href="">{{ catTitle3 }} Jobs</a>
-                                    </figcaption>
-                                </figure>
-                            </div>
-                            <div class="col-xl-1-of-3 col-s-1-of-2 col-xs-1-of-1 the-category">
-                                <figure>
-                                    <a href="">
-                                        <img src="{{ catImg4|media }}" />
-                                    </a>
-                                    <figcaption>
-                                        <a href="">{{ catTitle4 }} Jobs</a>
-                                    </figcaption>
-                                </figure>
-                            </div>
-                            <div class="col-xl-1-of-3 col-s-1-of-2 col-xs-1-of-1 the-category">
-                                <figure>
-                                    <a href="">
-                                        <img src="{{ catImg5|media }}" />
-                                    </a>
-                                    <figcaption>
-                                        <a href="">{{ catTitle5 }} Jobs</a>
-                                    </figcaption>
-                                </figure>
-                            </div>
-                            <div class="col-xl-1-of-3 col-s-1-of-2 col-xs-1-of-1 the-category">
-                                <figure>
-                                    <a href="">
-                                        <img src="{{ catImg6|media }}" />
-                                    </a>
-                                    <figcaption>
-                                        <a href="">{{ catTitle6 }} Jobs</a>
-                                    </figcaption>
-                                </figure>
-                            </div>
-                        </div>  
-                    </div>
-                </div>
-            </section>
-
-            <section class="about">
-                <div class="row">
-                    <div class="col-l-1-of-4 col-m-1-of-3 col-xs-1-of-1">
-                        <aside>
-                            <hr>
-                            <span>
-                                {{ aboutMainTitle }}
-                            </span>
-                            <h2>
-                                {{ aboutSubTitle }}
-                            </h2>
-                        </aside>
-                    </div>
-                    <div class="col-l-3-of-4 col-m-2-of-3 col-xs-1-of-1 bg-white">
-                        <div class="row parentH">
-                            <div class="col-l-1-of-2 col-xs-1-of-1 about-text">
-                                {% page %}
-                            </div>
-                            <div class="col-l-1-of-2 col-xs-1-of-1 backgroundF" style="background-image:url('{{ aboutImg1|media }}');"></div>
-                        </div>
-                        <div class="row parentH">
-                            <div class="col-l-1-of-2 col-xs-1-of-1 backgroundF" style="background-image:url('{{ aboutImg2|media }}');"></div>
-                            <div class="col-l-1-of-2 col-xs-1-of-1 our-stats">
-                                <hr>
-                                <h4>
-                                    {{ statsMainTitle }}
-                                </h4>
-                                <div class="row">
-                                    <div class="col-s-1-of-4 col-xs-1-of-2 the-stat">
-                                        <div class="hexagon">
-                                            <span>{{ stats1Number }}</span>
-                                        </div>
-                                        <p class="small">{{ stats1Title }}</p>
-                                    </div>
-                                    <div class="col-s-1-of-4 col-xs-1-of-2 the-stat">
-                                        <div class="hexagon">
-                                            <span>{{ stats2Number }}</span>
-                                        </div>
-                                        <p class="small">{{ stats2Title }}</p>
-                                    </div>
-                                    <div class="col-s-1-of-4 col-xs-1-of-2 the-stat">
-                                        <div class="hexagon">
-                                            <span>{{ stats3Number }}</span>
-                                        </div>
-                                        <p class="small">{{ stats3Title }}</p>
-                                    </div>
-                                    <div class="col-s-1-of-4 col-xs-1-of-2 the-stat">
-                                        <div class="hexagon">
-                                            <span>{{ stats4Number }}</span>
-                                        </div>
-                                        <p class="small">{{ stats4Title }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section class="testimonials">
-                <div class="row">
-                    <div class="col-l-1-of-4 col-m-1-of-3 col-xs-1-of-1">
-                        <aside>
-                            <hr>
-                            <span>
-                                {{ testimonialsMainTitle }}
-                            </span>
-                            <h2>
-                                {{ testimonialsSubTitle }}
-                            </h2>
-                        </aside>
-                    </div>
-                    <div class="col-l-3-of-4 col-m-2-of-3 col-xs-1-of-1 testimonials-list bg-lgrey">
-                        <div id="carousel" class="owl-carousel">
-                            {% for record in records %}
-                                <div class="item the-testimonial">
-                                    <div class="col-xxl-7-of-10 col-xl-9-of-10 col-xs-1-of-1">
-                                        {{ record.summary|raw }}
-                                        <p class="signature">
-                                            {{ record.who }} - {{ record.type }}
-                                        </p>
-                                    </div>
-                                </div>
-                            {% else %}
-                                {{ noRecordsMessage }}
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- Footer -->
-            {% partial 'footer' %}
-
+    <!-- Content -->
+    <header class="home-bg vheight-half" style="background-image: url('{{ banner|media }}');">
+      <div class="centerV">
+        <div class="claim white">
+          <h1 class="text-center">
+            {{ mainClaim }}
+          </h1>
         </div>
+        <div class="main-search">
+          <form role="search" action="" class="search-form">
+            <input type="text" class="search-field" value="Search for a job..." onclick="if(this.defaultValue==this.value){ this.value=''}" onblur="if(this.value===''){this.value=this.defaultValue}">
+            <input type="submit" class="search-submit" value="">
+          </form>
+        </div>
+      </div>
+    </header>
 
-        <!-- Scripts -->
-        <script src="{{ 'assets/js/www/app.min.js'|theme }}"></script>
+    <section class="categories">
+      <div class="row">
+        <div class="col-l-1-of-4 col-m-1-of-3 col-xs-1-of-1">
+          <aside>
+            <hr>
+            <span>
+              {{ catMainTitle }}
+            </span>
+            <h2>
+              {{ catSubTitle }}
+            </h2>
+          </aside>
+        </div>
+        <div class="col-l-3-of-4 col-m-2-of-3 col-xs-1-of-1">
+          <div class="row categories-list">
+            {repeater name="home_categories" tab="Categories" prompt="Add another category"}
+            <div class="col-xl-1-of-3 col-s-1-of-2 col-xs-1-of-1 the-category">
+              <figure>
+                <a href="{text name="categoryLink" label="Category Link"}Link{/text}">
+                  <img src="{mediafinder name="categoryImage" label="Category Image" mode="image"}Title{/mediafinder}" />
+                </a>
+                <figcaption>
+                  <a href="{text name="categoryLink" label="Category Link"}Link{/text}">{text name="categoryTitle" label="Category Title"}Title{/text} Jobs</a>
+                </figcaption>
+              </figure>
+            </div>
+            {/repeater}
+          </div>
+        </div>
+      </div>
+    </section>
 
-    </body>
+    <section class="about">
+      <div class="row">
+        <div class="col-l-1-of-4 col-m-1-of-3 col-xs-1-of-1">
+          <aside>
+            <hr>
+            <span>
+              {{ aboutMainTitle }}
+            </span>
+            <h2>
+              {{ aboutSubTitle }}
+            </h2>
+          </aside>
+        </div>
+        <div class="col-l-3-of-4 col-m-2-of-3 col-xs-1-of-1 bg-white">
+          <div class="row parentH">
+            <div class="col-l-1-of-2 col-xs-1-of-1 about-text">
+              {% page %}
+            </div>
+            <div class="col-l-1-of-2 col-xs-1-of-1 backgroundF" style="background-image:url('{{ aboutImg1|media }}');"></div>
+          </div>
+          <div class="row parentH">
+            <div class="col-l-1-of-2 col-xs-1-of-1 backgroundF" style="background-image:url('{{ aboutImg2|media }}');"></div>
+            <div class="col-l-1-of-2 col-xs-1-of-1 our-stats">
+              <hr>
+              <h4>
+                {{ statsMainTitle }}
+              </h4>
+              <div class="row">
+                <div class="col-s-1-of-4 col-xs-1-of-2 the-stat">
+                  <div class="hexagon">
+                    <span>{{ stats1Number }}</span>
+                  </div>
+                  <p class="small">{{ stats1Title }}</p>
+                </div>
+                <div class="col-s-1-of-4 col-xs-1-of-2 the-stat">
+                  <div class="hexagon">
+                    <span>{{ stats2Number }}</span>
+                  </div>
+                  <p class="small">{{ stats2Title }}</p>
+                </div>
+                <div class="col-s-1-of-4 col-xs-1-of-2 the-stat">
+                  <div class="hexagon">
+                    <span>{{ stats3Number }}</span>
+                  </div>
+                  <p class="small">{{ stats3Title }}</p>
+                </div>
+                <div class="col-s-1-of-4 col-xs-1-of-2 the-stat">
+                  <div class="hexagon">
+                    <span>{{ stats4Number }}</span>
+                  </div>
+                  <p class="small">{{ stats4Title }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="testimonials">
+      <div class="row">
+        <div class="col-l-1-of-4 col-m-1-of-3 col-xs-1-of-1">
+          <aside>
+            <hr>
+            <span>
+              {{ testimonialsMainTitle }}
+            </span>
+            <h2>
+              {{ testimonialsSubTitle }}
+            </h2>
+          </aside>
+        </div>
+        <div class="col-l-3-of-4 col-m-2-of-3 col-xs-1-of-1 testimonials-list bg-lgrey">
+          <div id="carousel" class="owl-carousel">
+            {% for record in records %}
+            <div class="item the-testimonial">
+              <div class="col-xxl-7-of-10 col-xl-9-of-10 col-xs-1-of-1">
+                {{ record.summary|raw }}
+                <p class="signature">
+                  {{ record.who }} - {{ record.type }}
+                </p>
+              </div>
+            </div>
+            {% else %}
+            {{ noRecordsMessage }}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Footer -->
+    {% partial 'footer' %}
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="{{ 'assets/js/www/app.min.js'|theme }}"></script>
+
+</body>
 </html>

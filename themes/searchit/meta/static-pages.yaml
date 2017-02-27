@@ -2,4 +2,5 @@ static-pages:
     index: {  }
     contact: {  }
     client: {  }
-    candidates: {  }
+    candidates:
+        candidates-upload-cv: {  }
