@@ -154,7 +154,7 @@ code = "main-menu"
       $(this).parent().parent().find('a').removeClass('pushed');
       $(this).addClass('pushed');
       $(this).parent().parent().next().val('');
-      $(this).parent().parent().next().val($(this).attr('href'));
+      $(this).parent().parent().next().val($(this).data('val'));
     });
     $('.job-categories, .job-types').find('a').on('click', updateURL);
 

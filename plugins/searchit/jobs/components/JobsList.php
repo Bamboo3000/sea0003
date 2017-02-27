@@ -127,10 +127,10 @@ class JobsList extends ComponentBase
             $this->page['jobs'] = Job::where('title', 'LIKE', "%{$title}%")
             ->where('location', 'LIKE', "%{$location}%")
             ->whereHas('categories', function($query) use ($category) {
-                $query->where('category_name', 'LIKE', "%{$category}%");
+                $query->where('category_slug', 'LIKE', "%{$category}%");
             })
             ->whereHas('types', function($query) use ($type) {
-                $query->where('type_name', 'LIKE', "%{$type}%");
+                $query->where('type_slug', 'LIKE', "%{$type}%");
             })
             ->where('salary_min', '>=', $salaryMin)
             ->where('salary_max', '<=', $salaryMax)
@@ -140,7 +140,7 @@ class JobsList extends ComponentBase
             $this->page['jobs'] = Job::where('title', 'LIKE', "%{$title}%")
             ->where('location', 'LIKE', "%{$location}%")
             ->whereHas('categories', function($query) use ($category) {
-                $query->where('category_name', 'LIKE', "%{$category}%");
+                $query->where('category_slug', 'LIKE', "%{$category}%");
             })
             ->whereHas('types', function($query) use ($type) {
                 $query->where('type_name', 'LIKE', "%{$type}%");
@@ -152,7 +152,7 @@ class JobsList extends ComponentBase
             $this->page['jobs'] = Job::where('title', 'LIKE', "%{$title}%")
             ->where('location', 'LIKE', "%{$location}%")
             ->whereHas('categories', function($query) use ($category) {
-                $query->where('category_name', 'LIKE', "%{$category}%");
+                $query->where('category_slug', 'LIKE', "%{$category}%");
             })
             ->whereHas('types', function($query) use ($type) {
                 $query->where('type_name', 'LIKE', "%{$type}%");
@@ -164,10 +164,10 @@ class JobsList extends ComponentBase
             $this->page['jobs'] = Job::where('title', 'LIKE', "%{$title}%")
             ->where('location', 'LIKE', "%{$location}%")
             ->whereHas('categories', function($query) use ($category) {
-                $query->where('category_name', 'LIKE', "%{$category}%");
+                $query->where('category_slug', 'LIKE', "%{$category}%");
             })
             ->whereHas('types', function($query) use ($type) {
-                $query->where('type_name', 'LIKE', "%{$type}%");
+                $query->where('type_slug', 'LIKE', "%{$type}%");
             })
             ->orderBy('date', 'desc')
             ->paginate(16);
