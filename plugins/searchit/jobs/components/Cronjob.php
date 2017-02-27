@@ -137,14 +137,6 @@ class Cronjob extends ComponentBase
 
         }
 
-        // foreach($jobs as $job_single) 
-        // {
-        //     $job_id_key = array_search($job_single->job_id, $job_ids);
-        //     if($job_id_key !== null) {
-        //         echo 'yes';
-        //     }
-        // }
-
     }
 
     /*

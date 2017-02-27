@@ -188,16 +188,18 @@ sortColumn = "id"
         <div class="col-l-3-of-4 col-m-2-of-3 col-xs-1-of-1 testimonials-list bg-lgrey">
           <div id="carousel" class="owl-carousel">
             {% for record in records %}
-            <div class="item the-testimonial">
-              <div class="col-xxl-7-of-10 col-xl-9-of-10 col-xs-1-of-1">
-                {{ record.summary|raw }}
-                <p class="signature">
-                  {{ record.who }} - {{ record.type }}
-                </p>
-              </div>
-            </div>
+              {% if record.featured %}
+                <div class="item the-testimonial">
+                  <div class="col-xxl-7-of-10 col-xl-9-of-10 col-xs-1-of-1">
+                    {{ record.summary|raw }}
+                    <p class="signature">
+                      {{ record.who }} - {{ record.type }}
+                    </p>
+                  </div>
+                </div>
+              {% endif %}
             {% else %}
-            {{ noRecordsMessage }}
+              {{ noRecordsMessage }}
             {% endfor %}
           </div>
         </div>

@@ -1,10 +1,4 @@
 fields:
-    summary:
-        label: Summary
-        size: giant
-        span: full
-        required: 1
-        type: richeditor
     who:
         label: Author
         span: auto
@@ -18,3 +12,15 @@ fields:
             candidate: Candidate
         required: 1
         type: dropdown
+    summary:
+        label: Summary
+        size: giant
+        span: full
+        required: 1
+        type: richeditor
+    featured:
+        label: 'Feature this on home page?'
+        span: auto
+        default: 0
+        required: 1
+        type: switch

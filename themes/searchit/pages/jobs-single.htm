@@ -41,12 +41,14 @@ notFoundMessage = "Record not found"
 					</div>
 				</div>
 				<div class="row the-details">
-					<div class="col-xl-4-of-10 col-m-1-of-1 col-s-2-of-10 col-xs-1-of-1 title">
-						{{ 'Salary:' }}
-					</div>
-					<div class="col-xl-6-of-10 col-m-1-of-1 col-s-8-of-10 col-xs-1-of-1 value">
-						{{ record.salary_min|number_format(0, '.', '.') }} - {{ record.salary_max|number_format(0, '.', '.') }} euro
-					</div>
+					{% if record.salary_min != 0 or record.salary_max != 0 %}
+						<div class="col-xl-4-of-10 col-m-1-of-1 col-s-2-of-10 col-xs-1-of-1 title">
+							{{ 'Salary:' }}
+						</div>
+						<div class="col-xl-6-of-10 col-m-1-of-1 col-s-8-of-10 col-xs-1-of-1 value">
+							{{ record.salary_min|number_format(0, '.', '.') }} - {{ record.salary_max|number_format(0, '.', '.') }} euro
+						</div>
+					{% endif %}
 				</div>
 				<div class="row the-details">
 					<div class="col-xs-1-of-1 share-btn">

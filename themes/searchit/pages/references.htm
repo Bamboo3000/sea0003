@@ -1,6 +1,6 @@
 title = "References"
 url = "/references"
-layout = "tpl-default"
+layout = "default"
 is_hidden = 0
 
 [staticMenu]
@@ -10,16 +10,10 @@ modelClass = "Searchit\Testimonials\Models\Testimonial"
 scope = "-"
 displayColumn = "summary"
 noRecordsMessage = "No records found"
-detailsPage = "-"
-detailsUrlParameter = "id"
-pageNumber = "{{ :page }}"
 ==
 {% set records = testimonialsListing.records %}
 {% set displayColumn = testimonialsListing.displayColumn %}
 {% set noRecordsMessage = testimonialsListing.noRecordsMessage %}
-{% set detailsPage = testimonialsListing.detailsPage %}
-{% set detailsKeyColumn = testimonialsListing.detailsKeyColumn %}
-{% set detailsUrlParameter = testimonialsListing.detailsUrlParameter %}
 
 <section class="testimonials">  
     <div class="row">

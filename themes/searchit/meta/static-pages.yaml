@@ -1,6 +1,23 @@
 static-pages:
     index: {  }
     contact: {  }
-    client: {  }
+    client:
+        client-30-tax-ruling: {  }
+        client-work-permit: {  }
+        why-search-it-recruitment: {  }
+        client-why-search-it-recruitment: {  }
+        client-coaching: {  }
+        client-executive-search-headhunting: {  }
+        client-recruitment-process-outsourcing-rpo: {  }
+        client-sourcing-process-outsourcing-spo: {  }
+        client-terms-conditions: {  }
+        client-upload-job: {  }
+        client-our-recruitment-process: {  }
     candidates:
+        why-search-it-recruitment: {  }
         candidates-upload-cv: {  }
+        candidates-our-recruitment-process: {  }
+        candidates-work-permit: {  }
+        candidates-30-tax-ruling: {  }
+        candidates-example-cv: {  }
+        candidates-why-search-it-recruitment: {  }

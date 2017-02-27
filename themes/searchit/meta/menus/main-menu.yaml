@@ -14,19 +14,6 @@ items:
             cssClass: ''
             isExternal: '0'
     -
-        title: Client
-        nesting: '0'
-        type: static-page
-        url: ''
-        code: ''
-        reference: client
-        cmsPage: ''
-        replace: '0'
-        viewBag:
-            isHidden: '0'
-            cssClass: ''
-            isExternal: '0'
-    -
         title: Candidates
         nesting: '0'
         type: static-page
@@ -39,6 +26,191 @@ items:
             isHidden: '0'
             cssClass: ''
             isExternal: '0'
+        items:
+            -
+                title: 'Upload CV'
+                nesting: '0'
+                type: static-page
+                url: ''
+                code: ''
+                reference: candidates-upload-cv
+                cmsPage: ''
+                replace: '0'
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: 'Why Search It Recruitment?'
+                nesting: '0'
+                type: static-page
+                url: ''
+                code: ''
+                reference: candidates-why-search-it-recruitment
+                cmsPage: ''
+                replace: '0'
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: 'Our recruitment process'
+                nesting: '0'
+                type: static-page
+                url: ''
+                code: ''
+                reference: candidates-our-recruitment-process
+                cmsPage: ''
+                replace: '0'
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: 'Work permit'
+                nesting: '0'
+                type: static-page
+                url: ''
+                code: ''
+                reference: candidates-work-permit
+                cmsPage: ''
+                replace: '0'
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: '30% Tax Ruling'
+                nesting: '0'
+                type: static-page
+                url: ''
+                code: ''
+                reference: candidates-30-tax-ruling
+                cmsPage: ''
+                replace: '0'
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: 'Example CV'
+                nesting: '0'
+                type: static-page
+                url: ''
+                code: ''
+                reference: candidates-example-cv
+                cmsPage: ''
+                replace: '0'
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+    -
+        title: Clients
+        nesting: '0'
+        type: static-page
+        url: ''
+        code: ''
+        reference: client
+        cmsPage: ''
+        replace: '0'
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+        items:
+            -
+                title: 'Upload Job'
+                nesting: '0'
+                type: static-page
+                url: ''
+                code: ''
+                reference: client-upload-job
+                cmsPage: ''
+                replace: '0'
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: 'Why Search It Recruitment?'
+                nesting: '0'
+                type: static-page
+                url: ''
+                code: ''
+                reference: client-why-search-it-recruitment
+                cmsPage: ''
+                replace: '0'
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: 'Our Recruitment Process'
+                nesting: '0'
+                type: static-page
+                code: ''
+                reference: client-our-recruitment-process
+                replace: '0'
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: 'Recruitment Process Outsourcing - RPO'
+                nesting: '0'
+                type: static-page
+                code: ''
+                reference: client-recruitment-process-outsourcing-rpo
+                replace: '0'
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: 'Sourcing Process Outsourcing - SPO'
+                nesting: '0'
+                type: static-page
+                code: ''
+                reference: client-sourcing-process-outsourcing-spo
+                replace: '0'
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: Coaching
+                nesting: '0'
+                type: static-page
+                code: ''
+                reference: client-coaching
+                replace: '0'
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: 'Work Permit'
+                nesting: '0'
+                type: static-page
+                code: ''
+                reference: client-work-permit
+                replace: '0'
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: '30% Tax Ruling'
+                nesting: '0'
+                type: static-page
+                code: ''
+                reference: client-30-tax-ruling
+                replace: '0'
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
     -
         title: References
         nesting: ''
@@ -55,18 +227,26 @@ items:
         items:
             -
                 title: 'References from clients'
+                nesting: ''
                 type: cms-page
+                url: ''
                 code: ''
                 reference: references-clients
+                cmsPage: ''
+                replace: ''
                 viewBag:
                     isHidden: '0'
                     cssClass: ''
                     isExternal: '0'
             -
                 title: 'References from candidates'
+                nesting: ''
                 type: cms-page
+                url: ''
                 code: ''
                 reference: references-candidates
+                cmsPage: ''
+                replace: ''
                 viewBag:
                     isHidden: '0'
                     cssClass: ''
