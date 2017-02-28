@@ -22,14 +22,14 @@ sortDirection = "desc"
 		<div class="row">
 			<div class="col-l-1-of-4 col-s-1-of-2 col-xs-1-of-1 footer-section">
 				<hr>
-				<span>{{ 'Contact' }}</span>
+				<span>{{ 'Contact'|_ }}</span>
 				<div class="textwidget">
 					{% content 'footer-col1.htm' %}
 				</div>
 			</div>
 			<div class="col-l-1-of-4 col-s-1-of-2 col-xs-1-of-1 footer-section">
 				<hr>
-				<span>{{ 'Recent jobs' }}</span>
+				<span>{{ 'Recent jobs'|_ }}</span>
 				<div class="textwidget">
 					<p>
 						{% for record in records %}
@@ -42,14 +42,14 @@ sortDirection = "desc"
 			</div>
 			<div class="col-l-1-of-4 col-s-1-of-2 col-xs-1-of-1 footer-section hot-skills">
 				<hr>
-				<span>{{ 'Hot skills' }}</span>
+				<span>{{ 'Hot skills'|_ }}</span>
 				<div class="textwidget">
 					{% content 'footer-col3.htm' %}
 				</div>
 			</div>
 			<div class="col-l-1-of-4 col-s-1-of-2 col-xs-1-of-1 footer-section">
 				<hr>
-				<span>{{ 'Newsletter' }}</span>
+				<span>{{ 'Newsletter'|_ }}</span>
 				<div class="textwidget">
 					{% content 'footer-col4.htm' %}
 				</div>

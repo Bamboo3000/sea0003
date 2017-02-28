@@ -98,7 +98,6 @@ class JobsList extends ComponentBase
 
       $this->page['pagination'] = $this->page['jobs']->appends($parameters);
 
-
     }
 
     public function onFilterSearch()

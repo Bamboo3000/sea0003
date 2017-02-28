@@ -75,7 +75,7 @@ sortColumn = "id"
         </div>
         <div class="main-search">
           <form role="search" action="" class="search-form">
-            <input type="text" class="search-field" value="Search for a job..." onclick="if(this.defaultValue==this.value){ this.value=''}" onblur="if(this.value===''){this.value=this.defaultValue}">
+            <input type="text" class="search-field" value="{{ 'Search for a job...'|_ }}" onclick="if(this.defaultValue==this.value){ this.value=''}" onblur="if(this.value===''){this.value=this.defaultValue}">
             <input type="submit" class="search-submit" value="">
           </form>
         </div>
@@ -104,7 +104,7 @@ sortColumn = "id"
                   <img src="{mediafinder name="categoryImage" label="Category Image" mode="image"}Title{/mediafinder}" />
                 </a>
                 <figcaption>
-                  <a href="{text name="categoryLink" label="Category Link"}Link{/text}">{text name="categoryTitle" label="Category Title"}Title{/text} Jobs</a>
+                  <a href="{text name="categoryLink" label="Category Link"}Link{/text}">{text name="categoryTitle" label="Category Title"}Title{/text} {{ 'Jobs'|_ }}</a>
                 </figcaption>
               </figure>
             </div>

@@ -6,11 +6,11 @@
         data-request-update="'ajax/search': '#load-more-collection-container', 'pagination': '#jobs-pagination'"
     >
     <div class="job-filters-search1">
-        <input type="text" id="job-title" name="job-title" data-name="job-title" class="title" placeholder="{{ 'Type a job skill...' }}">
-        <input type="text" id="job-location" name="job-location" data-name="job-location" class="location" placeholder="{{ 'Type a location...' }}">
+        <input type="text" id="job-title" name="job-title" data-name="job-title" class="title" placeholder="{{ 'Type a job skill...'|_ }}">
+        <input type="text" id="job-location" name="job-location" data-name="job-location" class="location" placeholder="{{ 'Type a location...'|_ }}">
     </div>
     <div class="job-filters-search2" id="job-header">
-        <h5>{{ 'Job categories' }}</h5>
+        <h5>{{ 'Job categories'|_ }}</h5>
         <hr class="green">
         <ul class="job-categories">
             {% for cat in cats %}
@@ -24,7 +24,7 @@
         <input type="hidden" id="job-category" name="job-category">
     </div>
     <div class="job-filters-search3">
-        <h5>{{ 'Job type' }}</h5>
+        <h5>{{ 'Job type'|_ }}</h5>
         <hr class="green">
         <ul class="job-types">
             {% for type in types %}
@@ -38,10 +38,10 @@
         <input type="hidden" id="job-type" name="job-type">
     </div>
     <div class="job-filters-search4">
-        <h5>{{ 'Salary' }}</h5>
+        <h5>{{ 'Salary'|_ }}</h5>
         <hr class="green">
-        <input type="text" id="job-salary-min" name="job-salary-min" data-name="job-salary-min" class="title" placeholder="{{ 'Min.' }}">
-        <input type="text" id="job-salary-max" name="job-salary-max" data-name="job-salary-max" class="location" placeholder="{{ 'Max.' }}">
+        <input type="text" id="job-salary-min" name="job-salary-min" data-name="job-salary-min" class="title" placeholder="{{ 'Min.'|_ }}">
+        <input type="text" id="job-salary-max" name="job-salary-max" data-name="job-salary-max" class="location" placeholder="{{ 'Max.'|_ }}">
     </div>
     <input id="filterSearch" type="submit" style="display:none;">
     </form>
