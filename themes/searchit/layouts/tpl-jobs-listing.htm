@@ -5,6 +5,9 @@ code = "main-menu"
 
 [sidebar]
 [jobsList]
+
+[localePicker]
+forceUrl = 1
 ==
 
 <!DOCTYPE html>
@@ -18,7 +21,7 @@ code = "main-menu"
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="generator" content="Search It Recruitment">
 	<link rel="icon" type="image/png" href="{{ 'assets/images/october.png'|theme }}">
-	<link href="{{ 'assets/css/www/build.css'|theme }}" rel="stylesheet">
+	<link href="{{ 'assets/css/build.css'|theme }}" rel="stylesheet">
 </head>
 <body>
 	<div class="wrapper">
@@ -162,6 +165,8 @@ code = "main-menu"
 
 		});
 	</script>
+
 	{% framework extras %}
+
 </body>
 </html>

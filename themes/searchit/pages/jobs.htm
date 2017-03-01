@@ -4,8 +4,13 @@ layout = "tpl-jobs-listing"
 is_hidden = 0
 
 [staticMenu]
-==
 
+[localePicker]
+forceUrl = 1
+
+[viewBag]
+localeUrl[nl] = "/vacatures/:page?"
+==
 {% for record in jobs %}
     <article class="the-job">
         <div class="row">

@@ -3,6 +3,9 @@ description = "Team listing"
 [staticMenu mainMenu]
 code = "main-menu"
 
+[localePicker]
+forceUrl = 1
+
 [builderList teamListing]
 modelClass = "Searchit\Team\Models\Team"
 scope = "-"
@@ -23,7 +26,7 @@ pageNumber = "{{ :page }}"
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="generator" content="Search It Recruitment">
         <link rel="icon" type="image/png" href="{{ 'assets/images/october.png'|theme }}">
-        <link href="{{ 'assets/css/www/build.css'|theme }}" rel="stylesheet">
+        <link href="{{ 'assets/css/build.css'|theme }}" rel="stylesheet">
     </head>
     <body>
         <div class="wrapper">
@@ -64,6 +67,8 @@ pageNumber = "{{ :page }}"
 
         <!-- Scripts -->
         <script src="{{ 'assets/js/www/app.min.js'|theme }}"></script>
+
+        {% framework extras %}
         
     </body>
 </html>
