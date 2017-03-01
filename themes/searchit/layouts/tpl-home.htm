@@ -213,7 +213,7 @@ language = "en_US"
       </div>
     </section>
     
-    {# {% if facebookMessenger.page|length > 0 %}
+    {% if facebookMessenger.page|length > 0 %}
     <!-- FB Messenger -->
 
     <div class="remodal" data-remodal-id="modal">
@@ -229,7 +229,7 @@ language = "en_US"
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
     <!-- End FB Messenger -->
-    {% endif %} #}
+    {% endif %}
 
     <!-- Footer -->
     {% partial 'footer' %}
