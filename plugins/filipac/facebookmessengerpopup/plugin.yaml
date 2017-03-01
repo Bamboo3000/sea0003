@@ -1,0 +1,6 @@
+plugin:
+    name: 'filipac.facebookmessengerpopup::lang.plugin.name'
+    description: 'filipac.facebookmessengerpopup::lang.plugin.description'
+    author: 'Filip Pacurar'
+    icon: oc-icon-facebook-square
+    homepage: ''
