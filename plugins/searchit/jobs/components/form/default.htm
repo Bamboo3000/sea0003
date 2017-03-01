@@ -1,39 +1,27 @@
 <section class="apply-form-section">
 	<div class="row">
 		<div class="col-xs-1-of-1">
-			{# <?php
-				$job_id_meta = get_post_meta(get_the_ID(), 'job_id', true); 
-				if(!empty($job_id_meta)) : 
-			?> #}
-				<h3>
-					{{ 'Apply for this job!' }}
-				</h3>
-				<hr class="job-green">
-				{# <?php $jobID = get_post_meta(get_the_ID(), 'job_id', true); ?> #}
-			{# <?php else : ?>
-				<h3>
-					<?php echo __('Upload your cv', 'searchit'); ?>
-				</h3>
-				<hr class="green">
-				<?php $jobID = 0; ?>
-			<?php endif; ?> #}
+			<h3>
+				{{ record.job_id|length ? 'Apply for this job!'|_ : 'Upload your cv'|_ }}
+			</h3>
+			<hr class="job-green">
 		</div>
 	</div>
 	<form action="" method="post" enctype="multipart/form-data" class="apply-form">
-		<input type="hidden" name="job-id" class="job-id" value="{# <?php echo $jobID; ?> #}">
+		<input type="hidden" name="job-id" class="job-id" value="{{ record.job_id|length ? record.job_id : 0 }}">
 		<input type="hidden" name="gender" class="gender">
-		<input type="text" name="name" class="name" placeholder="{{ 'Name*' }}" required>
+		<input type="text" name="name" class="name" placeholder="{{ 'Name*'|_ }}" required>
 		<input type="file" name="photo" accept="image/*" class="photo photo-file" onchange="readURL(this)">
 		<input type="text" name="photoURL" class="photo photo-url">
-		<label for="photo" id="labelP" class="input photoLabel">{{ 'Choose your photo' }}</label>
-		<input type="text" name="address" class="address" placeholder="{{ 'Address' }}">
-		<input type="email" name="email" class="email" required  placeholder="{{ 'Email*' }}">
-		<input type="text" name="phone" class="phone" placeholder="{{ 'Phone' }}">
+		<label for="photo" id="labelP" class="input photoLabel">{{ 'Choose your photo'|_ }}</label>
+		<input type="text" name="address" class="address" placeholder="{{ 'Address'|_ }}">
+		<input type="email" name="email" class="email" required  placeholder="{{ 'Email*'|_ }}">
+		<input type="text" name="phone" class="phone" placeholder="{{ 'Phone'|_ }}">
 		<input type="file" name="cv-file" id="cv-file" accept=".pdf" class="cv">
-		<label for="cv" class="input cvLabel">{{ 'Choose your cv file' }}</label>
-		<div class="applyFB" onclick="myFacebookLogin()">{{ 'Apply with Facebook' }}</div>
-		<textarea name="message" class="message" placeholder="{{ 'Motivation and extra details' }}"></textarea>
-		<div class="applyLI" onclick="liAuth()">{{ 'Apply with LinkedIn' }}</div>
-		<input type="submit" value="{{ 'Apply' }}" class="submit">
+		<label for="cv" class="input cvLabel">{{ 'Choose your cv file'|_ }}</label>
+		<div class="applyFB" onclick="myFacebookLogin()">{{ 'Apply with Facebook'|_ }}</div>
+		<textarea name="message" class="message" placeholder="{{ 'Motivation and extra details'|_ }}"></textarea>
+		<div class="applyLI" onclick="liAuth()">{{ 'Apply with LinkedIn'|_ }}</div>
+		<input type="submit" value="{{ 'Apply'|_ }}" class="submit">
 	</form>
 </section>
