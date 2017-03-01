@@ -11,13 +11,14 @@ forceUrl = 1
 [viewBag]
 localeUrl[nl] = "/vacatures/:page?"
 ==
+
 {% for record in jobs %}
     <article class="the-job">
         <div class="row">
             <div class="col-xxl-8-of-10 col-xl-9-of-10 col-xs-1-of-1">
                 {% spaceless %}
                     <h3>
-                        <a href="/jobs/{{record.slug}}">
+                        <a href="{{ jobUrl }}{{ record.slug }}">
                             {{ record.title }}
                         </a>
                     </h3>
@@ -39,7 +40,7 @@ localeUrl[nl] = "/vacatures/:page?"
                       </div>
                     {% endif %}
                 </div>
-                <a href="/jobs/{{record.slug}}" class="job-readmore">
+                <a href="{{ jobUrl }}{{ record.slug }}" class="job-readmore">
                     {{ 'Read more'|_ }}
                 </a>
                 <hr/>

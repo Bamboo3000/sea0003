@@ -8,10 +8,25 @@ code = "main-menu"
 
 [localePicker]
 forceUrl = 1
+
+[langCheck]
+==
+<?php
+
+public function onStart()
+{
+    if(App::getLocale() == 'en') {
+        $this['jobUrl'] = "/en/jobs/";
+    } else {
+        $this['jobUrl'] = "/nl/vacatures/";
+    }
+}
+
+?>
 ==
 
 <!DOCTYPE html>
-<html>
+<html lang="{{ activeLocale }}">
 <head>
 	<meta charset="utf-8">
 	<title>{{ this.page.title }} | Search It Recruitment</title>

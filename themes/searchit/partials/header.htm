@@ -233,15 +233,28 @@
 				</a>
 			</div>
 			<div class="lang-cont">
+
 				<div class="lang-visible">
-					<a href="#" data-request="onSwitchLocale" data-request-data="locale: 'en'" title="English">
-						<span class="flag-icon flag-icon-en"></span>
-					</a>
+					{% if activeLocale == 'en' %}
+						<a href="#" data-request="onSwitchLocale" data-request-data="locale: 'en'" title="English">
+							<span class="flag-icon flag-icon-en"></span>
+						</a>
+					{% else %}
+						<a href="#" data-request="onSwitchLocale" data-request-data="locale: 'nl'" title="Dutch">
+							<span class="flag-icon flag-icon-nl"></span>
+						</a>
+					{% endif %}
 				</div>
 				<div class="lang-hidden">
-					<a href="#" data-request="onSwitchLocale" data-request-data="locale: 'nl'" title="Dutch">
-						<span class="flag-icon flag-icon-nl"></span>
-					</a>
+					{% if activeLocale == 'en' %}
+						<a href="#" data-request="onSwitchLocale" data-request-data="locale: 'nl'" title="Dutch">
+							<span class="flag-icon flag-icon-nl"></span>
+						</a>
+					{% else %}
+						<a href="#" data-request="onSwitchLocale" data-request-data="locale: 'en'" title="English">
+							<span class="flag-icon flag-icon-en"></span>
+						</a>
+					{% endif %}
 				</div>
 			</div>
 			<div class="main-navigation-bottom-bar-social">
@@ -262,18 +275,15 @@
 					<i class="fa fa-google-plus" aria-hidden="true"></i>
 				</a>
 			</div>
-			{# <?php /* 
-				if ( has_nav_menu( 'one-button' ) ) :
-					wp_nav_menu( array(
-						'container'      => false,
-						'menu_class'     => 'one-button',
-						'theme_location' => 'one-button',
-						'depth'          => 1,
-					) );
-				endif; */
-			 ?> #}
-			<form role="search" method="get" class="search-form" action="">
-				<input type="text" class="search-field" value="{{ 'Search for a job...'|_ }}" name="s" onclick="if(this.defaultValue==this.value){ this.value=''}" onblur="if(this.value===''){this.value=this.defaultValue}">
+			<ul id="menu-one-button" class="one-button">
+				<li>
+					<a href="{{ activeLocale == 'en' ? '/en/candidates/upload-cv' : '/nl/candidates/upload-cv' }}">
+						{{ 'Upload CV'|_ }}
+					</a>
+				</li>
+			</ul>
+			<form role="search" class="search-form" data-request="onSearchRedirect">
+				<input type="text" name="search-input" class="search-field" value="{{ 'Search for a job...'|_ }}" name="s" onclick="if(this.defaultValue==this.value){ this.value=''}" onblur="if(this.value===''){this.value=this.defaultValue}">
 				<input type="submit" class="search-submit" value="">
 			</form>
 		</div>

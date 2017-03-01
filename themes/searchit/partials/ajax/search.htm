@@ -1,3 +1,17 @@
+==
+<?php
+
+public function onStart()
+{
+    if(App::getLocale() == 'en') {
+        $this['jobUrl'] = "/en/jobs/";
+    } else {
+        $this['jobUrl'] = "/nl/vacatures/";
+    }
+}
+
+?>
+==
 {% for record in jobs %}
 	<article class="the-job">
         <div class="row">
@@ -5,7 +19,7 @@
                 {# Use spaceless tag to remove spaces inside the A tag. #}
                 {% spaceless %}
                     <h3>
-                        <a href="/jobs/{{record.slug}}">
+                        <a href="{{ jobUrl }}{{ record.slug }}">
                             {{ record.title }}
                         </a>
                     </h3>
@@ -27,7 +41,7 @@
                       </div>
                     {% endif %}
                 </div>
-                <a href="/jobs/{{record.slug}}" class="job-readmore">
+                <a href="{{ jobUrl }}{{ record.slug }}" class="job-readmore">
                     {{ 'Read more'|_ }}
                 </a>
                 <hr/>

@@ -10,6 +10,10 @@ recordsPerPage = 12
 pageNumber = "{{ :page }}"
 sortColumn = "date"
 sortDirection = "desc"
+
+[facebookMessenger]
+page = "https://www.facebook.com/searchitrecruitment/"
+language = "en_US"
 ==
 {% set records = jobsListing.records %}
 {% set displayColumn = jobsListing.displayColumn %}
@@ -17,6 +21,31 @@ sortDirection = "desc"
 {% set detailsPage = jobsListing.detailsPage %}
 {% set detailsKeyColumn = jobsListing.detailsKeyColumn %}
 {% set detailsUrlParameter = jobsListing.detailsUrlParameter %}
+
+{% if facebookMessenger.page|length > 0 %}
+<!-- FB Messenger -->
+
+<div id="messanger-chat" class="remodal" data-remodal-id="modal">
+	<div class="chat-open">
+		<div class="chat-title">
+			{{ 'Begin chat!'|_ }}
+		</div>
+	</div>
+	<div class="chat-close"></div>
+    <div class="fb-page" data-tabs="messages" data-href="{{ facebookMessenger.page }}" data-width="310" data-height="330" data-small-header="true"  data-hide-cover="false" data-show-facepile="true" data-adapt-container-width="true"></div>
+</div>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/{{ facebookMessenger.language }}/sdk.js#xfbml=1&version=v2.6";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<!-- End FB Messenger -->
+{% endif %}
+
 <footer>
 	<div class="footer-up">
 		<div class="row">

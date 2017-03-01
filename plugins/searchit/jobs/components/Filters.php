@@ -14,13 +14,6 @@ class Filters extends ComponentBase
         ];
     }
 
-    public $jobs;
-
-    public function init()
-    {
-
-    }
-
     /*
     *
     * Return categories column
@@ -28,6 +21,13 @@ class Filters extends ComponentBase
     */
     public function onFilterSearch()
     {
+
+        if(App::getLocale() == 'en') {
+            $this->page['jobUrl'] = "/en/jobs/";
+        } else {
+            $this->page['jobUrl'] = "/nl/vacatures/";
+        }
+
         $title = input('job-title');
         $type = input('job-type');
         $location = input('job-location');

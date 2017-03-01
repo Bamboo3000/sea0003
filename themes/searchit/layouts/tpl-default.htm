@@ -7,6 +7,8 @@ code = "main-menu"
 
 [localePicker]
 forceUrl = 1
+
+[langCheck]
 ==
 
 {variable name="section1Title" label="Section title" tab="Section 1" type="text"}{/variable}
@@ -26,7 +28,7 @@ forceUrl = 1
 {variable name="section4Summary" label="Section summary" tab="Section 4" type="richeditor"}{/variable}
 
 <!DOCTYPE html>
-<html>
+<html lang="{{ activeLocale }}">
     <head>
         <meta charset="utf-8">
         <title>{{ this.page.title }} | Search It Recruitment</title>

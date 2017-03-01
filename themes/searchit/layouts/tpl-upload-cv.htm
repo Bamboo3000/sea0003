@@ -1,22 +1,20 @@
-description = "Team listing"
+description = "Upload CV layout"
 
 [staticMenu mainMenu]
 code = "main-menu"
+
+[staticPage]
 
 [localePicker]
 forceUrl = 1
 
 [langCheck]
-
-[builderList teamListing]
-modelClass = "Searchit\Team\Models\Team"
-scope = "-"
-displayColumn = "name"
-noRecordsMessage = "No records found"
-detailsPage = "-"
-detailsUrlParameter = "id"
-pageNumber = "{{ :page }}"
+[form]
 ==
+
+{variable name="cvTitle" label="Section title" tab="Side" type="text"}{/variable}
+{variable name="cvSubTitle" label="Section sub title" tab="Side" type="text"}{/variable}
+
 <!DOCTYPE html>
 <html lang="{{ activeLocale }}">
     <head>
@@ -37,25 +35,23 @@ pageNumber = "{{ :page }}"
             {% partial 'header' %}
 
             <!-- Content -->
-            <div class="team-container">
-                <section class="team-section">  
+            <div class="universal-container">
+                <section class="universal-section"> 
                     <div class="row bg-lgrey">
-                        <div class="col-l-1-of-4 col-m-1-of-3 col-xs-1-of-1 team-left-column">
+                        <div class="col-l-1-of-4 col-m-1-of-3 col-xs-1-of-1 universal-left-column">
                             <aside>
                                 <hr>
                                 <span>
-                                    {{ this.page.title }}
+                                    {{ cvTitle }}
                                 </span>
                                 <h2>
-                                    {{ 'Get to know us!'|_ }}
+                                    {{ cvSubTitle }}
                                 </h2>
                             </aside>
                         </div>
-                        <div class="col-l-3-of-4 col-m-2-of-3 col-xs-1-of-1 team-right-column bg-white">
+                        <div class="col-l-3-of-4 col-m-2-of-3 col-xs-1-of-1 bg-white universal-right-column">
                             <article>
-                                <div class="row">
-                                    {% page %}
-                                </div>
+                                {% component 'form' %}
                             </article>
                         </div>
                     </div>

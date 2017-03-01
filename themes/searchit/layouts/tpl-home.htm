@@ -18,10 +18,9 @@ detailsUrlParameter = "id"
 pageNumber = "{{ :page }}"
 sortColumn = "id"
 
-[facebookMessenger]
-page = "https://www.facebook.com/searchitrecruitment/"
-language = "en_US"
+[langCheck]
 ==
+
 {variable name="banner" label="Banner" tab="Header" type="mediafinder" mode="image"}{/variable}
 {variable name="mainClaim" label="Main claim" tab="Header" type="text"}{/variable}
 
@@ -54,7 +53,7 @@ language = "en_US"
 {% set detailsUrlParameter = testimonialsListing.detailsUrlParameter %}
 
 <!DOCTYPE html>
-<html>
+<html lang="{{ activeLocale }}">
 <head>
   <meta charset="utf-8">
   <title>{{ this.page.title }} | Search It Recruitment</title>
@@ -81,8 +80,8 @@ language = "en_US"
           </h1>
         </div>
         <div class="main-search">
-          <form role="search" action="" class="search-form">
-            <input type="text" class="search-field" value="{{ 'Search for a job...'|_ }}" onclick="if(this.defaultValue==this.value){ this.value=''}" onblur="if(this.value===''){this.value=this.defaultValue}">
+          <form role="search" class="search-form" data-request="onSearchRedirect">
+            <input type="text" name="search-input" class="search-field" value="{{ 'Search for a job...'|_ }}" onclick="if(this.defaultValue==this.value){ this.value=''}" onblur="if(this.value===''){this.value=this.defaultValue}">
             <input type="submit" class="search-submit" value="">
           </form>
         </div>
@@ -212,24 +211,6 @@ language = "en_US"
         </div>
       </div>
     </section>
-    
-    {# {% if facebookMessenger.page|length > 0 %}
-    <!-- FB Messenger -->
-
-    <div class="remodal" data-remodal-id="modal">
-        <div class="fb-page" data-tabs="messages" data-href="{{ facebookMessenger.page }}" data-width="310" data-height="330" data-small-header="true"  data-hide-cover="false" data-show-facepile="true" data-adapt-container-width="true"></div>
-    </div>
-
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/{{ facebookMessenger.language }}/sdk.js#xfbml=1&version=v2.6";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
-    <!-- End FB Messenger -->
-    {% endif %} #}
 
     <!-- Footer -->
     {% partial 'footer' %}

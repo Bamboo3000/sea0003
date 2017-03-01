@@ -7,13 +7,15 @@ code = "main-menu"
 
 [localePicker]
 forceUrl = 1
+
+[langCheck]
 ==
 {variable name="leftColTitle" label="Left column title" tab="Content" type="text"}{/variable}
 {variable name="leftColSubTitle" label="Left column sub-title" tab="Content" type="text"}{/variable}
 {variable name="summary" label="Summary" tab="Content" type="richeditor"}{/variable}
 
 <!DOCTYPE html>
-<html>
+<html lang="{{ activeLocale }}">
     <head>
         <meta charset="utf-8">
         <title>{{ this.page.title }} | Search It Recruitment</title>
