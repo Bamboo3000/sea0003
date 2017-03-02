@@ -51,8 +51,19 @@ forceUrl = 1
                         </div>
                         <div class="col-l-3-of-4 col-m-2-of-3 col-xs-1-of-1 bg-white universal-right-column">
                             <article>
-                                {% component 'form' %}
+                                <section class="apply-form-section">
+                                    <div class="row">
+                                        <div class="col-xs-1-of-1">
+                                            <h3>
+                                                {{ record.job_id|length ? 'Apply for this job!'|_ : 'Upload your cv'|_ }}
+                                            </h3>
+                                            <hr class="{{record.job_id|length ? 'job-green' : 'green'}}">
+                                        </div>
+                                    </div>
+                                    {% component 'form' %}
+                                </section>
                             </article>
+                            <div id="uploadres"></div>
                         </div>
                     </div>
                 </section>

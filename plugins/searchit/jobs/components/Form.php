@@ -1,7 +1,9 @@
 <?php namespace Searchit\Jobs\Components;
 
 use Cms\Classes\ComponentBase;
-use Searchit\Jobs\Models\Job;
+use Input;
+use Redirect;
+use System\Models\File as FileSys;
 
 class Form extends ComponentBase
 {
@@ -16,41 +18,40 @@ class Form extends ComponentBase
 
     /*
     *
-    * Return categories column
+    * Form submit script
     *
     */
     protected function onFormSubmit()
     {
-        $title = input('job-title');
-        $type = input('job-type');
-        $location = input('job-location');
-        $category = input('job-category');
-        $salaryMin = input('job-salary-min');
-        $salaryMax = input('job-salary-max');
+        // dump(Input::all());
+        if(Input::hasFile('cv_file')) {
+            // $ftp_server = "173.236.146.18";
+            // $ftp_username   = "admin_searchit";
+            // $ftp_password   = "Uv9-JNe-LG2-rxD";
+            // // setup of connection
+            // $conn_id = ftp_connect($ftp_server) or die("could not connect to the server ;(");
 
-        if($_FILES["cv-file"]["name"]) {
-            $ftp_server = "serv7.mooieserver.nl";
-            $ftp_username   = "ejbrecruit";
-            $ftp_password   =  "OBQfVGQ?cuh";
-            // setup of connection
-            $conn_id = ftp_connect($ftp_server) or die("could not connect to the server ;(");
-
-            if($_FILES['cv-file']['size'] < (2097152)) { //can't be larger than 2 MB
+            if(Input::file('cv_file')->getSize() < (2097152)) { //can't be larger than 2 MB
                 // login
-                if (@ftp_login($conn_id, $ftp_username, $ftp_password)) {
-                  echo "conectd as current user\n";
-                }
-                else {
-                  echo "could not connect as current user\n";
-                }
+                // if (@ftp_login($conn_id, $ftp_username, $ftp_password)) {
+                //   echo "conected as current user\n";
+                // }
+                // else {
+                //   echo "could not connect as current user\n";
+                // }
+                $file = new FileSys;
+                $file->data = Input::file('cv_file');
+                $file->save();
+                $upload_file = Input::file('cv_file')->getRealPath();
 
-                $upload_file = $_FILES["cv-file"]["name"];
-                $remote_file_path = "/domains/searchitrecruitment.com/public_html/wp-content/themes/searchit/file/" . $upload_file;
-                ftp_put($conn_id, $remote_file_path, $_FILES["cv-file"]["tmp_name"], FTP_BINARY);
-                ftp_close($conn_id);
-                echo "\n\nconnection closed \n\r file upload end with success! :D";
+                // $remote_file_path = "/storage/app/uploads/public/" . $upload_file;
+                // $remote_file_path = "/uploads/public/";
+                // Input::file('cv_file')->move($remote_file_path);
+                // ftp_put($conn_id, $remote_file_path, $_FILES["cv_file"]["tmp_name"], FTP_BINARY);
+                // ftp_close($conn_id);
+                // echo "\n\nconnection closed \n\r file upload end with success! :D";
             } else {
-                echo 'Oops!  Your file\'s size is to large.';
+                dump('Oops!  Your file\'s size is to large.');
             }
         }   
         /*
@@ -79,21 +80,21 @@ class Form extends ComponentBase
         $uri = "http://api.searchsoftware.nl/{$endpoint}?api_key={$key}&signature={$signature}";
 
         $application_data = array(
-            'name' => $_POST['name'],
-            'email' => $_POST['email'],
-            'gender' => $_POST['gender'],
-            'address' => $_POST['address'],
-            'phone' => $_POST['phone'],
+            'name' => Input::get('name'),
+            'email' => Input::get('email'),
+            'gender' => Input::get('gender'),
+            'address' => Input::get('address'),
+            'phone' => Input::get('phone'),
             'note' => array(
-                'text' => $_POST['message'],
+                'text' => Input::get('message'),
             ),
             'job' => array(
-                'id' => $_POST['job-id'],
+                'id' => Input::get('job-id'),
             ),
         );
 
-        if($_FILES["cv-file"]["name"]){
-            $uploaded_file = realpath(getcwd().'/../file/'.$upload_file);
+        if(Input::hasFile('cv_file')){
+            $uploaded_file = Input::file('cv_file')->getRealPath();
             $file_cv = curl_file_create($uploaded_file, 'application/pdf', $upload_file);
             $data = array(
                 'json' => json_encode($application_data),
@@ -117,29 +118,15 @@ class Form extends ComponentBase
         // close the session
         curl_close($request);
 
-        // echo var_dump($file_cv);
-        // echo var_dump($reply);
+        // dump($file_cv);
+        // dump($reply);
 
-        $newURL = 'https://www.searchitrecruitment.com/form-success-page/';
-        header('Location: ' . $newURL);
+        // $newURL = 'https://www.searchitrecruitment.com/form-success-page/';
+        // header('Location: ' . $newURL);
         die();
 
-        return [
-            $this->page['result'] = $this->search
-        ];
+        return Redirect::to('upload-success')->with('message', 'Success!');
 
     }
-
-    /*
-    *
-    * Return the number of rows founded
-    *
-    */
-    public function getCatCount($value)
-    {
-        return Job::where('category', 'LIKE', "%{$value}%")->count();
-    }
-
-    public $search;
 
 }
