@@ -17,13 +17,6 @@ class Cronjob extends ComponentBase
         ];
     }
 
-    public function registerSchedule($schedule)
-    {
-        $schedule->call(function () {
-            $this->readFile();
-        })->everyTenMinutes();->withoutOverlapping()->emailOutputTo('pabis91@gmail.com');;
-    }
-
     public function onRun() 
     {
         $this->readFile();
@@ -33,6 +26,7 @@ class Cronjob extends ComponentBase
 
     protected function readFile() 
     {
+        mail('pabis91@gmail.com', 'cron task', 'cron');
         $file = 'http://external.srch20.com/searchit/xml/jobs';
         $xml = simplexml_load_file($file) or die("Error: Cannot create object");
         $vacancies = $xml->vacancy;
