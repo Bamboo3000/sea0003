@@ -17,6 +17,13 @@ class Cronjob extends ComponentBase
         ];
     }
 
+    public function registerSchedule($schedule)
+    {
+        $schedule->call(function () {
+            $this->readFile();
+        })->everyTenMinutes();->withoutOverlapping()->emailOutputTo('pabis91@gmail.com');;
+    }
+
     public function onRun() 
     {
         $this->readFile();
