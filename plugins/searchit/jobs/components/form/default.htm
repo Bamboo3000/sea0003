@@ -7,7 +7,7 @@
 			<hr class="{{record.job_id|length ? 'job-green' : 'green'}}">
 		</div>
 	</div>
-	<form action="" method="post" enctype="multipart/form-data" class="apply-form">
+	<form enctype="multipart/form-data" class="apply-form" data-request="onFormSubmit">
 		<input type="hidden" name="job-id" class="job-id" value="{{ record.job_id|length ? record.job_id : 0 }}">
 		<input type="hidden" name="gender" class="gender">
 		<input type="text" name="name" class="name" placeholder="{{ 'Name*'|_ }}" required>
