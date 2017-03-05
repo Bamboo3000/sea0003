@@ -1,10 +1,10 @@
 static-pages:
     index: {  }
     contact: {  }
+    upload-cv-success: {  }
     client:
         client-30-tax-ruling: {  }
         client-work-permit: {  }
-        why-search-it-recruitment: {  }
         client-why-search-it-recruitment: {  }
         client-coaching: {  }
         client-executive-search-headhunting: {  }
@@ -14,7 +14,6 @@ static-pages:
         client-upload-job: {  }
         client-our-recruitment-process: {  }
     candidates:
-        why-search-it-recruitment: {  }
         candidates-upload-cv: {  }
         candidates-our-recruitment-process: {  }
         candidates-work-permit: {  }

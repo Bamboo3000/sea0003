@@ -118,14 +118,12 @@ class Form extends ComponentBase
         // close the session
         curl_close($request);
 
-        // dump($file_cv);
         // dump($reply);
 
         // $newURL = 'https://www.searchitrecruitment.com/form-success-page/';
         // header('Location: ' . $newURL);
+        return Redirect::to('upload-cv-success');
         die();
-
-        return Redirect::to('upload-success')->with('message', 'Success!');
 
     }
 
