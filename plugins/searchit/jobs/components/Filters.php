@@ -23,9 +23,9 @@ class Filters extends ComponentBase
     {
 
         if(App::getLocale() == 'en') {
-            $this->page['jobUrl'] = "/en/jobs/";
+            $this->page['jobUrl'] = "/en/job/";
         } else {
-            $this->page['jobUrl'] = "/nl/vacatures/";
+            $this->page['jobUrl'] = "/nl/vacature/";
         }
 
         $title = input('job-title');
