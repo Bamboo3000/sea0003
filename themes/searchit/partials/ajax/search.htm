@@ -19,7 +19,7 @@ public function onStart()
                 {# Use spaceless tag to remove spaces inside the A tag. #}
                 {% spaceless %}
                     <h3>
-                        <a href="{{ jobUrl }}{{ record.slug }}">
+                        <a href="{{ jobUrl }}{{ record.slug }}" class="the-job-title">
                             {{ record.title }}
                         </a>
                     </h3>

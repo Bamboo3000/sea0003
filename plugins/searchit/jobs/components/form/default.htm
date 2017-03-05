@@ -1,17 +1,29 @@
-{{ form_open({ enctype: 'multipart/form-data', class: 'apply-form', request: 'onFormSubmit' }) }}
-     <input type="hidden" name="job-id" class="job-id" value="{{ record.job_id|length ? record.job_id : 0 }}">
-     <input type="hidden" name="gender" class="gender">
-     <input type="text" name="name" class="name" required placeholder="{{ 'Name*'|_ }}">
-     <input type="file" name="photo" accept="image/*" class="photo photo-file" onchange="readURL(this)">
-     <input type="text" name="photoURL" class="photo photo-url">
-     <label for="photo" id="labelP" class="input photoLabel">{{ 'Choose your photo'|_ }}</label>
-     <input type="text" name="address" class="address" placeholder="{{ 'Address'|_ }}">
-     <input type="email" name="email" class="email" required placeholder="{{ 'Email*'|_ }}">
-     <input type="text" name="phone" class="phone" placeholder="{{ 'Phone'|_ }}">
-     <input type="file" name="cv_file" id="cv-file" accept=".pdf" class="cv">
-     <label for="cv" class="input cvLabel">{{ 'Choose your cv file'|_ }}</label>
-     <div class="applyFB" onclick="myFacebookLogin()">{{ 'Apply with Facebook'|_ }}</div>
-     <textarea name="message" class="message" placeholder="{{ 'Motivation and extra details'|_ }}"></textarea>
-     <div class="applyLI" onclick="liAuth()">{{ 'Apply with LinkedIn'|_ }}</div>
-     <input type="submit" value="{{ 'Apply'|_ }}" class="submit">
-{{ form_close() }}
+<section class="apply-form-section">
+     <div class="row">
+          <div class="col-xs-1-of-1">
+               {% if record.job_id|length %}
+                    <h3>
+                         {{ 'Apply for this job!'|_ }}
+                    </h3>
+                    <hr class="{{ record.job_id|length ? 'job-green' : 'green' }}">
+               {% endif %}
+          </div>
+          {{ form_open({ enctype: 'multipart/form-data', class: 'apply-form', request: 'onFormSubmit' }) }}
+               <input type="hidden" name="job-id" class="job-id" value="{{ record.job_id|length ? record.job_id : 0 }}">
+               <input type="hidden" name="gender" class="gender">
+               <input type="text" name="name" class="name" required placeholder="{{ 'Name*'|_ }}">
+               <input type="file" name="photo" accept="image/*" class="photo photo-file" onchange="readURL(this)">
+               <input type="text" name="photoURL" class="photo photo-url">
+               <label for="photo" id="labelP" class="input photoLabel">{{ 'Choose your photo'|_ }}</label>
+               <input type="text" name="address" class="address" placeholder="{{ 'Address'|_ }}">
+               <input type="email" name="email" class="email" required placeholder="{{ 'Email*'|_ }}">
+               <input type="text" name="phone" class="phone" placeholder="{{ 'Phone'|_ }}">
+               <input type="file" name="cv_file" id="cv-file" accept=".pdf" class="cv">
+               <label for="cv" class="input cvLabel">{{ 'Choose your cv file'|_ }}</label>
+               <div class="applyFB" onclick="myFacebookLogin()">{{ 'Apply with Facebook'|_ }}</div>
+               <textarea name="message" class="message" placeholder="{{ 'Motivation and extra details'|_ }}"></textarea>
+               <div class="applyLI" onclick="liAuth()">{{ 'Apply with LinkedIn'|_ }}</div>
+               <input type="submit" value="{{ 'Apply'|_ }}" class="submit">
+          {{ form_close() }}
+     </div>
+</section>
