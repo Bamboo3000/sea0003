@@ -26,7 +26,7 @@ class Cronjob extends ComponentBase
 
     protected function readFile() 
     {
-        mail('pabis91@gmail.com', 'cron task', 'cron');
+        // mail('pabis91@gmail.com', 'cron task', 'cron');
         $file = 'http://external.srch20.com/searchit/xml/jobs';
         $xml = simplexml_load_file($file) or die("Error: Cannot create object");
         $vacancies = $xml->vacancy;
