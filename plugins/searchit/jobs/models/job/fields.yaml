@@ -59,3 +59,19 @@ tabs:
             mode: datetime
             type: datepicker
             tab: Info
+        meta_title:
+            label: 'Meta Title'
+            span: left
+            type: text
+            tab: SEO
+        meta_description:
+            label: 'Meta Description'
+            span: right
+            size: small
+            type: textarea
+            tab: SEO
+        meta_keywords:
+            label: 'Meta Keywords'
+            span: left
+            type: text
+            tab: SEO

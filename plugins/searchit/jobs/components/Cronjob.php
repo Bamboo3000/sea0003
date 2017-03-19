@@ -31,9 +31,12 @@ class Cronjob extends ComponentBase
         $xml = simplexml_load_file($file) or die("Error: Cannot create object");
         $vacancies = $xml->vacancy;
         $jobs = Job::orderBy('job_id', 'desc')->get();
+        $job_ids = [];
 
         foreach($vacancies as $job)
         {
+
+            array_push($job_ids, $job->id);
             $date = date("Y-m-d H:i:s", strtotime($job->publish_date));
             $slug = $this->slugify( $job->title.'-'.$job->id );
             $salary_min = preg_replace("/\./", "", $job->salary_fixed);
@@ -77,15 +80,19 @@ class Cronjob extends ComponentBase
                                 $cat = $category;
                             }
                             $jobSingleCatRow = Category::where('category_name', $cat)->first();
+                            $jobSingleCatAllRow = Category::where('category_slug', 'all-jobs')->first();
                             $jobSingleCatID = $jobSingleCatRow->id;
+                            $jobSingleCatAllID = $jobSingleCatAllRow->id;
+                            $jobSingleCatPivot->where('job_id', $jobSingleID)->delete();
                             $jobSingleCatPivot->insert([ 'job_id' => $jobSingleID, 'category_id' => $jobSingleCatID ]);
+                            $jobSingleCatPivot->insert([ 'job_id' => $jobSingleID, 'category_id' => $jobSingleCatAllID ]);
                         }
                         if($category['group'] == '#1 Availability')
                         {
                             $type = $category;
                             $jobSingleTypeRow = Type::where('type_name', $type)->first();
                             $jobSingleTypeID = $jobSingleTypeRow->id;
-                            $jobSingleTypePivot->insert([ 'job_id' => $jobSingleID, 'type_id' => $jobSingleTypeID ]);
+                            $jobSingleTypePivot->where('job_id', $jobSingleID)->update(['type_id' => $jobSingleTypeID ]);
                         }
                     }
 
@@ -123,8 +130,11 @@ class Cronjob extends ComponentBase
                             $cat = $category;
                         }
                         $jobSingleCatRow = Category::where('category_name', $cat)->first();
+                        $jobSingleCatAllRow = Category::where('category_slug', 'all-jobs')->first();
                         $jobSingleCatID = $jobSingleCatRow->id;
+                        $jobSingleCatAllID = $jobSingleCatAllRow->id;
                         $jobSingleCatPivot->insert([ 'job_id' => $jobSingleID, 'category_id' => $jobSingleCatID ]);
+                        $jobSingleCatPivot->insert([ 'job_id' => $jobSingleID, 'category_id' => $jobSingleCatAllID ]);
                     }
                     if($category['group'] == '#1 Availability')
                     {
@@ -136,6 +146,18 @@ class Cronjob extends ComponentBase
                 }
             }
 
+        }
+
+        foreach($jobs as $job) {
+            if(!in_array($job->job_id, $job_ids)) {
+                // print_r($job->job_id);
+                $jobSingleCatPivot = DB::table('searchit_jobs_job_categories');
+                $jobSingleRow = Job::where('job_id', $job->job_id)->first();
+                $jobSingleID = $jobSingleRow->id;
+                $jobSingleCatRow = Category::where('category_name', 'fulfilled')->first();
+                $jobSingleCatID = $jobSingleCatRow->id;
+                $jobSingleCatPivot->insert([ 'job_id' => $jobSingleID, 'category_id' => $jobSingleCatID ]);
+            }
         }
 
     }

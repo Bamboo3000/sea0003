@@ -24,9 +24,14 @@ localeUrl[nl] = "/vacature/:slug"
 {% set record = builderDetails.record %}
 {% set displayColumn = builderDetails.displayColumn %}
 {% set notFoundMessage = builderDetails.notFoundMessage %}
+{% set fulfilled = false %}
 
 {% if record %}
-    
+    {% for category in record.categories %}
+		{% if category.category_slug == 'fulfilled' %}
+			{% set fulfilled = true %}
+		{% endif %}
+	{% endfor %}
 	<div class="row bg-lgrey">
 		<div class="col-l-1-of-4 col-m-1-of-3 col-xs-1-of-1 job-details">
 			<aside>
@@ -122,7 +127,9 @@ localeUrl[nl] = "/vacature/:slug"
 						{{ record.summary|raw }}
 					</div>
 				</div>
-				{% component 'form' %}
+				{% if fulfilled == false  %}
+					{% component 'form' %}
+				{% endif %}
 			</article>
 		</div>
 		<div class="gradient col-l-1-of-4 col-m-1-of-3"></div>

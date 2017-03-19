@@ -33,3 +33,6 @@
 1.0.12:
     - 'Created table searchit_jobs_job_types'
     - builder_table_create_searchit_jobs_job_types.php
+1.0.13:
+    - 'Updated table searchit_jobs_'
+    - builder_table_update_searchit_jobs__7.php
