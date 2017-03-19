@@ -9,7 +9,10 @@ code = "main-menu"
 forceUrl = 1
 
 [langCheck]
+
 [form]
+
+[googleTracker]
 ==
 
 {variable name="section1Title" label="Section title" tab="Section 1" type="text"}{/variable}
@@ -26,16 +29,27 @@ forceUrl = 1
         <meta name="author" content="Search It Recruitment">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="generator" content="Search It Recruitment">
-        <link rel="icon" type="image/png" href="{{ 'assets/images/october.png'|theme }}">
-        <link href="{{ 'assets/css/prototype.css'|theme }}" rel="stylesheet">
-        <script>
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-            ga('create', 'UA-6319827-2', 'auto');
-            ga('send', 'pageview');
-        </script>
+        <link rel="apple-touch-icon" sizes="57x57" href="{{ 'assets/img/favicon/apple-icon-57x57.png'|theme }}">
+        <link rel="apple-touch-icon" sizes="60x60" href="{{ 'assets/img/favicon/apple-icon-60x60.png'|theme }}">
+        <link rel="apple-touch-icon" sizes="72x72" href="{{ 'assets/img/favicon/apple-icon-72x72.png'|theme }}">
+        <link rel="apple-touch-icon" sizes="76x76" href="{{ 'assets/img/favicon/apple-icon-76x76.png'|theme }}">
+        <link rel="apple-touch-icon" sizes="114x114" href="{{ 'assets/img/favicon/apple-icon-114x114.png'|theme }}">
+        <link rel="apple-touch-icon" sizes="120x120" href="{{ 'assets/img/favicon/apple-icon-120x120.png'|theme }}">
+        <link rel="apple-touch-icon" sizes="144x144" href="{{ 'assets/img/favicon/apple-icon-144x144.png'|theme }}">
+        <link rel="apple-touch-icon" sizes="152x152" href="{{ 'assets/img/favicon/apple-icon-152x152.png'|theme }}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ 'assets/img/favicon/apple-icon-180x180.png'|theme }}">
+        <link rel="icon" type="image/png" sizes="192x192"  href="{{ 'assets/img/favicon/android-icon-192x192.png'|theme }}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ 'assets/img/favicon/favicon-32x32.png'|theme }}">
+        <link rel="icon" type="image/png" sizes="96x96" href="{{ 'assets/img/favicon/favicon-96x96.png'|theme }}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ 'assets/img/favicon/favicon-16x16.png'|theme }}">
+        <link rel="manifest" href="{{ 'assets/img/favicon/manifest.json'|theme }}">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="{{ 'assets/img/favicon/ms-icon-144x144.png'|theme }}">
+        <meta name="theme-color" content="#ffffff">
+        <link rel="stylesheet" href="{{ [
+            'assets/css/prototype.css',
+            '@framework.extras'
+        ]|theme }}">
     </head>
     <body>
         <div class="wrapper">
@@ -75,24 +89,24 @@ forceUrl = 1
         </div>
 
         <!-- Scripts -->
-        <script src="{{ 'assets/js/www/app.min.js'|theme }}"></script>
-        
-        <!-- OnRecruit code 2.0.1 confirmation page -->
+        <script src="{{ [
+            'assets/js/app.min.js',
+            '@framework',
+            '@framework.extras'
+        ]|theme }}"></script>
 
-        <script type="text/javascript">
-            var _onrecruit = _onrecruit || [];
-            _onrecruit.push(['m', 90]);
-            _onrecruit.push(['c', 'Search IT Recruitment']);
-            (function() {
-                var onrecruit = document.createElement('script'); onrecruit.type = 'text/javascript'; onrecruit.async = true;
-                onrecruit.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'tracker.onrecruit.net/static/scripts/apl.js';
-                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(onrecruit, s);
-            })();
-        </script>
+        {# <script type="text/javascript">
+        //     var _onrecruit = _onrecruit || [];
+        //     _onrecruit.push(['m', 90]);
+        //     _onrecruit.push(['c', 'Search IT Recruitment']);
+        //     (function() {
+        //         var onrecruit = document.createElement('script'); onrecruit.type = 'text/javascript'; onrecruit.async = true;
+        //         onrecruit.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'tracker.onrecruit.net/static/scripts/apl.js';
+        //         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(onrecruit, s);
+        //     })();
+        </script> #}
 
-        <!-- end OnRecruit code -->
+        {% component 'googleTracker' %}
 
-        {% framework extras %}
-        
     </body>
 </html>

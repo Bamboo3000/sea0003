@@ -26,8 +26,27 @@ forceUrl = 1
         <meta name="author" content="Search It Recruitment">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="generator" content="Search It Recruitment">
-        <link rel="icon" type="image/png" href="{{ 'assets/images/october.png'|theme }}">
-        <link href="{{ 'assets/css/prototype.css'|theme }}" rel="stylesheet">
+        <link rel="apple-touch-icon" sizes="57x57" href="{{ 'assets/img/favicon/apple-icon-57x57.png'|theme }}">
+        <link rel="apple-touch-icon" sizes="60x60" href="{{ 'assets/img/favicon/apple-icon-60x60.png'|theme }}">
+        <link rel="apple-touch-icon" sizes="72x72" href="{{ 'assets/img/favicon/apple-icon-72x72.png'|theme }}">
+        <link rel="apple-touch-icon" sizes="76x76" href="{{ 'assets/img/favicon/apple-icon-76x76.png'|theme }}">
+        <link rel="apple-touch-icon" sizes="114x114" href="{{ 'assets/img/favicon/apple-icon-114x114.png'|theme }}">
+        <link rel="apple-touch-icon" sizes="120x120" href="{{ 'assets/img/favicon/apple-icon-120x120.png'|theme }}">
+        <link rel="apple-touch-icon" sizes="144x144" href="{{ 'assets/img/favicon/apple-icon-144x144.png'|theme }}">
+        <link rel="apple-touch-icon" sizes="152x152" href="{{ 'assets/img/favicon/apple-icon-152x152.png'|theme }}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ 'assets/img/favicon/apple-icon-180x180.png'|theme }}">
+        <link rel="icon" type="image/png" sizes="192x192"  href="{{ 'assets/img/favicon/android-icon-192x192.png'|theme }}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ 'assets/img/favicon/favicon-32x32.png'|theme }}">
+        <link rel="icon" type="image/png" sizes="96x96" href="{{ 'assets/img/favicon/favicon-96x96.png'|theme }}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ 'assets/img/favicon/favicon-16x16.png'|theme }}">
+        <link rel="manifest" href="{{ 'assets/img/favicon/manifest.json'|theme }}">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="{{ 'assets/img/favicon/ms-icon-144x144.png'|theme }}">
+        <meta name="theme-color" content="#ffffff">
+        <link rel="stylesheet" href="{{ [
+            'assets/css/prototype.css',
+            '@framework.extras'
+        ]|theme }}">
     </head>
     <body>
         <div class="wrapper">
@@ -72,8 +91,12 @@ forceUrl = 1
         </div>
 
         <!-- Scripts -->
-        <script src="{{ 'assets/js/www/app.min.js'|theme }}"></script>
-        <script async defer>
+        <script src="{{ [
+            'assets/js/app.min.js',
+            '@framework',
+            '@framework.extras'
+        ]|theme }}"></script>
+        <script defer>
             function initMap() {
                 var map = document.getElementById('map');
                 var map = new google.maps.Map(map, {
@@ -89,9 +112,7 @@ forceUrl = 1
                 map.set('styles', [{"featureType":"water","elementType":"geometry","stylers":[{"color":"#a0d6d1"},{"lightness":17}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":20}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#dedede"},{"lightness":17}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#dedede"},{"lightness":29},{"weight":0.2}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#dedede"},{"lightness":18}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":16}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#f1f1f1"},{"lightness":21}]},{"elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"color":"#ffffff"},{"lightness":16}]},{"elementType":"labels.text.fill","stylers":[{"saturation":36},{"color":"#333333"},{"lightness":40}]},{"elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#f2f2f2"},{"lightness":19}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#fefefe"},{"lightness":20}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#fefefe"},{"lightness":17},{"weight":1.2}]}]);
             }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGq--CHCCuRBeJprWqk5IwVfeqi0gHtfo&callback=initMap" async defer></script>
-
-    {% framework extras %}
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGq--CHCCuRBeJprWqk5IwVfeqi0gHtfo&callback=initMap" defer></script>
 
     {% component 'googleTracker' %}
 
