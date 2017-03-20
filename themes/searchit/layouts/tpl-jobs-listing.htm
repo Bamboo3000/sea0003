@@ -191,7 +191,7 @@ public function onStart()
 
 		$(document).ready(function() {
 
-			$('#job-title, #job-location, #job-salary-min, #job-salary-max').on('keyup', updateURL);
+			$('#job-title, #job-location, #job-salary-min, #job-salary-max').on('input paste', updateURL);
 			$('.job-categories, .job-types').find('a').on('click', function(e) {
 				e.preventDefault();
 				$(this).parent().parent().find('a').removeClass('pushed');
