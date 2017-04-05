@@ -26,7 +26,6 @@ class Cronjob extends ComponentBase
 
     protected function readFile() 
     {
-        // mail('pabis91@gmail.com', 'cron task', 'cron');
         $file = 'http://external.srch20.com/searchit/xml/jobs';
         $xml = simplexml_load_file($file) or die("Error: Cannot create object");
         $vacancies = $xml->vacancy;
@@ -35,7 +34,6 @@ class Cronjob extends ComponentBase
 
         foreach($vacancies as $job)
         {
-
             array_push($job_ids, $job->id);
             $date = date("Y-m-d H:i:s", strtotime($job->publish_date));
             $slug = $this->slugify( $job->title.'-'.$job->id );
@@ -47,6 +45,11 @@ class Cronjob extends ComponentBase
 
             $jobCategory = $job->categories->category;
 
+            /*
+            *
+            * Run when job in XML is already in database and modification date is different than one in database.
+            *
+            */
             if($this->getJobCount('job_id', $job->id) !== 0)
             {
                 if($this->getJobVal('job_id', $job->id, 'date') !== $date)
@@ -150,7 +153,6 @@ class Cronjob extends ComponentBase
 
         foreach($jobs as $job) {
             if(!in_array($job->job_id, $job_ids)) {
-                // print_r($job->job_id);
                 $jobSingleCatPivot = DB::table('searchit_jobs_job_categories');
                 $jobSingleRow = Job::where('job_id', $job->job_id)->first();
                 $jobSingleID = $jobSingleRow->id;

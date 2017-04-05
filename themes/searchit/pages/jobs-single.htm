@@ -66,37 +66,37 @@ localeUrl[nl] = "/vacature/:slug"
 						<ul class="share-buttons">
 						  <li>
 						  	<div class="hexagon facebook">
-						  		<a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo get_permalink(); ?>&t=<?php the_title(); ?>" title="Share on Facebook" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+						  		<a href="https://www.facebook.com/sharer/sharer.php?u={{ this.page.id | page }}&t={{ record.title }}" title="Share on Facebook" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
 						  	</div>
 						  </li>
 						  <li>
 							<div class="hexagon twitter">
-							  	<a href="https://twitter.com/intent/tweet?source=<?php echo get_permalink(); ?>&text=<?php the_title(); ?>" target="_blank" title="Tweet"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+							  	<a href="https://twitter.com/intent/tweet?source={{ this.page.id | page }}&text={{ record.title }}" target="_blank" title="Tweet"><i class="fa fa-twitter" aria-hidden="true"></i></a>
 						  	</div>
 						  </li>
 						  <li>
 							<div class="hexagon whatsapp">
-							  	<a href="whatsapp://send?text=<?php the_title(); ?>&nbsp;&nbsp;<?php echo get_permalink(); ?>" target="_blank" title="Share via Whatsapp"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+							  	<a href="whatsapp://send?text={{ record.title }}&nbsp;&nbsp;{{ this.page.id | page }}" target="_blank" title="Share via Whatsapp"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
 						  	</div>
 						  </li>
 						  <li>
 							<div class="hexagon gplus">
-						  		<a href="https://plus.google.com/share?url=<?php echo get_permalink(); ?>" target="_blank" title="Share on Google+"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+						  		<a href="https://plus.google.com/share?url={{ this.page.id | page }}" target="_blank" title="Share on Google+"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
 						  	</div>
 						  </li>
 						  <li>
 						  	<div class="hexagon pocket">
-						  		<a href="https://getpocket.com/save?url=<?php echo get_permalink(); ?>&title=<?php the_title(); ?>" target="_blank" title="Add to Pocket"><i class="fa fa-get-pocket" aria-hidden="true"></i></a>
+						  		<a href="https://getpocket.com/save?url={{ this.page.id | page }}&title={{ record.title }}" target="_blank" title="Add to Pocket"><i class="fa fa-get-pocket" aria-hidden="true"></i></a>
 						  	</div>
 						  </li>
 						  <li>
 						  	<div class="hexagon linkedin">
-						  		<a href="http://www.linkedin.com/shareArticle?mini=true&url=<?php echo get_permalink(); ?>&title=<?php the_title(); ?>&summary=Checkout%20this%20job%20offer!&source=<?php echo get_permalink(); ?>" target="_blank" title="Share on LinkedIn"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+						  		<a href="http://www.linkedin.com/shareArticle?mini=true&url={{ this.page.id | page }}&title={{ record.title }}&summary=Checkout%20this%20job%20offer!&source={{ this.page.id | page }}" target="_blank" title="Share on LinkedIn"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
 						  	</div>
 						  </li>
 						  <li>
 						 	<div class="hexagon mail">
-						  		<a href="mailto:?subject=<?php the_title(); ?>&body=Checkout%20this%20job%20offer: <?php echo get_permalink(); ?>" target="_blank" title="Email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
+						  		<a href="mailto:?subject={{ record.title }}&body=Checkout%20this%20job%20offer: {{ this.page.id | page }}" target="_blank" title="Email"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
 						  	</div>
 						  </li>
 						</ul>
