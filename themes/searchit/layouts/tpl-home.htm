@@ -25,12 +25,16 @@ sortColumn = "id"
 
 <?php
 
-  use Searchit\Jobs\Models\Job;
+    use Searchit\Jobs\Models\Job;
+    use Searchit\Jobs\Models\Category;
 
-  public function onInit()
-  {
-    $this['jobsNo'] = Job::count();
-  }
+    public function onInit()
+    {
+        $jobsNo = Job::whereDoesntHave('categories', function($query) {
+            $query->where('category_slug', 'like', 'fulfilled');
+        });
+        $this['jobsNo'] = $jobsNo->count(); 
+    }
 
 ?>
 

@@ -42,7 +42,7 @@ class Form extends ComponentBase
                 $file = new FileSys;
                 $file->data = Input::file('cv_file');
                 $file->save();
-                $upload_file = Input::file('cv_file')->getRealPath();
+                // $upload_file = Input::file('cv_file')->getRealPath();
 
                 // $remote_file_path = "/storage/app/uploads/public/" . $upload_file;
                 // $remote_file_path = "/uploads/public/";
@@ -95,7 +95,9 @@ class Form extends ComponentBase
 
         if(Input::hasFile('cv_file')){
             $uploaded_file = Input::file('cv_file')->getRealPath();
-            $file_cv = curl_file_create($uploaded_file, 'application/pdf', $upload_file);
+            $file_ext = Input::file('cv_file')->getMimeType();
+            $file_name = Input::file('cv_file')->getClientOriginalName();
+            $file_cv = curl_file_create($uploaded_file, $file_ext, $file_name);
             $data = array(
                 'json' => json_encode($application_data),
                 'cv' => $file_cv

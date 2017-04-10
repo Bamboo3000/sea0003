@@ -29,7 +29,7 @@ class Cronjob extends ComponentBase
         $file = 'http://external.srch20.com/searchit/xml/jobs';
         $xml = simplexml_load_file($file) or die("Error: Cannot create object");
         $vacancies = $xml->vacancy;
-        $jobs = Job::orderBy('job_id', 'desc')->get();
+        $jobs = Job::orderBy('id', 'desc')->get();
         $job_ids = [];
 
         foreach($vacancies as $job)
@@ -151,15 +151,36 @@ class Cronjob extends ComponentBase
 
         }
 
+        /*
+        *
+        * Check if job id from database is present in XML, if not, add "fulfilled" category to it.
+        *
+        */
         foreach($jobs as $job) {
-            if(!in_array($job->job_id, $job_ids)) {
-                $jobSingleCatPivot = DB::table('searchit_jobs_job_categories');
-                $jobSingleRow = Job::where('job_id', $job->job_id)->first();
-                $jobSingleID = $jobSingleRow->id;
-                $jobSingleCatRow = Category::where('category_name', 'fulfilled')->first();
-                $jobSingleCatID = $jobSingleCatRow->id;
-                $jobSingleCatPivot->insert([ 'job_id' => $jobSingleID, 'category_id' => $jobSingleCatID ]);
+            $jobSingleCatPivot = DB::table('searchit_jobs_job_categories');
+            $jobSingleCatID = Category::where('category_slug', 'fulfilled')->pluck('id');
+            $jobSingleCatIDAll = Category::where('category_slug', 'all-jobs')->pluck('id');
+            $isJobFulfilled = $jobSingleCatPivot->where('job_id', $job->id)->where('category_id', $jobSingleCatID)->count();
+            if(!in_array($job->job_id, $job_ids) && $isJobFulfilled === 0) {
+                $jobSingleCatPivot->insert([ 'job_id' => $job->id, 'category_id' => $jobSingleCatID ]);
             }
+            var_dump($isJobFulfilled);
+        }
+
+        /*
+        *
+        * Check if job with id X is in category "all-jobs", if not, add it.
+        *
+        */
+        foreach($jobs as $job) {
+            $jobSingleCatPivot = DB::table('searchit_jobs_job_categories');
+            $jobSingleCatID = Category::where('category_slug', 'fulfilled')->pluck('id');
+            $jobSingleCatIDAll = Category::where('category_slug', 'all-jobs')->pluck('id');
+            $isJobAll = $jobSingleCatPivot->where('job_id', $job->id)->where('category_id', $jobSingleCatIDAll)->count();
+            if($isJobAll === 0) {
+                $jobSingleCatPivot->insert([ 'job_id' => $job->id, 'category_id' => $jobSingleCatIDAll ]);
+            }
+            var_dump($isJobAll);
         }
 
     }
