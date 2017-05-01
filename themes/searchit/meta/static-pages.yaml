@@ -10,14 +10,13 @@ static-pages:
         client-executive-search-headhunting: {  }
         client-recruitment-process-outsourcing-rpo: {  }
         client-sourcing-process-outsourcing-spo: {  }
-        client-terms-conditions: {  }
         client-upload-job: {  }
         client-our-recruitment-process: {  }
     candidates:
         candidates-upload-cv: {  }
-        candidates-our-recruitment-process: {  }
+        candidates-why-search-it-recruitment: {  }
         candidates-work-permit: {  }
         candidates-30-tax-ruling: {  }
         candidates-example-cv: {  }
-        candidates-why-search-it-recruitment: {  }
-        application-tips: {  }
+        voorbeeld-cv-nederlands: {  }
+    upload-job-success: {  }

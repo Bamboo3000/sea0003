@@ -12,6 +12,16 @@ forceUrl = 1
 localeUrl[nl] = "/vacatures/:page?"
 ==
 
+{% if category_display %}
+    <div class="job-category-title">
+        <div class="row">
+            <h1>
+                {{ 'Jobs in'|_ }}: <strong>{{ category_display.category_name }}</strong>
+            </h1>
+        </div>
+    </div>
+{% endif %}
+
 {% for record in jobs %}
     <article class="the-job">
         <div class="row">

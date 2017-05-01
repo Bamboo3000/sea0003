@@ -21,7 +21,7 @@ class JobsList extends ComponentBase
     public $types;
     public $pagination;
 
-    public function init()
+    public function onRun()
     {
       $this->page['cats'] = Category::get();
       $this->page['types'] = Type::get();
@@ -48,32 +48,33 @@ class JobsList extends ComponentBase
         }
 	    }
 
-      $jobs = new Job;
+      $this->jobs = new Job;
 
       if(!empty($title)) {
-        $jobs = $jobs->where('summary', 'LIKE', "%{$title}%")->orWhere('title', 'LIKE', "%{$title}%");
+        $this->jobs = $this->jobs->where('summary', 'LIKE', "%{$title}%")->orWhere('title', 'LIKE', "%{$title}%");
       }
       if(!empty($type)) {
-        $jobs = $jobs->whereHas('types', function($query) use ($type) {
+        $this->jobs = $this->jobs->whereHas('types', function($query) use ($type) {
             $query->where('type_slug', 'LIKE', "%{$type}%");
         });
       }
       if(!empty($location)) {
-        $jobs = $jobs->where('location', 'LIKE', "%{$location}%");
+        $this->jobs = $this->jobs->where('location', 'LIKE', "%{$location}%");
       }
       if(!empty($category)) {
-        $jobs = $jobs->whereHas('categories', function($query) use ($category) {
+        $this->jobs = $this->jobs->whereHas('categories', function($query) use ($category) {
             $query->where('category_slug', 'LIKE', "%{$category}%");
-        });    
+        });   
+        $this->page['category_display'] =  Category::where('category_slug', 'LIKE', "%{$category}%")->first();
       }
       if(!empty($salaryMin)) {
-        $jobs = $jobs->where('salary_min', '>=', $salaryMin);
+        $this->jobs = $this->jobs->where('salary_min', '>=', $salaryMin);
       }
       if(!empty($salaryMax)) {
-        $jobs = $jobs->where('salary_max', '<=', $salaryMax);
+        $this->jobs = $this->jobs->where('salary_max', '<=', $salaryMax);
       }
 
-      $this->page['jobs'] = $jobs->orderBy('date', 'desc')->paginate(16);
+      $this->page['jobs'] = $this->jobs->orderBy('date', 'desc')->paginate(16);
       $this->page['pagination'] = $this->page['jobs']->appends($parameters);
 
     }
@@ -102,32 +103,33 @@ class JobsList extends ComponentBase
         }
       }
 
-      $jobs = new Job;
+      $this->jobs = new Job;
 
       if(!empty($title)) {
-        $jobs = $jobs->where('summary', 'LIKE', "%{$title}%")->orWhere('title', 'LIKE', "%{$title}%");
+        $this->jobs = $this->jobs->where('summary', 'LIKE', "%{$title}%")->orWhere('title', 'LIKE', "%{$title}%");
       }
       if(!empty($type)) {
-        $jobs = $jobs->whereHas('types', function($query) use ($type) {
+        $this->jobs = $this->jobs->whereHas('types', function($query) use ($type) {
             $query->where('type_slug', 'LIKE', "%{$type}%");
         });
       }
       if(!empty($location)) {
-        $jobs = $jobs->where('location', 'LIKE', "%{$location}%");
+        $this->jobs = $this->jobs->where('location', 'LIKE', "%{$location}%");
       }
       if(!empty($category)) {
-        $jobs = $jobs->whereHas('categories', function($query) use ($category) {
+        $this->jobs = $this->jobs->whereHas('categories', function($query) use ($category) {
             $query->where('category_slug', 'LIKE', "%{$category}%");
         });    
+        $this->page['category_display'] =  Category::where('category_slug', 'LIKE', "%{$category}%")->first();
       }
       if(!empty($salaryMin)) {
-        $jobs = $jobs->where('salary_min', '>=', $salaryMin);
+        $this->jobs = $this->jobs->where('salary_min', '>=', $salaryMin);
       }
       if(!empty($salaryMax)) {
-        $jobs = $jobs->where('salary_max', '<=', $salaryMax);
+        $this->jobs = $this->jobs->where('salary_max', '<=', $salaryMax);
       }
 
-      $this->page['jobs'] = $jobs->orderBy('date', 'desc')->paginate(16);
+      $this->page['jobs'] = $this->jobs->orderBy('date', 'desc')->paginate(16);
       $this->page['pagination'] = $this->page['jobs']->appends($parameters);
 
     }

@@ -1,4 +1,4 @@
-description = "Upload CV success layout"
+description = "Upload Job layout"
 
 [staticMenu mainMenu]
 code = "main-menu"
@@ -10,14 +10,13 @@ forceUrl = 1
 
 [langCheck]
 
-[form]
+[formClient]
 
 [googleTracker]
 ==
 
-{variable name="section1Title" label="Section title" tab="Section 1" type="text"}{/variable}
-{variable name="section1SubTitle" label="Section sub title" tab="Section 1" type="text"}{/variable}
-{variable name="section1Summary" label="Section summary" tab="Section 1" type="richeditor"}{/variable}
+{variable name="cvTitle" label="Section title" tab="Side" type="text"}{/variable}
+{variable name="cvSubTitle" label="Section sub title" tab="Side" type="text"}{/variable}
 
 <!DOCTYPE html>
 <html lang="{{ activeLocale }}">
@@ -59,28 +58,29 @@ forceUrl = 1
 
             <!-- Content -->
             <div class="universal-container">
-                {% if section1Title or section1Summary %}
-                    <section class="universal-section"> 
-                        <div class="row bg-lgrey">
-                            <div class="col-l-1-of-4 col-m-1-of-3 col-xs-1-of-1 universal-left-column">
-                                <aside>
-                                    <hr>
-                                    <span>
-                                        {{ section1Title }}
-                                    </span>
-                                    <h2>
-                                        {{ section1SubTitle }}
-                                    </h2>
-                                </aside>
-                            </div>
-                            <div class="col-l-3-of-4 col-m-2-of-3 col-xs-1-of-1 bg-white universal-right-column">
-                                <article>
-                                    {{ section1Summary|raw }}
-                                </article>
-                            </div>
+                <section class="universal-section"> 
+                    <div class="row bg-lgrey">
+                        <div class="col-l-1-of-4 col-m-1-of-3 col-xs-1-of-1 universal-left-column">
+                            <aside>
+                                <hr>
+                                <span>
+                                    {{ cvTitle }}
+                                </span>
+                                <h2>
+                                    {{ cvSubTitle }}
+                                </h2>
+                            </aside>
                         </div>
-                    </section>
-                {% endif %}
+                        <div class="col-l-3-of-4 col-m-2-of-3 col-xs-1-of-1 bg-white universal-right-column">
+                            <article>
+                                <section class="apply-form-section">
+                                    {% component 'formClient' %}
+                                </section>
+                            </article>
+                            <div id="uploadres"></div>
+                        </div>
+                    </div>
+                </section>
             </div>
 
             <!-- Footer -->
@@ -94,8 +94,8 @@ forceUrl = 1
             '@framework',
             '@framework.extras'
         ]|theme }}"></script>
-
+        
         {% component 'googleTracker' %}
-
+        
     </body>
 </html>

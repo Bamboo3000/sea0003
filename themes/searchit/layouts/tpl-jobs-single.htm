@@ -66,7 +66,7 @@ forceUrl = 1
         ]|theme }}"></script>
         
         {% if record.lat and record.lng %}
-            <script defer>
+            <script defer="defer">
                 function initMap() {
                     var job_map = document.getElementById('job_map');
                     var map = new google.maps.Map(job_map, {
@@ -82,10 +82,9 @@ forceUrl = 1
                     map.set('styles', [{"featureType":"water","elementType":"geometry","stylers":[{"color":"#a0d6d1"},{"lightness":17}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":20}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#dedede"},{"lightness":17}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#dedede"},{"lightness":29},{"weight":0.2}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#dedede"},{"lightness":18}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":16}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#f1f1f1"},{"lightness":21}]},{"elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"color":"#ffffff"},{"lightness":16}]},{"elementType":"labels.text.fill","stylers":[{"saturation":36},{"color":"#333333"},{"lightness":40}]},{"elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#f2f2f2"},{"lightness":19}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#fefefe"},{"lightness":20}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#fefefe"},{"lightness":17},{"weight":1.2}]}]);
                 }
             </script>
-            <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGq--CHCCuRBeJprWqk5IwVfeqi0gHtfo&callback=initMap"></script>
+            <script defer="defer" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGq--CHCCuRBeJprWqk5IwVfeqi0gHtfo&callback=initMap"></script>
         {% endif %}
         
-        <!-- OnRecruit code 2.0.1 jobdetail page -->
         <script type="text/javascript" src="//platform.linkedin.com/in.js">
             $(window).on('load', function() {
                 api_key: 77dug7ogaz4ouh
@@ -94,15 +93,6 @@ forceUrl = 1
             });
         </script>
         <script type="text/javascript">
-
-            // var _onrecruit = _onrecruit || [];
-            // _onrecruit.push(['m', 90]);
-            // _onrecruit.push(['c', 'Search IT Recruitment']);
-            // (function() {
-            //     var onrecruit = document.createElement('script'); onrecruit.type = 'text/javascript'; onrecruit.async = true;
-            //     onrecruit.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'tracker.onrecruit.net/static/scripts/dtl.js';
-            //     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(onrecruit, s);
-            // })();
 
           window.fbAsyncInit = function() {
             FB.init({
@@ -125,14 +115,12 @@ forceUrl = 1
               if (response.status === 'connected') {
                 console.log('Logged in.');
                 FB.api('/me', {fields: 'name, email, location, gender'}, function(response1){
-                    // console.log(response1['name']);
                     $('.apply-form').find('input.name').val(response1['name']);
                     $('.apply-form').find('input.email').val(response1['email']);
                     $('.apply-form').find('input.address').val(response1['location']);
                     $('.apply-form').find('input.gender').val(response1['gender']);
                 });
                 FB.api('/me/picture',{"redirect": false, "height": 200, "width": 200, "type": "normal"}, function(response2){
-                    // console.log(response2['data']['url']);
                     $('.apply-form').find('input.photo-url').val(response2['data']['url']);
                     if((response2['data']['url']).length){
                         $('.apply-form').find('#labelP').css('background-image', 'url('+response2['data']['url']+')');

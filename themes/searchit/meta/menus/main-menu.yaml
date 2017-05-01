@@ -28,7 +28,7 @@ items:
             isExternal: '0'
         items:
             -
-                title: 'Upload CV'
+                title: 'Upload cv'
                 nesting: '0'
                 type: static-page
                 url: ''
@@ -44,30 +44,15 @@ items:
                 title: 'Why Search It Recruitment?'
                 nesting: '0'
                 type: static-page
-                url: ''
                 code: ''
                 reference: candidates-why-search-it-recruitment
-                cmsPage: ''
                 replace: '0'
                 viewBag:
                     isHidden: '0'
                     cssClass: ''
                     isExternal: '0'
             -
-                title: 'Our recruitment process'
-                nesting: '0'
-                type: static-page
-                url: ''
-                code: ''
-                reference: candidates-our-recruitment-process
-                cmsPage: ''
-                replace: '0'
-                viewBag:
-                    isHidden: '0'
-                    cssClass: ''
-                    isExternal: '0'
-            -
-                title: 'Work permit'
+                title: 'Work Permit'
                 nesting: '0'
                 type: static-page
                 url: ''
@@ -93,12 +78,25 @@ items:
                     cssClass: ''
                     isExternal: '0'
             -
-                title: 'Example CV'
+                title: 'Example cv'
                 nesting: '0'
                 type: static-page
                 url: ''
                 code: ''
                 reference: candidates-example-cv
+                cmsPage: ''
+                replace: '0'
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: 'Example Resume Dutch'
+                nesting: '0'
+                type: static-page
+                url: ''
+                code: ''
+                reference: voorbeeld-cv-nederlands
                 cmsPage: ''
                 replace: '0'
                 viewBag:
@@ -149,8 +147,23 @@ items:
                 title: 'Our Recruitment Process'
                 nesting: '0'
                 type: static-page
+                url: ''
                 code: ''
                 reference: client-our-recruitment-process
+                cmsPage: ''
+                replace: '0'
+                viewBag:
+                    isHidden: '0'
+                    cssClass: ''
+                    isExternal: '0'
+            -
+                title: 'Executive Search And Headhunting'
+                nesting: '0'
+                type: static-page
+                url: ''
+                code: ''
+                reference: client-executive-search-headhunting
+                cmsPage: ''
                 replace: '0'
                 viewBag:
                     isHidden: '0'
@@ -160,8 +173,10 @@ items:
                 title: 'Recruitment Process Outsourcing - RPO'
                 nesting: '0'
                 type: static-page
+                url: ''
                 code: ''
                 reference: client-recruitment-process-outsourcing-rpo
+                cmsPage: ''
                 replace: '0'
                 viewBag:
                     isHidden: '0'
@@ -171,8 +186,10 @@ items:
                 title: 'Sourcing Process Outsourcing - SPO'
                 nesting: '0'
                 type: static-page
+                url: ''
                 code: ''
                 reference: client-sourcing-process-outsourcing-spo
+                cmsPage: ''
                 replace: '0'
                 viewBag:
                     isHidden: '0'
@@ -182,8 +199,10 @@ items:
                 title: Coaching
                 nesting: '0'
                 type: static-page
+                url: ''
                 code: ''
                 reference: client-coaching
+                cmsPage: ''
                 replace: '0'
                 viewBag:
                     isHidden: '0'
@@ -193,8 +212,10 @@ items:
                 title: 'Work Permit'
                 nesting: '0'
                 type: static-page
+                url: ''
                 code: ''
                 reference: client-work-permit
+                cmsPage: ''
                 replace: '0'
                 viewBag:
                     isHidden: '0'
@@ -204,8 +225,10 @@ items:
                 title: '30% Tax Ruling'
                 nesting: '0'
                 type: static-page
+                url: ''
                 code: ''
                 reference: client-30-tax-ruling
+                cmsPage: ''
                 replace: '0'
                 viewBag:
                     isHidden: '0'
