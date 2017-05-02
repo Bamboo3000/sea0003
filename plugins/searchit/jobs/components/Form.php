@@ -23,7 +23,6 @@ class Form extends ComponentBase
     */
     protected function onFormSubmit()
     {
-        // dump(Input::all());
         if(Input::hasFile('cv_file')) {
             // $ftp_server = "173.236.146.18";
             // $ftp_username   = "admin_searchit";
@@ -86,11 +85,15 @@ class Form extends ComponentBase
             'address' => Input::get('address'),
             'phone' => Input::get('phone'),
             'note' => array(
-                'text' => Input::get('message'),
+                'text' => Input::get('message')
             ),
             'job' => array(
-                'id' => Input::get('job-id'),
+                'id' => Input::get('job-id')
             ),
+            'sources' => array(
+                'parent_source_id' => Input::get('source'),
+                'name' => 'Applicant'
+            )
         );
 
         if(Input::hasFile('cv_file')){
