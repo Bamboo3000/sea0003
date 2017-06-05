@@ -4,6 +4,8 @@ use Cms\Classes\ComponentBase;
 use Searchit\Jobs\Models\Job;
 use Searchit\Jobs\Models\Type;
 use Searchit\Jobs\Models\Category;
+use Request;
+use DB;
 
 class JobsList extends ComponentBase
 {
@@ -25,6 +27,11 @@ class JobsList extends ComponentBase
     {
       $this->page['cats'] = Category::get();
       $this->page['types'] = Type::get();
+      $categories_slug = DB::table('searchit_jobs_categories')->select('category_slug')->get();
+
+      $url = explode('/', Request::url());
+      $url = end($url);
+      $this->page['url'] = $url;
 
       $title = input('job-title');
       $type = input('job-type');
@@ -49,6 +56,13 @@ class JobsList extends ComponentBase
 	    }
 
       $this->jobs = new Job;
+
+      if(in_array($url, $categories_slug)) {
+        $this->jobs = $this->jobs->whereHas('categories', function($query) use ($url) {
+            $query->where('category_slug', 'LIKE', "%{$url}%");
+        });   
+        $this->page['category_display'] =  Category::where('category_slug', 'LIKE', "%{$url}%")->first();
+      }
 
       if(!empty($title)) {
         $this->jobs = $this->jobs->where('summary', 'LIKE', "%{$title}%")->orWhere('title', 'LIKE', "%{$title}%");

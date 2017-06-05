@@ -91,8 +91,10 @@ class Form extends ComponentBase
                 'id' => Input::get('job-id')
             ),
             'sources' => array(
-                'parent_source_id' => Input::get('source'),
-                'name' => 'Applicant'
+                array(
+                    'parent_source_id' => Input::get('source'),
+                    'name' => 'Applicant'
+                )
             )
         );
 
