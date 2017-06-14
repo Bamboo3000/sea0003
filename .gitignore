@@ -23,7 +23,7 @@ nbproject
 /node_modules
 /composer.lock
 !/.gitignore
-!/themes
+!/themes/searchit
 !/plugins/searchit
 /themes/searchit/content
 /themes/searchit/content/*
